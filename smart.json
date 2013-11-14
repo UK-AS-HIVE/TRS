@@ -1,0 +1,7 @@
+{
+  "packages": {
+    "iron-router": {},
+    "select2": {},
+    "bootboxjs": {}
+  }
+}

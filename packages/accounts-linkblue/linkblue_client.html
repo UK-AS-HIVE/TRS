@@ -1,0 +1,11 @@
+<template name="_linkblueLogin">
+  {{#if currentUser}}
+    Welcome, {{currentUser.username}}. <button class="btn" name="logout">Logout</button>
+  {{else}}
+  <div class="span3">
+    LinkBlue: <input type="text" name="linkblue" />
+    Password: <input type="password" name="password" />
+    <button class="btn" name="login">Login</button>
+  </div>
+  {{/if}}
+</template>

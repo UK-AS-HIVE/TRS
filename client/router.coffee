@@ -30,4 +30,11 @@ Router.map ->
     path: '/department/:department'
 
   @route 'detail',
-    path: '/detail/:semester/:department'
+    path: '/s/:semester/d/:department'
+    data: ->
+      @params
+
+  @route 'detail',
+    path: '/d/:department/s/:semester'
+    data: ->
+      @params

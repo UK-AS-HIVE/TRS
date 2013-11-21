@@ -1,0 +1,43 @@
+<template name="detail">
+  <h1>{{department}}</h1>
+  <h2>{{semester}}</h2>
+
+  <table class="table table-bordered">
+    <thead>
+      <th>Person</th>
+      <th>Courses</th>
+    </thead>
+    <tbody>
+      {{#each persons}}
+        <tr>
+          <td>
+            <h4><span class="editable" data-id="{{_id}}" data-property="name">{{name}}</span></h4>
+            {{> detailRankSelect }}
+          </td>
+          <td>
+          </td>
+        </tr>
+      {{/each}}
+      <tr>
+        <td colspan="2">
+          <button class="btn btn-primary pull-right" id="add">Add...</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+
+<template name="detailRankSelect">
+  <select class="rank" style="min-width: 35%">
+    <optgroup label="Faculty">
+      <option {{selectedOption 'Full'}}>Full Professor</option>
+      <option {{selectedOption 'Professor'}}>Professor</option>
+      <option {{selectedOption 'Assoc'}}>Associate Professor</option>
+      <option {{selectedOption 'Assist'}}>Assistant Professor</option>
+    </optgroup>
+    <option {{selectedOption 'Lecturer'}}>Lecturer</option>
+    <option {{selectedOption 'PostDoc'}}>Post Doc</option>
+    <option {{selectedOption 'PTI'}}>PTI</option>
+    <option {{selectedOption 'GradStudent'}}>Grad Student</option>
+  </select>
+</template>

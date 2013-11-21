@@ -13,7 +13,7 @@
         <span class="pull-right">{{loginButtons}}</span>
       </div>
     </div>
-    <div id="linkblue-login" class="hide">
+    <div id="linkblue-login">
       {{ linkblueLogin }}
     </div>
     {{renderRouter}}
@@ -72,108 +72,7 @@
   {{> managedUsers}}
 </template>
 
-<template name="manage">
 
-  <div class="row">
-
-  <div class="span6">
-    <h4>Departments</h4>
-    {{> manageDepartments }}
-  </div>
-  <div class="span6">
-    <h4>Semesters</h4>
-    {{> manageSemesters }}
-  </div>
-
-  </div>
-</template>
-
-<template name="manageDepartments">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Department</th>
-          <th>Chair/DM users</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each departments}}
-          <tr>
-            <td>{{department}}</td>
-            <td>
-              {{#constant}}
-              {{> departmentUsersSelect }}
-              {{/constant}}
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-</template>
-
-<template name="departmentUsersSelect">
-  <div>
-    <input value="{{usernames}}" data-placeholder="Add users..." type="hidden" class="chair-dm-users span3" />
-  </div>
-</template>
-
-<template name="manageDepartmentDialog">
-  <div class="manage-department-dialog modal hide" role="dialog" aria-labelledby="Clone semester">
-    <div class="modal-header">Manage {{department}} Chair/DM users</div>
-    <div class="modal-body">
-      <table class="table table-bordered table-small">
-        <thead><th>Chair/DM users</th></thead>
-        <tbody>
-          {{#each chairDMusers}}
-            <tr><td>{{this}}</td></tr>
-          {{/each}}
-        </tbody>
-      </table>
-      <select name="user_dropdown">
-        {{#each users}}
-          {{username}}
-        {{/each}}
-      </select>
-      <button class="btn" name="add">Add</button>
-    </div>
-    <div class="modal-footer">
-      <button id="clone" class="btn btn-primary">Clone</button>
-    </div>
-  </div>
-</template>
-
-<template name="manageSemesters">
-    <a class="btn btn-primary btn-mini pull-right" id="clone_semester">Clone latest</a>
-
-    <div id="clone_semester_dialog" class="modal hide" role="dialog" aria-labelledby="Clone semester">
-      <div class="modal-header">Clone new semester</div>
-      <div class="modal-body">
-        New semester: <input id="clone_semester_name" type="text" />
-        <select id="clone_semester_source">
-          {{#each semesters}}
-            <option value="{{semester}}">{{semester}}</option>
-          {{/each}}
-        </select>
-      </div>
-      <div class="modal-footer">
-        <button id="clone" class="btn btn-primary">Clone</button>
-      </div>
-    </div>
-
-    <table class="table table-bordered">
-      <thead>
-        <th>Semester</th>
-        <th>Drop-dead date</th>
-      </thead>
-      {{#each semesters}}
-        <tr>
-          <td>{{semester}}</td>
-          <td>{{#isolate}}<input type="text" data-placeholder="No due date" data-id="{{_id}}" value="{{dropdead}}" class="dropdead" />{{/isolate}}</td>
-        </tr>
-      {{/each}}
-    </table>
-
-</template>
 
 <template name="reportsList">
   <div class="row">
@@ -189,3 +88,4 @@
     </div>
   </div>
 </template>
+

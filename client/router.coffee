@@ -11,9 +11,6 @@ Router.map ->
     waitOn: ->
       Meteor.subscribe 'reports'
 
-  #@route 'users',
-  #  path: '/users'
-
   @route 'manage',
     path: '/manage'
 

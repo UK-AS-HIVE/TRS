@@ -15,7 +15,15 @@
             {{> detailRankSelect }}
           </td>
           <td>
-          </td>
+            <button name="add-course" class="add-course btn btn-small pull-right">
+              Add course
+            </button>
+            <ul>
+            {{#each courses}}
+              <li>{{prefix}}-{{number}} ({{credits}} credits)</li>
+            {{/each}}
+            </ul>            
+          </td>          
         </tr>
       {{/each}}
       <tr>

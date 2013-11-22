@@ -17,7 +17,10 @@ Template.detail.events
       buyout: 'n/a'
       pay_amount: null
       comment: ''
-      courses: {}
+      courses: []
+  'click button.add-course': (e) ->
+    console.log @
+    TRS.FacultyAllocations.update {_id: @_id}, {$push: {courses: {prefix:'?', number: '?', credits: 3}}}
 
 Template.detail.rendered = ->
   template = @

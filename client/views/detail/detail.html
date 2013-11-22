@@ -10,8 +10,10 @@
     <tbody>
       {{#each persons}}
         <tr>
-          <td>
-            <h4><span class="editable" data-id="{{_id}}" data-property="name">{{name}}</span></h4>
+          <td class="deletable">
+            <i class="icon-trash pull-right"></i>
+            <h4><span class="editable" data-id="{{_id}}" data-property="name">{{name}}</span>
+              <i class="icon-edit"></i></h4>
             {{> detailRankSelect }}
           </td>
           <td>
@@ -19,10 +21,21 @@
               Add course
             </button>
             <ul>
-            {{#each courses}}
-              <li>{{prefix}}-{{number}} ({{credits}} credits)</li>
-            {{/each}}
-            </ul>            
+              {{#each courses}}
+                <li class="course deletable inline-edit">
+                  <span class="inline-edit-preview">
+                    {{prefix}}-{{number}} ({{credits}} credits)
+                  </span>
+                  <span class="inline-edit-form">
+                    <input type="text" placeholder="Prefix" maxlength="4" value="{{prefix}}" name="prefix" /><br/>
+                    <input type="text" placeholder="Course number" maxlength="4" value="{{number}}" name="number" /><br/>
+                    <input type="text" placeholder="Credit hours" maxlength="1" value="{{credits}}" name="credits" /><br/>
+                  </span>
+                  <i class="icon-edit"></i>
+                  <i class="icon-trash"></i>
+                </li>
+              {{/each}}
+            </ul>
           </td>          
         </tr>
       {{/each}}

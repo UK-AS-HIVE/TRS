@@ -1,1 +1,48 @@
 /* CSS declarations go here */
+
+.editable+.icon-edit {
+  visibility: hidden;
+}
+
+.editable:hover+.icon-edit {
+  cursor: pointer;
+  visibility: visible;
+}
+
+.editable:hover {
+  background-color: lightblue;
+}
+
+.inline-edit .inline-edit-preview {
+  display: inline;
+}
+
+.inline-edit .inline-edit-form {
+  display: none;
+}
+
+.inline-edit.editing .inline-edit-preview {
+  display: none;
+}
+
+.inline-edit.editing .inline-edit-form {
+  display: inline;
+}
+
+.inline-edit .icon-edit {
+  visibility: hidden;
+}
+
+.inline-edit:hover .icon-edit {
+  cursor: pointer;
+  visibility: visible;
+}
+
+.deletable .icon-trash {
+  visibility: hidden;
+}
+
+.deletable:hover .icon-trash {
+  cursor: pointer;
+  visibility: visible;
+}

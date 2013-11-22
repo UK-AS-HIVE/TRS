@@ -5,8 +5,12 @@ Template.detail.helpers
     console.log @
     TRS.FacultyAllocations.find {semester: @semester, department: @department}
 
-
 Template.detail.events
+  'click .inline-edit .icon-edit': (e) ->
+    console.log 'toggle edit'
+    parent = $(e.currentTarget).parent '.inline-edit'
+    $('.editing').not(parent).removeClass 'editing'
+    parent.toggleClass 'editing'
   'click button#add': (e) ->
     console.log @
     TRS.FacultyAllocations.insert
@@ -18,12 +22,17 @@ Template.detail.events
       pay_amount: null
       comment: ''
       courses: []
+  'change .course input': (e) ->
+    console.log 'change!'
+    console.log e
+    console.log @
   'click button.add-course': (e) ->
     console.log @
     TRS.FacultyAllocations.update {_id: @_id}, {$push: {courses: {prefix:'?', number: '?', credits: 3}}}
 
 Template.detail.rendered = ->
   template = @
+
   $(@findAll '.editable').editable (value, settings) ->
     console.log 'edited'
     $el = $(@)

@@ -3,8 +3,10 @@ Router.configure
   autoRender: false
 
 Router.map ->
-  @route 'manage',
-    path: '/'
+  @route 'home',
+    path: '/',
+    waitOn: ->
+      [Meteor.subscribe 'departments', Meteor.subscribe 'semesters']
 
   @route 'reportsList',
     path: '/reports'
@@ -28,10 +30,19 @@ Router.map ->
 
   @route 'detail',
     path: '/s/:semester/d/:department'
+    before: ->
+      Session.set 'department', @params.department
+      Session.set 'semester', @params.semester
     data: ->
-      @params
+      department: Session.get 'department'
+      semester: Session.get 'semester'
 
   @route 'detail',
     path: '/d/:department/s/:semester'
+    before: ->
+      Session.set 'department', @params.department
+      Session.set 'semester', @params.semester
     data: ->
-      @params
+      department: Session.get 'department'
+      semester: Session.get 'semester'
+

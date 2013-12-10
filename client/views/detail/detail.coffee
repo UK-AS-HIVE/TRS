@@ -11,6 +11,8 @@ Template.detail.events
     parent = $(e.currentTarget).parent '.inline-edit'
     $('.editing').not(parent).removeClass 'editing'
     parent.toggleClass 'editing'
+  'click .icon-trash': (e,tpl) ->
+    TRS.FacultyAllocations.remove {_id: @_id}
   'click button#add': (e) ->
     console.log @
     TRS.FacultyAllocations.insert

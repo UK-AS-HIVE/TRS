@@ -10,26 +10,34 @@
     <tbody>
       {{#each persons}}
         <tr>
-          <td class="deletable">
+          <td class="instructor-details deletable">
             <i class="icon-trash pull-right"></i>
             <h4><span class="editable" data-id="{{_id}}" data-property="name">{{name}}</span>
-              <i class="icon-edit"></i></h4>
+              <i class="icon-edit"></i>
+            </h4>
             {{> detailRankSelect }}
+            <div class="instructor-properties pull-right">
+              <input type="text" placeholder="UK Id#" data-property="ukid" value="{{ukid}}" /><br/>
+              <input type="text" placeholder="Notes" data-property="notes" value="{{notes}}" /><br/>
+              <input type="text" placeholder="Instructional Faculty Buyout" data-property="buyout" value="{{buyout}}" /><br/>
+              <input type="text" placeholder="Pay Amount" data-property="pay_amount" value="{{pay_amount}}" /><br/>
+              <input type="text" placeholder="Date PAR Submitted" data-property="par" value="{{par}}" /><br/>
+            </div>
           </td>
           <td>
             <button name="add-course" class="add-course btn btn-small pull-right">
               Add course
             </button>
             <ul>
-              {{#each courses}}
-                <li class="course deletable inline-edit">
+              {{#each key_value courses}}
+                <li id="course-{{../_id}}-{{key}}" data-index="{{key}}" data-id="{{../_id}}" class="course deletable inline-edit">
                   <span class="inline-edit-preview">
-                    {{prefix}}-{{number}} ({{credits}} credits)
+                    {{value.prefix}}-{{value.number}} ({{value.credits}} credits)
                   </span>
-                  <span class="inline-edit-form">
-                    <input type="text" placeholder="Prefix" maxlength="4" value="{{prefix}}" name="prefix" /><br/>
-                    <input type="text" placeholder="Course number" maxlength="4" value="{{number}}" name="number" /><br/>
-                    <input type="text" placeholder="Credit hours" maxlength="1" value="{{credits}}" name="credits" /><br/>
+                  <span class="inline-edit-form" data-index="{{key}}" data-id="{{../_id}}">
+                    <input type="text" placeholder="Prefix" maxlength="4" value="{{value.prefix}}" name="prefix" /><br/>
+                    <input type="text" placeholder="Course number" maxlength="4" value="{{value.number}}" name="number" /><br/>
+                    <input type="number" placeholder="Credit hours" min="0" max="4" maxlength="1" value="{{value.credits}}" name="credits" /><br/>
                   </span>
                   <i class="icon-edit"></i>
                   <i class="icon-trash"></i>

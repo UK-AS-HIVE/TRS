@@ -48,8 +48,18 @@ Template.manageSemesters.helpers
 Template.manageSemesters.events
   'click #clone_semester': ->
     $('#clone_semester_dialog').modal()
-  'click button#clone': (e) ->
+  'click #clone_semester_dialog button#clone': (e) ->
+    oldSemesterName = $('#clone_semester_source').val()
+    oldSemester = TRS.Semesters.findOne { semester: oldSemesterName }
+    delete oldSemester._id
+    delete oldSemester.dropdead
+    oldSemester.semester = $('#clone_semester_name').val()
     TRS.Semesters.insert { semester: $('#clone_semester_name').val() }
+    oldAllocations = TRS.FacultyAllocations.find { semester: oldSemesterName }
+    oldAllocations.forEach (alloc) ->
+      alloc.semester = newSemesterName
+      delete alloc._id
+      TRS.FacultyAllocations.insert alloc
     $('#clone_semester_dialog').modal('hide')
 
 Template.manageSemesters.rendered = ->

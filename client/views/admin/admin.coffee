@@ -7,6 +7,14 @@ Template.manageDepartments.helpers
 Template.manageDepartments.events
   'click .edit-department': (e) ->
     $(Template.manageDepartmentDialog { department: @department, @chairDMusers }).modal()
+  'click #add-department': (e) ->
+    bootbox.prompt 'Name of department to add:', (result) ->
+      if result? then TRS.Departments.insert { department: result }
+  'click .icon-trash': (e) ->
+    self = @
+    prompt = 'Delete department ' + @department + '?'
+    bootbox.confirm prompt, (result) ->
+      TRS.Departments.remove {_id: self._id} if result is true
 
 Template.departmentUsersSelect.usernames = ->
   if @chairDMusers?

@@ -1,4 +1,5 @@
 <template name="manage">
+  {{> home}}
 
   <div class="row">
 
@@ -15,24 +16,28 @@
 </template>
 
 <template name="manageDepartments">
-    <table class="table table-bordered">
-      <thead>
+  <button id="add-department" class="pull-right btn btn-mini btn-primary">Add...</button>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Department</th>
+        <th>Chair/DM users</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each departments}}
         <tr>
-          <th>Department</th>
-          <th>Chair/DM users</th>
+          <td class="deletable">
+            <i class="pull-right icon-trash"></i>
+            {{department}}
+          </td>
+          <td>
+            {{> departmentUsersSelect }}
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        {{#each departments}}
-          <tr>
-            <td>{{department}}</td>
-            <td>
-              {{> departmentUsersSelect }}
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+      {{/each}}
+    </tbody>
+  </table>
 </template>
 
 <template name="departmentUsersSelect">

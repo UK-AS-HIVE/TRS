@@ -12,7 +12,7 @@ Template.manageDepartments.events
       if result? then TRS.Departments.insert { department: result }
   'click .icon-trash': (e) ->
     self = @
-    prompt = 'Delete department ' + @department + '?'
+    prompt = 'Delete department <em>' + @department + '</em>?'
     bootbox.confirm prompt, (result) ->
       TRS.Departments.remove {_id: self._id} if result is true
 
@@ -61,14 +61,22 @@ Template.manageSemesters.events
     oldSemester = TRS.Semesters.findOne { semester: oldSemesterName }
     delete oldSemester._id
     delete oldSemester.dropdead
-    oldSemester.semester = $('#clone_semester_name').val()
-    TRS.Semesters.insert { semester: $('#clone_semester_name').val() }
+    newSemesterName = $('#clone_semester_name').val()
+    oldSemester.semester = newSemesterName
+    TRS.Semesters.insert { semester: newSemesterName }
     oldAllocations = TRS.FacultyAllocations.find { semester: oldSemesterName }
     oldAllocations.forEach (alloc) ->
       alloc.semester = newSemesterName
       delete alloc._id
       TRS.FacultyAllocations.insert alloc
     $('#clone_semester_dialog').modal('hide')
+  'click .icon-trash': ->
+    self = @
+    prompt = 'Delete semester <em>' + @semester + '</em>?'
+    bootbox.confirm prompt, (result) ->
+      TRS.Semesters.remove {_id: self._id} if result is true
+
+
 
 Template.manageSemesters.rendered = ->
   self = @

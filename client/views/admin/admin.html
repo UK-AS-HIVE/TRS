@@ -96,7 +96,10 @@
       </thead>
       {{#each semesters}}
         <tr>
-          <td>{{semester}}</td>
+          <td class="deletable">
+            <i class="pull-right icon-trash"></i>
+            {{semester}}
+          </td>
           <td>{{#isolate}}<input type="text" data-placeholder="No due date" data-id="{{_id}}" value="{{dropdead}}" class="dropdead" />{{/isolate}}</td>
         </tr>
       {{/each}}

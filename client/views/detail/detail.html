@@ -1,6 +1,29 @@
 <template name="detail">
-  <h1>{{department}}</h1>
-  <h2>{{semester}}</h2>
+  <div class="row">
+    <div class="span4">
+      <h1>{{department}}</h1>
+      <h2>{{semester}}</h2>
+    </div>
+    <div class="span8">
+      <div class="inline-edit" id="comments-{{_id}}">
+        Comments:
+        <span class="inline-edit-preview">{{{data.comments}}}</span>
+        <span class="inline-edit-form">
+          <br/>
+          <textarea id="comments-textarea" placeholder="Comments">{{{data.comments}}}</textarea>
+        </span>
+        <i class="icon-edit"></i>
+      </div>
+      <div class="inline-edit" id="approved-funding-{{_id}}">
+        Approved funding:
+        <span class="inline-edit-preview">{{data.funding}}</span>
+        <span class="inline-edit-form">
+          <input id="approved-funding-input" type="text" value="{{data.funding}}" placeholder="Approved funding" />
+        </span>
+        <i class="icon-edit"></i>
+      </div>
+    </div>
+  </div>
 
   <table class="table table-bordered">
     <thead>

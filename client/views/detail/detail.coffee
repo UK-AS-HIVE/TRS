@@ -1,11 +1,37 @@
 TRS = @
 
 Template.detail.helpers
+  data: ->
+    TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}
   persons: ->
     console.log @
     TRS.FacultyAllocations.find {semester: @semester, department: @department}
 
 Template.detail.events
+  'change #approved-funding-input': (e) ->
+    val = $(e.srcElement).val()
+    data = TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}
+    console.log data
+    console.log 'updating to: ' + val
+    if data
+      TRS.SemesterDepartmentDetail.update {_id: data._id}, {$set: { funding: val } }
+    else
+      TRS.SemesterDepartmentDetail.insert
+        semester: @semester
+        department: @department
+        funding: val
+  'change #comments-textarea': (e) ->
+    val = $(e.srcElement).val()
+    console.log 'logging comments textarea'
+    console.log val
+    data = TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}
+    if data
+      TRS.SemesterDepartmentDetail.update {_id: data._id}, {$set: { comments: val } }
+    else
+      TRS.SemesterDepartmentDetail.insert
+        semester: @semester
+        department: @department
+        comments: val
   'click .inline-edit .icon-edit': (e) ->
     console.log 'toggle edit'
     parent = $(e.currentTarget).parent '.inline-edit'

@@ -1,7 +1,7 @@
 
 Router.configure
   autoRender: false
-
+  
 Router.map ->
   @route 'home',
     path: '/',
@@ -15,6 +15,8 @@ Router.map ->
 
   @route 'manage',
     path: '/manage'
+    waitOn: ->
+      [Meteor.subscribe 'departments', Meteor.subscribe 'semesters']
 
   @route 'manageDepartments',
     path: '/manage/departments'
@@ -23,6 +25,8 @@ Router.map ->
 
   @route 'manageSemesters',
     path: '/manage/semesters'
+    waitOn: ->
+      Meteor.subscribe 'semesters'
 
   # Show a list of semesters to navigate to the detail page
   @route 'department',
@@ -36,6 +40,8 @@ Router.map ->
     data: ->
       department: Session.get 'department'
       semester: Session.get 'semester'
+    waitOn: ->
+      [Meteor.subscribe 'allocations', Meteor.subscribe 'semesterDepartmentDetail']
 
   @route 'detail',
     path: '/d/:department/s/:semester'
@@ -45,4 +51,5 @@ Router.map ->
     data: ->
       department: Session.get 'department'
       semester: Session.get 'semester'
-
+    waitOn: ->
+      [Meteor.subscribe 'allocations', Meteor.subscribe 'semesterDepartmentDetail']

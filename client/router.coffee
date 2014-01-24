@@ -41,7 +41,10 @@ Router.map ->
       department: Session.get 'department'
       semester: Session.get 'semester'
     waitOn: ->
-      [Meteor.subscribe 'allocations', Meteor.subscribe 'semesterDepartmentDetail']
+      console.log 'Waiting on subscriptions to...'
+      console.log '...'
+      [(Meteor.subscribe 'allocations', @params.department, @params.semester),
+       (Meteor.subscribe 'semesterDepartmentDetail', @params.department, @params.semester)]
 
   @route 'detail',
     path: '/d/:department/s/:semester'
@@ -52,4 +55,7 @@ Router.map ->
       department: Session.get 'department'
       semester: Session.get 'semester'
     waitOn: ->
-      [Meteor.subscribe 'allocations', Meteor.subscribe 'semesterDepartmentDetail']
+      console.log 'Waiting on subscriptions to...'
+      console.log @
+      [(Meteor.subscribe 'allocations', @params.department, @params.semester)
+       (Meteor.subscribe 'semesterDepartmentDetail', @params.department, @params.semester)]

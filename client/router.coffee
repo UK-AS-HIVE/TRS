@@ -1,6 +1,7 @@
 
 Router.configure
   autoRender: false
+  waitOn: -> Meteor.subscribe 'admins'
   
 Router.map ->
   @route 'home',

@@ -1,9 +1,13 @@
 <template name="manage">
   {{> home}}
 
+
   <div class="row">
 
   <div class="span6">
+
+    {{> manageAdmins }}
+ 
     <h4>Departments</h4>
     {{> manageDepartments }}
   </div>
@@ -13,6 +17,14 @@
   </div>
 
   </div>
+</template>
+
+<template name="manageAdmins">
+  <h4>Admins</h4>
+  <div>
+    <input value="{{usernames}}" data-placeholder="Add users..." type="hidden" class="admin-users span3" />
+  </div>
+  <br style="clear: both;" />
 </template>
 
 <template name="manageDepartments">

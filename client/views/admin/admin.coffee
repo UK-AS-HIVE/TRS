@@ -46,34 +46,40 @@ Template.manageAdmins.usernames = ->
   admins = TRS.Admins.findOne {}
   console.log admins
   if admins?
-    console.log 'Admins are: ' + admins.admins.join(',')
     return admins.admins.join ','
   else
     return ''
 
 Template.manageAdmins.rendered = ->
-  console.log 'managedAdmins.rendered'
-  console.log @
+  inputBox = $(@.find '.admin-users')
   $(@.find '.admin-users').select2
     tags: []
     tokenSeparators: [',', ' ', '\n']
     multiple: true
     initSelection: (e, cb) ->
-      admins = TRS.Admins.findOne {}
-      if admins?
-        return cb $(admins.admins).map (e,o) ->
-          {id: o, text: o}
+      cb _.map e.context.value.split(','), (o) ->
+        {id: o, text: o}
     createSearchChoice: (term) ->
       return {id: term, text: term}
     query: (q) ->
       q.callback
         results: Meteor.users.find({ username: { $regex: '^'+q.term } }).map (doc, index) ->
           {id: doc.username, text: doc.username}
+  .on 'select2-removing', (e) ->
+    if e.val == Meteor.user().username
+      e.preventDefault()
+      bootbox.confirm 'You are removing yourself from the list of admins.  Doing so may prevent you from making necessary updates.  Are you sure you wish to continue?', (result) ->
+        if result is true
+          admins = TRS.Admins.findOne {}
+          Meteor.call 'upsertAdmins', _.without(admins.admins, e.val)
+          return
+        else
+          admins = TRS.Admins.findOne {}
+          if admins?
+            inputBox.val(admins.admins.join ',').trigger('change')
   .change (e) ->
-    console.log 'ADMINS'
-    console.log e
-    #TRS.Admins.upsert {}, {admins: e.val }
-    Meteor.call 'upsertAdmins', e.val
+    if e.val?
+      Meteor.call 'upsertAdmins', e.val
 
 Template.manageDepartmentDialog.helpers
   chairDMUsers: ->

@@ -90,6 +90,8 @@ Template.manageDepartmentDialog.rendered = ->
 
 Template.manageSemesters.helpers
   semesters: TRS.Semesters.find {}
+  priorSemestersExist: ->
+    TRS.Semesters.find().count() > 0
 
 Template.manageSemesters.events
   'click #clone_semester': ->
@@ -107,6 +109,10 @@ Template.manageSemesters.events
       alloc.semester = newSemesterName
       delete alloc._id
       TRS.FacultyAllocations.insert alloc
+    $('#clone_semester_dialog').modal('hide')
+  'click #clone_semester_dialog button#create': (e) ->
+    semesterName = $('#clone_semester_name').val()
+    TRS.Semesters.insert { semester: semesterName }
     $('#clone_semester_dialog').modal('hide')
   'click .icon-trash': ->
     self = @

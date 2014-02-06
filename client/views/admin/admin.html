@@ -84,20 +84,32 @@
 </template>
 
 <template name="manageSemesters">
-    <a class="btn btn-primary btn-mini pull-right" id="clone_semester">Clone latest</a>
+    <a class="btn btn-primary btn-mini pull-right" id="clone_semester">
+      {{#if priorSemestersExist}}
+        Clone latest
+      {{else}}
+        Create...
+      {{/if}}
+    </a>
 
     <div id="clone_semester_dialog" class="modal hide" role="dialog" aria-labelledby="Clone semester">
       <div class="modal-header">Clone new semester</div>
       <div class="modal-body">
         New semester: <input id="clone_semester_name" type="text" />
+        {{#if priorSemestersExist}}
         <select id="clone_semester_source">
           {{#each semesters}}
             <option value="{{semester}}">{{semester}}</option>
           {{/each}}
         </select>
+        {{/if}}
       </div>
       <div class="modal-footer">
-        <button id="clone" class="btn btn-primary">Clone</button>
+        {{#if priorSemestersExist}}
+          <button id="clone" class="btn btn-primary">Clone</button>
+        {{else}}
+          <button id="create" class="btn btn-primary">Create</button>
+        {{/if}}
       </div>
     </div>
 

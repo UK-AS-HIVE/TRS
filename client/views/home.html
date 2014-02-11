@@ -1,34 +1,26 @@
 <template name="home">
-  <div class="row">
-    <div class="well span6 offset3">
-      <form class="form-horizontal">
-        <div class="control-group">
-          <label for="department-select" class="control-label">Department:</label>
-          <div class="controls">
-            <select name="department-select" id="department-select">
-            {{#each departments}}
-              <option value="{{department}}">{{department}}</option>
-            {{/each}}
-            </select>
-          </div>
-        </div>
-        <div class="control-group">
-          <label for="semester-select" class="control-label">Semester:</label>
-          <div class="controls">
-            <select name="semester-select" id="semester-select">
-            {{#each semesters}}
-              <option value="{{semester}}">{{semester}}</option>
-            {{/each}}
-            </select>
-          </div>
-        </div>
-        <div class="control-group">
-          <div class="controls">
-            <button id="go" class="btn btn-primary">Go!</button>
-          </div>
-        </div>
-      </form>
-    </div>
+  <div id="home">
+    <form class="form-wrapper">
+      <div class="form-element">
+        <label for="department-select">Department:</label>
+        <select name="department-select" id="department-select">
+          {{#each departments}}
+            <option value="{{department}}">{{department}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="form-element">
+        <label for="semester-select">Semester:</label>
+        <select name="semester-select" id="semester-select">
+          {{#each semesters}}
+            <option value="{{semester}}">{{semester}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="form-element">
+        <button id="go" class="btn btn-primary">Go!</button>
+      </div>
+    </form>
   </div>
 </template>
 

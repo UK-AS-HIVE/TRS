@@ -95,3 +95,35 @@
   float: right;
   margin-top: 21px;
 }
+
+#main-menu {
+  margin: 10px 0 0 42px;
+  padding: 0;
+  list-style: none;
+  display:inline-block;
+}
+#main-menu li {
+  margin-left: 20px;
+  padding: 0;
+  display:inline-block;
+}
+#main-menu a {
+  color: #777;
+  font-variant: small-caps;
+  font-size: 19px;
+}
+
+a.logo {
+  display: inline-block;
+  color: #666;
+  text-decoration: none;
+  font-size: 27px;
+  line-height: 1;
+  padding: 8px 0;
+  font-variant: small-caps;
+}
+.logo img {
+  margin-right: 4px;
+  position: relative;
+  top: -2px;
+}

@@ -10,13 +10,27 @@
       <div class="navbar-inner">
         <!-- <a class="brand" href="#"><img src="/logo.png"/> Teaching Resources Summary</small></a> -->
         <a class="brand" href="/"><img src="/lumbergh.png"/> Lumbergh</small></a>
-        <span class="pull-right">{{loginButtons}}</span>
+        
+        {{#if currentUser}}
+          <div class="pull-right" id="linkblue-logged-in">
+            {{ linkblueLogin }}
+          </div>
+        {{/if}}
       </div>
     </div>
-    <div id="linkblue-login">
-      {{ linkblueLogin }}
-    </div>
-    {{renderRouter}}
+    {{#if currentUser}}
+      {{renderRouter}}
+    {{else}}
+      <div id="linkblue-login">
+        <div id="please-login">
+          <h3>Welcome to the TRS Reporting system!</h3>
+          <p>Please login with your <a target="_blank" href="http://www.uky.edu/UKHome/subpages/linkblue.html">LinkBlue</a> credentials to begin.</p>
+        </div>
+        <div id="login-form">
+          {{ linkblueLogin }}
+        </div>
+      </div>
+    {{/if}}
   </div>
 </body>
 

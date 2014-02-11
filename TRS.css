@@ -46,3 +46,30 @@
   cursor: pointer;
   visibility: visible;
 }
+
+#linkblue-login {
+  position: absolute;
+  width: 490px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  margin: -175px 0 0 -260px;
+  text-align: center;
+  background: #eee;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px -1px rgba(0, 0, 0, 0.5)
+}
+#linkblue-login label {
+  display: inline-block;
+  width: 80px;
+}
+#login-form {
+  margin-top: 42px;
+}
+#login-form button {
+  position: relative;
+  left: 42px;
+  top: 12px;
+  width: 218px;
+}

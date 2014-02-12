@@ -50,7 +50,7 @@ Template.detail.events
       name: 'click to edit'
       semester: @semester
       department: @department
-      rank: 'unspecified'
+      rank: null
       buyout: ''
       pay_amount: ''
       comment: ''
@@ -83,13 +83,19 @@ Template.detail.events
     TRS.FacultyAllocations.update {_id: id}, {$unset: unset}
     TRS.FacultyAllocations.update {_id: id}, {$pull: {courses: null}}
   'click button.add-course': (e) ->
-    console.log @
-    TRS.FacultyAllocations.update {_id: @_id}, {$push: {courses: {prefix:'', number: '', credits: ''}}}
+    console.log @courses.length
+    TRS.FacultyAllocations.update {_id: @_id}, {$push: {courses: {prefix:'-', number: '-', credits: 3}}}
+    selector = 'course-'+@_id+'-'+@courses.length
+    Session.set 'editing_id', selector
+    
 
 Template.detail.rendered = ->
   template = @
 
-  $('#' + Session.get 'editing_id').addClass 'editing'
+  editingDiv = $('#' + Session.get 'editing_id')
+  editingDiv.addClass 'editing'
+  if $('input:focus').length == 0
+    editingDiv.find('input:first').focus()
 
   $(@findAll '.editable').editable (value, settings) ->
     console.log 'edited'

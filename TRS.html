@@ -9,62 +9,38 @@
     <div class="navbar navbar-static-top">
       <div class="navbar-inner">
         <!-- <a class="brand" href="#"><img src="/logo.png"/> Teaching Resources Summary</small></a> -->
-        <a class="brand" href="/"><img src="/lumbergh.png"/> Lumbergh</small></a>
-        <span class="pull-right">{{loginButtons}}</span>
+        <a class="logo" href="/"><img src="/lumbergh.png"/>Lumbergh</a>
+        
+        {{#if currentUser}}
+          <div class="pull-right" id="linkblue-logged-in">
+            {{ linkblueLogin }}
+          </div>
+
+          {{>mainMenu}}
+
+        {{/if}}
       </div>
     </div>
-    <div id="linkblue-login">
-      {{ linkblueLogin }}
-    </div>
-    {{renderRouter}}
+    {{#if currentUser}}
+      {{renderRouter}}
+    {{else}}
+      <div id="linkblue-login">
+        <div id="please-login">
+          <h3>Welcome to the TRS Reporting system!</h3>
+          <p>Please login with your <a target="_blank" href="http://www.uky.edu/UKHome/subpages/linkblue.html">LinkBlue</a> credentials to begin.</p>
+        </div>
+        <div id="login-form">
+          {{ linkblueLogin }}
+        </div>
+      </div>
+    {{/if}}
   </div>
 </body>
 
 <template name="mainMenu">
-  <div class="row">
-    <div class="span3">
-      <h4>Departments</h4>
-      <a class="btn btn-primary btn-mini pull-right">Add</a>
-      <ul class="nav nav-tabs nav-stacked">
-        {{#each departments}}
-         <li><a href="department/{{department}}">{{department}}</a></li>
-        {{/each}}
-      </ul>
-    </div>
-    <div class="span3">
-      <h4>Semesters</h4>
-      <a class="btn btn-primary btn-mini pull-right" id="clone_semester">Clone latest</a>
-  
-      <div id="clone_semester_dialog" class="modal hide" role="dialog" aria-labelledby="Clone semester">
-        <div class="modal-header">Clone new semester</div>
-        <div class="modal-body">
-          New semester: <input id="clone_semester_name" type="text" />
-          <select id="clone_semester_source">
-            {{#each semesters}}
-              <option value="{{semester}}">{{semester}}</option>
-            {{/each}}
-          </select>
-        </div>
-        <div class="modal-footer">
-          <button id="clone" class="btn btn-primary">Clone</button>
-        </div>
-      </div>
-
-      <ul class="nav nav-tabs nav-stacked">
-        {{#each semesters}}
-          <li><a href="semester/{{semester}}">{{semester}}</a></li>
-        {{/each}}
-      </ul>
-    </div>
-    <div class="span2 well">
-      <h4>Reports</h4>
-      <a href="reports">Generate report</a>
-    </div>
-    <div class="span2 well">
-      <h4>Admin</h4>
-      <a href="users">Manage Users</a>
-    </div>
-  </div>
+  <ul id="main-menu">
+    <li><a href="/manage">Manage</a></li>
+  </ul>
 </template>
 
 

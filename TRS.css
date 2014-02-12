@@ -46,3 +46,84 @@
   cursor: pointer;
   visibility: visible;
 }
+
+#linkblue-login {
+  position: absolute;
+  width: 490px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  margin: -175px 0 0 -260px;
+  text-align: center;
+  background: #eee;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px -1px rgba(0, 0, 0, 0.5);
+}
+#linkblue-login label {
+  display: inline-block;
+  width: 80px;
+}
+#login-form {
+  margin-top: 42px;
+}
+#login-form button {
+  position: relative;
+  left: 42px;
+  top: 12px;
+  width: 218px;
+}
+
+#home {
+  margin: 42px auto 0;
+  text-align: center;
+}
+#home .form-wrapper {
+  display: inline-block;
+  background: #eee;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px -1px rgba(0, 0, 0, 0.5);
+}
+#home label {
+  display: inline-block;
+  width: 88px;
+  text-align: left;
+}
+#home button {
+  width: 220px;
+  float: right;
+  margin-top: 21px;
+}
+
+#main-menu {
+  margin: 10px 0 0 42px;
+  padding: 0;
+  list-style: none;
+  display:inline-block;
+}
+#main-menu li {
+  margin-left: 20px;
+  padding: 0;
+  display:inline-block;
+}
+#main-menu a {
+  color: #777;
+  font-variant: small-caps;
+  font-size: 19px;
+}
+
+a.logo {
+  display: inline-block;
+  color: #666;
+  text-decoration: none;
+  font-size: 27px;
+  line-height: 1;
+  padding: 8px 0;
+  font-variant: small-caps;
+}
+.logo img {
+  margin-right: 4px;
+  position: relative;
+  top: -2px;
+}

@@ -5,10 +5,10 @@
     {{#if loggingIn}}
       Logging in...
     {{else}}
-      <div class="span3">
-        LinkBlue: <input type="text" name="linkblue" />
-        Password: <input type="password" name="password" />
-        <button class="btn" name="login">Login</button>
+      <div>
+        <div><label for="linkblue">LinkBlue:</label> <input type="text" name="linkblue" /></div>
+        <div><label for="password">Password:</label> <input type="password" name="password" /></div>
+        <div><button class="btn btn-primary" name="login">Login</button></div>
       </div>
     {{/if}}
   {{/if}}

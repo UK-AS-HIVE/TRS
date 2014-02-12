@@ -4,7 +4,8 @@
     "basePackages": {
       "iron-router": {},
       "select2": {},
-      "bootboxjs": {}
+      "bootboxjs": {},
+      "collection2": {}
     },
     "packages": {
       "iron-router": {
@@ -21,6 +22,16 @@
         "git": "https://github.com/TimHeckel/meteor-bootboxjs.git",
         "tag": "v3.2.2",
         "commit": "580adfebfa12b4d2186a80cec1109dab74ad6228"
+      },
+      "collection2": {
+        "git": "https://github.com/aldeed/meteor-collection2.git",
+        "tag": "v0.3.7",
+        "commit": "4c6c2dfd87af8cda321c80e1baea72842ad5c542"
+      },
+      "simple-schema": {
+        "git": "https://github.com/aldeed/meteor-simple-schema.git",
+        "tag": "v0.2.36",
+        "commit": "d01745787de0711ffd095dcd212749d94a3fe0eb"
       }
     }
   }

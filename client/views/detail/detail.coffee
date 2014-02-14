@@ -5,7 +5,8 @@ Template.detail.helpers
     TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}
   persons: ->
     console.log @
-    TRS.FacultyAllocations.find {semester: @semester, department: @department}
+    TRS.FacultyAllocations.find {semester: @semester, department: @department},
+     {sort: {name: 1} }
 
 Template.detail.events
   'change #approved-funding-input': (e) ->
@@ -117,3 +118,5 @@ Template.detailRankSelect.rendered = ->
 
   $(@find 'select.rank').select2().change (e) ->
     TRS.FacultyAllocations.update {_id: data._id}, {$set: { rank: e.val }}
+
+

@@ -26,8 +26,8 @@ Meteor.publish 'departments', ->
   if @userId
     user = Meteor.users.findOne {_id: @userId}
     if TRS.Admins.findOne { admins: user.username }
-      return TRS.Departments.find {}
-    return TRS.Departments.find { chairDMusers: user.username }
+      return TRS.Departments.find {}, { sort: { department: 1 } }
+    return TRS.Departments.find { chairDMusers: user.username }, { sort: { department: 1 } }
 
 TRS.Departments.allow
   insert: UserIsAdmin
@@ -46,6 +46,17 @@ TRS.FacultyAllocations.allow
     return true
   update: (userId, doc, fieldNames, modifier) ->
     console.log 'CHANGING RECORD'
+    console.log arguments
+    ###TRS.DropDeadChanges.insert
+      semester: doc.semester
+      department: doc.department
+      timestamp: new Date
+      change:
+        if modifier.hasOwnProperty '$set'
+          'changed: ' + JSON.stringify modifier['$set']
+        else if modifier.hasOwnProperty '$push'
+          'added: ' + JSON.stringify modifier['$push']
+    ###
     return true
   remove: (userId, doc) -> true
 
@@ -74,4 +85,10 @@ Meteor.methods
     console.log adminsArray
     if UserIsAdmin @userId
       return TRS.Admins.upsert {}, {$set: {admins: adminsArray} }
+  
+Meteor.publish 'dropDeadChanges', (department, semester) ->
+  TRS.DropDeadChanges.find
+    department: department
+    semester: semester
+
 

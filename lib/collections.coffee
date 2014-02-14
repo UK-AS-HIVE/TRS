@@ -44,7 +44,7 @@
       type: Date
       label: 'Date PAR Submitted'
       optional: true
-    comment:
+    notes:
       type: String
       optional: true
     'courses.$.prefix':

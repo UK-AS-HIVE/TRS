@@ -17,6 +17,7 @@
     chairDMusers:
       type: [String]
       label: 'Usernames of authorized editors for this department'
+      optional: true
   
 @FacultyAllocations = new Meteor.Collection2 'allocations',
   schema: new SimpleSchema

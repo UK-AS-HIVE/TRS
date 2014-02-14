@@ -75,13 +75,12 @@ Template.detail.events
   'click .course .icon-trash': (e,tpl) ->
     course = $(e.currentTarget).parent '.course'
     index = course.data 'index'
-    unset = {}
-    unset['courses.'+index] = 1
     id = $(e.currentTarget).parent('li.course').data 'id'
     console.log 'removing instructor course #' + index
-    console.log tpl
-    TRS.FacultyAllocations.update {_id: id}, {$unset: unset}
-    TRS.FacultyAllocations.update {_id: id}, {$pull: {courses: null}}
+    courses = TRS.FacultyAllocations.findOne({_id: id}).courses
+    courses.splice(index, 1)
+    TRS.FacultyAllocations.update {_id: id},
+      {$set: {courses: courses}}
   'click button.add-course': (e) ->
     console.log @courses.length
     TRS.FacultyAllocations.update {_id: @_id}, {$push: {courses: {prefix:'-', number: '-', credits: 3}}}

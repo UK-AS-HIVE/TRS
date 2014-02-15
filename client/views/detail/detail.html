@@ -33,19 +33,46 @@
     <tbody>
       {{#each persons}}
         <tr>
-          <td class="instructor-details deletable">
+          <td class="instructor-details deletable inline-edit">
             <i class="icon-trash pull-right"></i>
-            <h4><span class="editable" data-id="{{_id}}" data-property="name">{{name}}</span>
-              <i class="icon-edit"></i>
-            </h4>
-            {{> detailRankSelect }}
-            <div class="instructor-properties pull-right">
-              <input type="text" placeholder="UK Id#" data-property="ukid" value="{{ukid}}" /><br/>
-              <input type="text" placeholder="Notes" data-property="notes" value="{{notes}}" /><br/>
-              <input type="text" placeholder="Instructional Faculty Buyout" data-property="buyout" value="{{buyout}}" /><br/>
-              <input type="text" placeholder="Pay Amount" data-property="pay_amount" value="{{pay_amount}}" /><br/>
-              <input type="text" placeholder="Date PAR Submitted" data-property="par" value="{{par}}" /><br/>
-            </div>
+            <i class="icon-edit pull-right"></i>
+
+            <span class="inline-edit-preview">  
+              <h4 class="name field">{{name}}</h4>
+              <h5 class="rank field">{{rank}}</h5>
+              <div class="ukid field">
+                <span class="label">UKID:</span>
+                <span class="value">{{ukid}}</span>
+              </div>
+              <div class="notes field">
+                <span class="label">Notes</span>
+                <span class="value">{{notes}}</span>
+              </div>
+              <div class="buyout field">
+                <span class="label">Buyout</span>
+                <span class="value">{{buyout}}</span>
+              </div>
+              <div class="pay-amount field">
+                <span class="label">Pay Amount</span>
+                <span class="value">{{pay_amount}}</span>
+              </div>
+              <div class="par field">
+                <span class="label">Date PAR Submitted</span>
+                <span class="value">{{par}}</span>
+              </div>
+            </span>
+
+            <span id="person-{{ _id }}" class="inline-edit-form">
+              <div class="instructor-properties">
+                <input type="text" data-property="name" value="{{name}}" />
+                {{> detailRankSelect }}
+                <input type="text" placeholder="UK Id#" data-property="ukid" value="{{ukid}}" /><br/>
+                <input type="text" placeholder="Notes" data-property="notes" value="{{notes}}" /><br/>
+                <input type="text" placeholder="Instructional Faculty Buyout" data-property="buyout" value="{{buyout}}" /><br/>
+                <input type="text" placeholder="Pay Amount" data-property="pay_amount" value="{{pay_amount}}" /><br/>
+                <input type="text" placeholder="Date PAR Submitted" data-property="par" value="{{par}}" /><br/>
+              </div>
+            </span>
           </td>
           <td>
             <button name="add-course" class="add-course btn btn-small pull-right">

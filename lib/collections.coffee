@@ -34,6 +34,9 @@
       type: String
       allowedValues: ['Full', 'Professor', 'Assoc', 'Assist', 'Lecturer', 'PostDoc', 'PTI', 'GradStudent']
       optional: true
+    ukid:
+      type: String
+      optional: true
     buyout:
       type: String
       optional: true
@@ -44,7 +47,7 @@
       type: Date
       label: 'Date PAR Submitted'
       optional: true
-    comment:
+    notes:
       type: String
       optional: true
     'courses.$.prefix':

@@ -38,7 +38,8 @@
   visibility: hidden;
 }
 
-.inline-edit:hover .icon-edit {
+.inline-edit:hover .icon-edit,
+.editing .icon-edit {
   cursor: pointer;
   visibility: visible;
 }
@@ -47,7 +48,8 @@
   visibility: hidden;
 }
 
-.deletable:hover .icon-trash {
+.deletable:hover .icon-trash,
+.editing .icon-trash {
   cursor: pointer;
   visibility: visible;
 }
@@ -160,4 +162,37 @@ a.logo {
 .instructor-details .value {
   position: relative;
   top: 1px;
+}
+.course .field {
+  display: inline-block;
+  width: 57px;
+}
+.course .field input {
+  width: 42px;
+  margin: 0;
+}
+.course .field label {
+  width: 100%;
+  text-align: center;
+}
+.instructor-courses ul {
+  margin: 0;
+  padding: 0;
+  
+}
+.instructor-courses li {
+  list-style: none;
+}
+.course {
+  padding: 6px;
+  
+}
+.course.editing {
+  background: #eee;
+}
+.course.editing .icon-edit,
+.course.editing .icon-trash {
+  position: relative;
+  top: -29px;
+  left: 12px;
 }

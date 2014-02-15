@@ -95,7 +95,7 @@
               </div>
             </span>
           </td>
-          <td>
+          <td class="instructor-courses">
             <button name="add-course" class="add-course btn btn-small pull-right">
               Add course
             </button>
@@ -106,9 +106,18 @@
                     {{value.prefix}}-{{value.number}} ({{value.credits}} credits)
                   </span>
                   <span class="inline-edit-form" data-index="{{key}}" data-id="{{../_id}}">
-                    <input type="text" placeholder="Prefix" maxlength="4" value="{{value.prefix}}" name="prefix" /><br/>
-                    <input type="text" placeholder="Course number" maxlength="4" value="{{value.number}}" name="number" /><br/>
-                    <input type="number" placeholder="Credit hours" min="0" max="4" maxlength="1" value="{{value.credits}}" name="credits" /><br/>
+                    <div class="prefix field">
+                      <input type="text" placeholder="Prefix" maxlength="4" value="{{value.prefix}}" name="prefix" />
+                      <label for="prefix">Prefix</label>
+                    </div>
+                    <div class="number field">
+                      <input type="text" placeholder="Course number" maxlength="4" value="{{value.number}}" name="number" />
+                      <label for="number">Number</label>
+                    </div>
+                    <div class="credits field">
+                      <input type="number" placeholder="Credit hours" min="0" max="4" maxlength="1" value="{{value.credits}}" name="credits" />
+                      <label for="credits">Hours</label>
+                    </div>
                   </span>
                   <i class="icon-edit"></i>
                   <i class="icon-trash"></i>

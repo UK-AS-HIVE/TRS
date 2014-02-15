@@ -2,7 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Gudea);
 
 * {
-  font-family: Gudea !important;
+  font-family: Gudea;
 }
 
 .editable+.icon-edit {
@@ -38,7 +38,8 @@
   visibility: hidden;
 }
 
-.inline-edit:hover .icon-edit {
+.inline-edit:hover .icon-edit,
+.editing .icon-edit {
   cursor: pointer;
   visibility: visible;
 }
@@ -47,7 +48,8 @@
   visibility: hidden;
 }
 
-.deletable:hover .icon-trash {
+.deletable:hover .icon-trash,
+.editing .icon-trash {
   cursor: pointer;
   visibility: visible;
 }
@@ -131,4 +133,69 @@ a.logo {
   margin-right: 4px;
   position: relative;
   top: -2px;
+}
+.navbar {
+  margin-bottom: 12px;
+}
+
+/* Details Page */
+#person-info {
+  width: 61%;
+}
+.instructor-details {
+  
+}
+.instructor-details .field {
+  min-height: 31px;
+}
+.instructor-details .name {
+  margin: 10px 0 0;
+  font-size: 20px;
+}
+.instructor-details .label {
+  width: 120px;
+  height: auto;
+  display: inline-block;
+  text-align: right;
+}
+.instructor-details .inline-edit .rank .label {
+  position: relative;
+  top: 4px;
+}
+.instructor-details .value {
+  position: relative;
+  top: 1px;
+}
+.course .field {
+  display: inline-block;
+  width: 57px;
+}
+.course .field input {
+  width: 42px;
+  margin: 0;
+}
+.course .field label {
+  width: 100%;
+  text-align: center;
+}
+.instructor-courses ul {
+  margin: 0;
+  padding: 0;
+  
+}
+.instructor-courses li {
+  list-style: none;
+}
+.course {
+  padding: 6px;
+  
+}
+.course.editing {
+  background: #eee;
+}
+.course.editing .icon-edit,
+.course.editing .icon-trash {
+  position: relative;
+  top: -29px;
+  left: 12px;
 }

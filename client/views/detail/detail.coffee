@@ -48,7 +48,7 @@ Template.detail.events
   'click button#add': (e) ->
     console.log @
     TRS.FacultyAllocations.insert
-      name: 'click to edit'
+      name: 'Name'
       semester: @semester
       department: @department
       rank: null
@@ -61,6 +61,7 @@ Template.detail.events
     prop = el.data 'property'
     setter = {}
     setter[prop] = el.val()
+    console.log {_id: @_id}, {$set: setter}
     TRS.FacultyAllocations.update {_id: @_id}, {$set: setter}
   'change .course input': (e,tpl) ->
     edit_form = $(e.srcElement).parent '.inline-edit-form'
@@ -84,7 +85,7 @@ Template.detail.events
       {$set: {courses: courses}}
   'click button.add-course': (e) ->
     console.log @courses.length
-    TRS.FacultyAllocations.update {_id: @_id}, {$push: {courses: {prefix:'-', number: '-', credits: 3}}}
+    TRS.FacultyAllocations.update {_id: @_id}, {$push: {courses: {prefix:'-', number: '-', credits: 3}}}, {validation: false}
     selector = 'course-'+@_id+'-'+@courses.length
     Session.set 'editing_id', selector
     

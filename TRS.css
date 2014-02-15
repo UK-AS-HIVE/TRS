@@ -2,7 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Gudea);
 
 * {
-  font-family: Gudea !important;
+  font-family: Gudea;
 }
 
 .editable+.icon-edit {
@@ -133,6 +133,9 @@ a.logo {
   margin-right: 4px;
   position: relative;
   top: -2px;
+}
+.navbar {
+  margin-bottom: 12px;
 }
 
 /* Details Page */

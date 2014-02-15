@@ -1,0 +1,15 @@
+/* General */
+.btn,
+.navbar {
+  display: none;
+}
+* {
+	font-family: Georgia, serif !important;
+	background: none;
+	color: black;
+}
+#page {
+	width: 100%;
+	margin: 0; padding: 0;
+	background: none;
+}

@@ -132,3 +132,32 @@ a.logo {
   position: relative;
   top: -2px;
 }
+
+/* Details Page */
+#person-info {
+  width: 61%;
+}
+.instructor-details {
+  
+}
+.instructor-details .field {
+  min-height: 31px;
+}
+.instructor-details .name {
+  margin: 10px 0 0;
+  font-size: 20px;
+}
+.instructor-details .label {
+  width: 120px;
+  height: auto;
+  display: inline-block;
+  text-align: right;
+}
+.instructor-details .inline-edit .rank .label {
+  position: relative;
+  top: 4px;
+}
+.instructor-details .value {
+  position: relative;
+  top: 1px;
+}

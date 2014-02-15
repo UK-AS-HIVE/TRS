@@ -25,10 +25,10 @@
     </div>
   </div>
 
-  <table class="table table-bordered">
+  <table id="people" class="table table-bordered">
     <thead>
-      <th>Person</th>
-      <th>Courses</th>
+      <th id="person-info">Person</th>
+      <th id="courses">Courses</th>
     </thead>
     <tbody>
       {{#each persons}}
@@ -39,9 +39,12 @@
 
             <span class="inline-edit-preview">  
               <h4 class="name field">{{name}}</h4>
-              <h5 class="rank field">{{rank}}</h5>
+              <div class="rank field">
+                <span class="label">Rank</span>
+                <span class="value">{{rank}}</span>
+              </div>
               <div class="ukid field">
-                <span class="label">UKID:</span>
+                <span class="label">UKID</span>
                 <span class="value">{{ukid}}</span>
               </div>
               <div class="notes field">
@@ -64,13 +67,31 @@
 
             <span id="person-{{ _id }}" class="inline-edit-form">
               <div class="instructor-properties">
-                <input type="text" data-property="name" value="{{name}}" />
+                <div class="field name">
+                  <label for="name" class="label">Name</label>
+                  <input type="text" name="name" data-property="name" value="{{name}}" />
+                </div>
                 {{> detailRankSelect }}
-                <input type="text" placeholder="UK Id#" data-property="ukid" value="{{ukid}}" /><br/>
-                <input type="text" placeholder="Notes" data-property="notes" value="{{notes}}" /><br/>
-                <input type="text" placeholder="Instructional Faculty Buyout" data-property="buyout" value="{{buyout}}" /><br/>
-                <input type="text" placeholder="Pay Amount" data-property="pay_amount" value="{{pay_amount}}" /><br/>
-                <input type="text" placeholder="Date PAR Submitted" data-property="par" value="{{par}}" /><br/>
+                <div class="field ukid">
+                  <label for="ukid" class="label">UKID</label>
+                  <input type="text" name="ukid" data-property="ukid" value="{{ukid}}" />
+                </div>
+                <div class="field notes">
+                  <label for="notes" class="label">Notes</label>
+                  <input type="text" name="notes" data-property="notes" value="{{notes}}" />
+                </div>
+                <div class="field buyout">
+                  <label for="buyout" class="label">Buyout</label>
+                  <input type="text" name="buyout" data-property="buyout" value="{{buyout}}" />
+                </div>
+                <div class="field pay-amount">
+                  <label for="pay_amount" class="label">Pay Amount</label>
+                  <input type="text" name="pay_amount" data-property="pay_amount" value="{{pay_amount}}" />
+                </div>
+                <div class="field par">
+                  <label for="par" class="label">Date PAR Submitted</label>
+                  <input type="text" name="par" data-property="par" value="{{par}}" />
+                </div>
               </div>
             </span>
           </td>
@@ -107,16 +128,19 @@
 </template>
 
 <template name="detailRankSelect">
-  <select class="rank" style="min-width: 35%">
-    <optgroup label="Faculty">
-      <option {{selectedOption 'Full'}}>Full Professor</option>
-      <option {{selectedOption 'Professor'}}>Professor</option>
-      <option {{selectedOption 'Assoc'}}>Associate Professor</option>
-      <option {{selectedOption 'Assist'}}>Assistant Professor</option>
-    </optgroup>
-    <option {{selectedOption 'Lecturer'}}>Lecturer</option>
-    <option {{selectedOption 'PostDoc'}}>Post Doc</option>
-    <option {{selectedOption 'PTI'}}>PTI</option>
-    <option {{selectedOption 'GradStudent'}}>Grad Student</option>
-  </select>
+  <div class="field rank">
+    <label for="rank" class="label">Rank</label>
+    <select name="rank" class="rank" style="min-width: 35%">
+      <optgroup label="Faculty">
+        <option {{selectedOption 'Full'}}>Full Professor</option>
+        <option {{selectedOption 'Professor'}}>Professor</option>
+        <option {{selectedOption 'Assoc'}}>Associate Professor</option>
+        <option {{selectedOption 'Assist'}}>Assistant Professor</option>
+      </optgroup>
+      <option {{selectedOption 'Lecturer'}}>Lecturer</option>
+      <option {{selectedOption 'PostDoc'}}>Post Doc</option>
+      <option {{selectedOption 'PTI'}}>PTI</option>
+      <option {{selectedOption 'GradStudent'}}>Grad Student</option>
+    </select>
+  </div>
 </template>

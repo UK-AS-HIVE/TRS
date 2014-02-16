@@ -1,32 +1,39 @@
 <template name="manage">
-  <div class="row">
+  <section id="manage-page">
+    <div class="row">
 
-  <div class="span6">
+      <div class="span12">
+        <div class="departments manage-block">
+          <h4>Departments</h4>
+          {{> manageDepartments }}
+        </div>
+      </div>
+       
+      <div class="span12">
+        <div class="semesters manage-block">
+          <h4>Semesters</h4>
+          {{> manageSemesters }}
+        </div>
+      </div>
 
-    {{> manageAdmins }}
- 
-    <h4>Departments</h4>
-    {{> manageDepartments }}
-  </div>
-  <div class="span6">
-    <h4>Semesters</h4>
-    {{> manageSemesters }}
-  </div>
-
-  </div>
-</template>
-
-<template name="manageAdmins">
-  <h4>TRS Administrators</h4>
-  <div class="help">These LinkBlue accounts will be able to edit any part of the TRS application.</div>
-  <div>
-    <input value="{{usernames}}" data-placeholder="Add users..." type="hidden" class="admin-users span3" />
-  </div>
-  <br style="clear: both;" />
+      <div class="span12">
+        <div class="admins manage-block">
+          {{> manageAdmins }}
+        </div>
+      </div>
+       
+    </div>
+  </section>
 </template>
 
 <template name="manageDepartments">
   <button id="add-department" class="pull-right btn btn-mini btn-primary">Add...</button>
+
+  <div class="help">
+    <p>Create new departments with the Add button.</p>
+    LinkBlue users listed with a department will be able to edit all of its records.  Site Administrators can access all records and do not need to be listed.
+  </div>
+
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -90,6 +97,14 @@
       {{/if}}
     </a>
 
+    <div class="help">
+      {{#if priorSemestersExist}}
+        Create a new semester with duplicate data from the most recent.
+      {{else}}
+        Create your first semester to being.
+      {{/if}}
+    </div>
+
     <div id="clone_semester_dialog" class="modal hide" role="dialog" aria-labelledby="Clone semester">
       <div class="modal-header">Clone new semester</div>
       <div class="modal-body">
@@ -127,4 +142,13 @@
       {{/each}}
     </table>
 
+</template>
+
+<template name="manageAdmins">
+  <h4>TRS Administrators</h4>
+  <div class="help">These LinkBlue accounts will be able to edit any part of the TRS application.</div>
+  <div>
+    <input value="{{usernames}}" data-placeholder="Add users..." type="hidden" class="admin-users" />
+  </div>
+  <br style="clear: both;" />
 </template>

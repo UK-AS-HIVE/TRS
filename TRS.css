@@ -1,59 +1,101 @@
 /* CSS declarations go here */
 @import url(https://fonts.googleapis.com/css?family=Gudea);
 
+/* General Styles */
 * {
   font-family: Gudea;
 }
-
 .editable+.icon-edit {
   visibility: hidden;
 }
-
 .editable:hover+.icon-edit {
   cursor: pointer;
   visibility: visible;
 }
-
 .editable:hover {
   background-color: lightblue;
 }
-
 .inline-edit .inline-edit-preview {
   display: inline;
 }
-
 .inline-edit .inline-edit-form {
   display: none;
 }
-
 .inline-edit.editing .inline-edit-preview {
   display: none;
 }
-
 .inline-edit.editing .inline-edit-form {
   display: inline;
 }
-
 .inline-edit .icon-edit {
   visibility: hidden;
 }
-
 .inline-edit:hover .icon-edit,
 .editing .icon-edit {
   cursor: pointer;
   visibility: visible;
 }
-
 .deletable .icon-trash {
   visibility: hidden;
 }
-
 .deletable:hover .icon-trash,
 .editing .icon-trash {
   cursor: pointer;
   visibility: visible;
 }
 
+/* Navbar */
+#main-menu {
+  margin: 10px 0 0 42px;
+  padding: 0;
+  list-style: none;
+  display:inline-block;
+}
+#main-menu li {
+  margin-left: 20px;
+  padding: 0;
+  display:inline-block;
+}
+#main-menu a {
+  color: #777;
+  font-variant: small-caps;
+  font-size: 19px;
+}
+a.logo {
+  display: inline-block;
+  color: #666;
+  text-decoration: none;
+  font-size: 27px;
+  line-height: 1;
+  padding: 8px 0;
+  font-variant: small-caps;
+}
+.logo img {
+  margin-right: 4px;
+  position: relative;
+  top: -2px;
+}
+.navbar {
+  margin-bottom: 12px;
+}
+
+/* Login */
+#linkblue-logged-in {
+  background: #333;
+  background: hsla(240, 29%, 20%, 0.35);
+  color: white;
+  position: relative;
+  right: -20px;
+  padding: 6px 20px;
+  line-height: 35px;
+  border-left: solid #666 2px;
+  box-shadow: inset 0px 0px 42px 1px rgba(0, 0, 0, 0.2);
+}
+#linkblue-logged-in .btn {
+  position: relative;
+  top: -4px;
+  margin-left: 10px;
+}
 #linkblue-login {
   position: absolute;
   width: 490px;
@@ -81,6 +123,7 @@
   width: 218px;
 }
 
+/* Home Page */
 #home {
   margin: 42px auto 0;
   text-align: center;
@@ -103,41 +146,6 @@
   margin-top: 21px;
 }
 
-#main-menu {
-  margin: 10px 0 0 42px;
-  padding: 0;
-  list-style: none;
-  display:inline-block;
-}
-#main-menu li {
-  margin-left: 20px;
-  padding: 0;
-  display:inline-block;
-}
-#main-menu a {
-  color: #777;
-  font-variant: small-caps;
-  font-size: 19px;
-}
-
-a.logo {
-  display: inline-block;
-  color: #666;
-  text-decoration: none;
-  font-size: 27px;
-  line-height: 1;
-  padding: 8px 0;
-  font-variant: small-caps;
-}
-.logo img {
-  margin-right: 4px;
-  position: relative;
-  top: -2px;
-}
-.navbar {
-  margin-bottom: 12px;
-}
-
 /* Details Page */
 #person-info {
   width: 61%;
@@ -147,16 +155,20 @@ a.logo {
 }
 .instructor-details .field {
   min-height: 31px;
+  display: block;
 }
 .instructor-details .name {
   margin: 10px 0 0;
   font-size: 20px;
 }
 .instructor-details .label {
-  width: 120px;
+  width: 74px;
   height: auto;
   display: inline-block;
   text-align: right;
+  white-space: normal;
+  float: left;
+  margin-right: 7px;
 }
 .instructor-details .inline-edit .rank .label {
   position: relative;
@@ -164,7 +176,15 @@ a.logo {
 }
 .instructor-details .value {
   position: relative;
-  top: 1px;
+  top: -1px;
+  display: block;
+  margin-left: 90px;
+}
+.instructor-details .inline-edit-preview .label {
+  background: #eee;
+  color: #999;
+  text-shadow: none;
+  
 }
 .course .field {
   display: inline-block;
@@ -198,4 +218,34 @@ a.logo {
   position: relative;
   top: -29px;
   left: 12px;
+}
+
+/* Manage Page */
+.manage-block {
+  display:inline-block;
+  margin: 9px auto;
+  background: #eee;
+  background: hsla(240, 15%, 69%, 0.1);
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 42px 1px hsla(240, 15%, 69%, 0.3);
+  min-width: 485px;
+}
+#manage-page .span12 {
+  text-align: center;
+}
+.admin-users {
+  width: 100%;
+}
+#manage-page .help {
+  text-align: left;
+  max-width: 471px;
+  padding: 0 3px;
+  margin: 0 auto 4px;
+  color: #666;
+}
+#clone_semester,
+#add-department {
+  position: relative;
+  top: -30px;
 }

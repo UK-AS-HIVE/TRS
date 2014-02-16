@@ -154,11 +154,19 @@ a.logo {
   
 }
 .instructor-details .field {
-  min-height: 31px;
+  /min-height: 31px;
   display: block;
+  margin-top: 7px;
 }
-.instructor-details .name {
-  margin: 10px 0 0;
+.instructor-details .inline-edit-form .field {
+  margin-top: 2px;
+}
+.instructor-details .inline-edit-form input {
+  margin: 0;
+  padding: 2px 4px;
+}
+.instructor-details .inline-edit-preview .name {
+  margin: 7px 0px 7px 2px;
   font-size: 20px;
 }
 .instructor-details .label {

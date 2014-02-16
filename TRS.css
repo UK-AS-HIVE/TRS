@@ -156,18 +156,34 @@ a.logo {
 .instructor-details .field {
   /min-height: 31px;
   display: block;
-  margin-top: 7px;
+  margin-top: 5px;
+  clear: left;
 }
 .instructor-details .inline-edit-form .field {
-  margin-top: 2px;
+  margin-top: 5px;
 }
 .instructor-details .inline-edit-form input {
-  margin: 0;
+  margin: -3px 0 0;
   padding: 2px 4px;
+  width: 70%;
+  box-sizing: border-box;
 }
 .instructor-details .inline-edit-preview .name {
   margin: 7px 0px 7px 2px;
   font-size: 20px;
+}
+.instructor-details .select2-container,
+.instructor-details .select2-chosen,
+.instructor-details .select2-container,
+.instructor-details .select2-choice {
+  line-height: 23px;
+  height: 20px;
+  position: relative;
+  top: -1px;
+} 
+.instructor-details .select2-arrow b {
+  position: relative;
+  top: -3px;  
 }
 .instructor-details .label {
   width: 74px;

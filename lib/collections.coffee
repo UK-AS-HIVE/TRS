@@ -74,9 +74,11 @@
     funding:
       type: Number
       label: 'Approved funding'
+      optional: true
     comments:
       type: String
       label: 'Comments pertaining to this department and semester'
+      optional: true
     
   
 @Admins = new Meteor.Collection2 'admins',

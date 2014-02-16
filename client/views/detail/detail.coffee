@@ -77,7 +77,7 @@ Template.detail.events
     console.log {_id: @_id}, {$set: setter}
     TRS.FacultyAllocations.update {_id: @_id}, {$set: setter}
   'change .course input': (e,tpl) ->
-    edit_form = $(e.srcElement).parent '.inline-edit-form'
+    edit_form = $(e.srcElement).parents '.inline-edit-form'
     id = edit_form.data 'id'
     index = edit_form.data 'index'
     property = $(e.srcElement).attr 'name'

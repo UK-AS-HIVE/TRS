@@ -7,6 +7,19 @@ Template.detail.helpers
     console.log @
     TRS.FacultyAllocations.find {semester: @semester, department: @department},
      {sort: {name: 1} }
+  currentlyAllocated: ->
+    sanitizePayAmount = (payAmountString) ->
+      try
+        return parseInt payAmountString.replace /[\.,]/g, ''
+      catch e
+        return 0
+
+    sum = 0
+    console.log 'Summing allocations...'
+    amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department}).forEach (doc) ->
+      sum += sanitizePayAmount doc.pay_amount
+
+    return (sum/100.0).toFixed 2
 
 Template.detail.events
   'change #approved-funding-input': (e) ->

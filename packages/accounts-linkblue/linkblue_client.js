@@ -17,7 +17,13 @@ Template._linkblueLogin.events({
   },
   'click button[name="logout"]': function(e) {
     Meteor.logout();
-  }
+  },
+  'keydown input[name="password"]': function(e, tpl) {
+    enterToLogin(e,tpl);
+    },
+  'keydown input[name="linkblue"]': function(e, tpl) {
+    enterToLogin(e,tpl);
+    },
 });
 
 Meteor.loginWithLdap = function (username, password, callback) {
@@ -31,3 +37,16 @@ Meteor.loginWithLdap = function (username, password, callback) {
     userCallback: callback
   });
 };
+
+
+function enterToLogin(e, tpl) {
+    if (event.which == 13) {
+      var username = $(tpl.find('input[name="linkblue"]')).val();
+      var password = $(tpl.find('input[name="password"]')).val();
+      Meteor.loginWithLdap(username, password, function() {
+      console.log ('Callback from Meteor.loginWithLdap');
+      console.log (Meteor.userId());});
+    }
+  }
+
+

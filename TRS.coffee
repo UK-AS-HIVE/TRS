@@ -11,7 +11,9 @@ if Meteor.isClient
     'click button#clone': (e) ->
       TRS.Semesters.insert TRS.Semesters.findOne { semester: $('#clone_semester_name').val() }
       $('#clone_semester_dialog').modal('hide')
-
+    'keypress .password input': (e) ->
+        if e.charCode == 13
+          console.log pressed
 if Meteor.isServer
   Meteor.startup ->
 

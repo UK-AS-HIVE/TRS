@@ -10,16 +10,15 @@ Template.detail.helpers
   currentlyAllocated: ->
     sanitizePayAmount = (payAmountString) ->
       try
-        return parseInt payAmountString.replace /[\.,]/g, ''
+        return parseFloat payAmountString.replace /[^0-9\.-]+/g,""
       catch e
         return 0
 
-    sum = 0
+    sum = 0.0
     console.log 'Summing allocations...'
     amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department}).forEach (doc) ->
       sum += sanitizePayAmount doc.pay_amount
-
-    return (sum/100.0).toFixed 2
+    return (sum).toFixed(2)
 
 Template.detail.events
   'change #approved-funding-input': (e) ->
@@ -48,13 +47,7 @@ Template.detail.events
         comments: val
   'click .inline-edit .icon-edit': (e) ->
     console.log 'toggle edit'
-    parent = $(e.currentTarget).parent '.inline-edit'
-    $('.editing').not(parent).removeClass 'editing'
-    parent.toggleClass 'editing'
-    if parent.hasClass 'editing'
-      Session.set 'editing_id', parent.attr 'id'
-    else
-      Session.set 'editing_id', ''
+    toggleEdit(e)
   'click .instructor-details .icon-trash': (e,tpl) ->
     console.log 'removing whole instructor'
     TRS.FacultyAllocations.remove {_id: @_id}
@@ -101,6 +94,9 @@ Template.detail.events
     TRS.FacultyAllocations.update {_id: @_id}, {$push: {courses: {prefix:'-', number: '-', credits: 3}}}, {validation: false}
     selector = 'course-'+@_id+'-'+@courses.length
     Session.set 'editing_id', selector
+  'keypress .inline-edit-form input': (e) ->
+    if e.charCode == 13
+      toggleEdit(e)
     
 
 Template.detail.rendered = ->
@@ -133,4 +129,15 @@ Template.detailRankSelect.rendered = ->
   $(@find 'select.rank').select2().change (e) ->
     TRS.FacultyAllocations.update {_id: data._id}, {$set: { rank: e.val }}
 
+
+
+toggleEdit = (e) ->
+  console.log 'toggle edit'
+  parent = $(e.currentTarget).parent '.inline-edit'
+  $('.editing').not(parent).removeClass 'editing'
+  parent.toggleClass 'editing'
+  if parent.hasClass 'editing'
+    Session.set 'editing_id', parent.attr 'id'
+  else
+    Session.set 'editing_id', '' 
 

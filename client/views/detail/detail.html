@@ -24,8 +24,18 @@
       </div>
       <div id="currently-allocated">
         {{#isolate}}
-        Currently allocated: {{currentlyAllocated}}
+        <button id = "currentlyallocatedbtn" class ="btn btn-small pull-center"> Currently Allocated: {{currentlyAllocated ''}} </button>
         {{/isolate}}
+        <div id="currentlyallocatedexpansion" style="display:none">
+          Full Professor: {{currentlyAllocated 'Full'}}</br>
+          Professor: {{currentlyAllocated 'Professor'}} <br>
+          Associate Professor: {{currentlyAllocated 'Assoc'}}<br>
+          Assistance Professor: {{currentlyAllocated 'Assist'}}<br>
+          Lecturer: {{currentlyAllocated 'Lecturer'}}<br>
+          Post Doc: {{currentlyAllocated 'PostDoc'}}<br>
+          PTI: {{currentlyAllocated 'PTI'}}<br>
+          Grad Student: {{currentlyAllocated 'GradStudent'}} <br>  
+        </div>      
       </div>
     </div>
   </div>

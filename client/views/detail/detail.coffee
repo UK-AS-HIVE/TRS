@@ -1,5 +1,5 @@
 TRS = @
-isExpanded = false
+
 Template.detail.helpers
   data: ->
     TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}
@@ -7,24 +7,17 @@ Template.detail.helpers
     console.log @
     TRS.FacultyAllocations.find {semester: @semester, department: @department},
      {sort: {name: 1} }
-  currentlyAllocated: (myRank) ->
+  currentlyAllocated: ->
     sanitizePayAmount = (payAmountString) ->
       try
-        r = parseFloat payAmountString.replace /[^0-9\.-]+/g,""
-        if isNaN r
-          return 0
-        return r
+        return parseFloat payAmountString.replace /[^0-9\.-]+/g,""
       catch e
         return 0
+
     sum = 0.0
     console.log 'Summing allocations...'
-    if (myRank == '')
-      amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department}).forEach (doc) ->
-        sum += sanitizePayAmount doc.pay_amount
-        console.log sum
-    else
-      amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department, rank: myRank}).forEach (doc) ->
-        sum += sanitizePayAmount doc.pay_amount
+    amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department}).forEach (doc) ->
+      sum += sanitizePayAmount doc.pay_amount
     return (sum).toFixed(2)
 
 Template.detail.events
@@ -64,12 +57,11 @@ Template.detail.events
       name: 'Name'
       semester: @semester
       department: @department
-      rank: @rank
+      rank: null
       buyout: ''
       pay_amount: ''
       comment: ''
       courses: []
-
   'change .instructor-properties input': (e) ->
     el = $(e.srcElement)
     prop = el.data 'property'
@@ -105,8 +97,6 @@ Template.detail.events
   'keypress .inline-edit-form input': (e) ->
     if e.charCode == 13
       toggleEdit(e)
-  'click #currentlyallocatedbtn': (e) ->
-    toggleDiv isExpanded, 'currentlyallocatedexpansion'
     
 
 Template.detail.rendered = ->
@@ -140,14 +130,6 @@ Template.detailRankSelect.rendered = ->
     TRS.FacultyAllocations.update {_id: data._id}, {$set: { rank: e.val }}
 
 
-
-toggleDiv = (isExpanded, expansion) ->
-  if Session.get isExpanded
-    document.getElementById(expansion).style.display="none"
-    Session.set isExpanded, false
-  else
-    document.getElementById(expansion).style.display="block"
-    Session.set isExpanded, true
 
 toggleEdit = (e) ->
   console.log 'toggle edit'

@@ -31,7 +31,7 @@ Meteor.methods({
 
     var success = bindFuture.wait();
 
-    if (!success) {
+    if (!success || request.password == '') {
       throw new Meteor.Error(403, "Invalid credentials");
       return;
     }

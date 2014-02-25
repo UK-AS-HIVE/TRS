@@ -1,3 +1,17 @@
+
+ValidRanks =
+  ['Full',
+   'Professor',
+   'Assoc',
+   'Assist',
+   'Lecturer',
+   'PostDoc',
+   'FTI',
+   'PTI',
+   'GA',
+   'TA',
+   'RA']
+
 @Semesters = new Meteor.Collection2 'semesters',
   schema: new SimpleSchema
     semester:
@@ -32,7 +46,7 @@
       label: 'Department of allocation'
     rank:
       type: String
-      allowedValues: ['Full', 'Professor', 'Assoc', 'Assist', 'Lecturer', 'PostDoc', 'PTI', 'GradStudent']
+      allowedValues: ValidRanks
       optional: true
     ukid:
       type: String

@@ -153,8 +153,13 @@
       </optgroup>
       <option {{selectedOption 'Lecturer'}}>Lecturer</option>
       <option {{selectedOption 'PostDoc'}}>Post Doc</option>
+      <option {{selectedOption 'FTI'}}>FTI</option>
       <option {{selectedOption 'PTI'}}>PTI</option>
-      <option {{selectedOption 'GradStudent'}}>Grad Student</option>
+      <optgroup label="Grad Student">
+	<option {{selectedOption 'GA'}}>GA</option>
+	<option {{selectedOption 'RA'}}>RA</option>
+	<option {{selectedOption 'TA'}}>TA</option>
+      </optgroup>
     </select>
   </div>
 </template>

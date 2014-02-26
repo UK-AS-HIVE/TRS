@@ -1,5 +1,4 @@
 TRS = @
-isExpanded = false
 Template.detail.helpers
   data: ->
     TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}
@@ -106,7 +105,7 @@ Template.detail.events
     if e.charCode == 13
       toggleEdit(e)
   'click #currentlyallocatedbtn': (e) ->
-    toggleDiv isExpanded, 'currentlyallocatedexpansion'
+    toggleDiv 'currentlyallocatedexpansion'
     
 
 Template.detail.rendered = ->
@@ -139,15 +138,13 @@ Template.detailRankSelect.rendered = ->
   $(@find 'select.rank').select2().change (e) ->
     TRS.FacultyAllocations.update {_id: data._id}, {$set: { rank: e.val }}
 
-
-
-toggleDiv = (isExpanded, expansion) ->
-  if Session.get isExpanded
+toggleDiv = (expansion) ->
+  if Session.get 'isExpanded'
     document.getElementById(expansion).style.display="none"
-    Session.set isExpanded, false
+    Session.set 'isExpanded', false
   else
     document.getElementById(expansion).style.display="block"
-    Session.set isExpanded, true
+    Session.set 'isExpanded', true
 
 toggleEdit = (e) ->
   console.log 'toggle edit'

@@ -7,6 +7,8 @@ Template.detail.helpers
     console.log @
     TRS.FacultyAllocations.find {semester: @semester, department: @department},
      {sort: {name: 1} }
+  currentlyAllocatedIsExpanded: ->
+    Session.get 'isExpanded'
   currentlyAllocated: (myRank) ->
     sanitizePayAmount = (payAmountString) ->
       try
@@ -19,11 +21,11 @@ Template.detail.helpers
     sum = 0.0
     console.log 'Summing allocations...'
     if (myRank == '')
-      amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department}).forEach (doc) ->
+      amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department}, {fields: {pay_amount: 1}}).forEach (doc) ->
         sum += sanitizePayAmount doc.pay_amount
         console.log sum
     else
-      amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department, rank: myRank}).forEach (doc) ->
+      amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department, rank: myRank}, {fields: {pay_amount: 1}}).forEach (doc) ->
         sum += sanitizePayAmount doc.pay_amount
     return (sum).toFixed(2)
 
@@ -104,9 +106,11 @@ Template.detail.events
   'keypress .inline-edit-form input': (e) ->
     if e.keyCode == 13
       toggleEdit(e)
-
   'click #currentlyallocatedbtn': (e) ->
-    toggleDiv 'currentlyallocatedexpansion'
+    if Session.get('isExpanded') is true
+      Session.set 'isExpanded', false
+    else
+      Session.set 'isExpanded', true
     
 
 Template.detail.rendered = ->
@@ -138,14 +142,6 @@ Template.detailRankSelect.rendered = ->
 
   $(@find 'select.rank').select2().change (e) ->
     TRS.FacultyAllocations.update {_id: data._id}, {$set: { rank: e.val }}
-
-toggleDiv = (expansion) ->
-  if Session.get 'isExpanded'
-    document.getElementById(expansion).style.display="none"
-    Session.set 'isExpanded', false
-  else
-    document.getElementById(expansion).style.display="block"
-    Session.set 'isExpanded', true
 
 toggleEdit = (e) -> 
   console.log 'toggle edit'

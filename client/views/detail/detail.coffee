@@ -22,7 +22,7 @@ Template.detail.helpers
 
 Template.detail.events
   'change #approved-funding-input': (e) ->
-    val = $(e.srcElement).val()
+    val = $(e.target).val()
     data = TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}
     console.log data
     console.log 'updating to: ' + val
@@ -34,7 +34,7 @@ Template.detail.events
         department: @department
         funding: val
   'change #comments-textarea': (e) ->
-    val = $(e.srcElement).val()
+    val = $(e.target).val()
     console.log 'logging comments textarea'
     console.log val
     data = TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}
@@ -63,18 +63,18 @@ Template.detail.events
       comment: ''
       courses: []
   'change .instructor-properties input, change .pay-amount input': (e) ->
-    el = $(e.srcElement)
+    el = $(e.target)
     prop = el.data 'property'
     setter = {}
     setter[prop] = el.val()
     console.log {_id: @_id}, {$set: setter}
     TRS.FacultyAllocations.update {_id: @_id}, {$set: setter}
   'change .course input': (e,tpl) ->
-    edit_form = $(e.srcElement).parents '.inline-edit-form'
+    edit_form = $(e.target).parents '.inline-edit-form'
     id = edit_form.data 'id'
     index = edit_form.data 'index'
-    property = $(e.srcElement).attr 'name'
-    val = $(e.srcElement).val()
+    property = $(e.target).attr 'name'
+    val = $(e.target).val()
     setter = {}
     setter['courses.' + index + '.' + property] = val 
     console.log 'set ' + property + ' to ' + val + ' for course #' + index
@@ -95,7 +95,7 @@ Template.detail.events
     selector = 'course-'+@_id+'-'+@courses.length
     Session.set 'editing_id', selector
   'keypress .inline-edit-form input': (e) ->
-    if e.charCode == 13
+    if e.keyCode == 13
       toggleEdit(e)
     
 

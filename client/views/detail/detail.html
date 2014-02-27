@@ -33,41 +33,48 @@
   <table id="people" class="table table-bordered">
     <thead>
       <th id="person-info">Person</th>
+      <th id="pay-amount">Pay Amount</th>
       <th id="courses">Courses</th>
     </thead>
     <tbody>
       {{#each persons}}
         <tr>
-          <td class="instructor-details deletable inline-edit" id="{{_id}}">
+          <td class="instructor-details deletable inline-edit" id="instructor-details-{{_id}}">
             <i class="icon-trash pull-right"></i>
             <i class="icon-edit pull-right"></i>
 
             <span class="inline-edit-preview">  
               <h4 class="name field">{{name}}</h4>
+              {{#if rank}}
               <div class="rank field">
                 <span class="label">Rank</span>
                 <span class="value">{{rank}}</span>
               </div>
+              {{/if}}
+              {{#if ukid}}
               <div class="ukid field">
                 <span class="label">UKID</span>
                 <span class="value">{{ukid}}</span>
               </div>
+              {{/if}}
+              {{#if notes}}
               <div class="notes field">
                 <span class="label">Notes</span>
                 <span class="value">{{notes}}</span>
               </div>
+              {{/if}}
+              {{#if buyout}}
               <div class="buyout field">
                 <span class="label">Buyout</span>
                 <span class="value">{{buyout}}</span>
               </div>
-              <div class="pay-amount field">
-                <span class="label">Pay Amount</span>
-                <span class="value">{{pay_amount}}</span>
-              </div>
+              {{/if}}
+              {{#if par}}
               <div class="par field">
                 <span class="label">Date PAR Submitted</span>
                 <span class="value">{{par}}</span>
               </div>
+              {{/if}}
             </span>
 
             <span id="person-{{ _id }}" class="inline-edit-form">
@@ -89,10 +96,6 @@
                   <label for="buyout" class="label">Buyout</label>
                   <input type="text" name="buyout" data-property="buyout" value="{{buyout}}" />
                 </div>
-                <div class="field pay-amount">
-                  <label for="pay_amount" class="label">Pay Amount</label>
-                  <input type="text" name="pay_amount" data-property="pay_amount" value="{{pay_amount}}" />
-                </div>
                 <div class="field par">
                   <label for="par" class="label">Date PAR Submitted</label>
                   <input type="text" name="par" data-property="par" value="{{par}}" />
@@ -100,6 +103,22 @@
               </div>
             </span>
           </td>
+
+          <td class="pay-amount deletable inline-edit" id="pay-amount-{{_id}}">
+            <i class="icon-edit pull-right"></i>
+
+            <span class="inline-edit-preview">  
+              {{pay_amount}}
+            </span>
+
+            <span id="pay-amount-{{_id}}" class="inline-edit-form">
+              <div class="field pay-amount">
+                <label for="pay_amount" class="label">Pay Amount</label>
+                <input type="text" name="pay_amount" data-property="pay_amount" value="{{pay_amount}}" />
+              </div>
+            </span>
+          </td>
+
           <td class="instructor-courses">
             <button name="add-course" class="add-course btn btn-small pull-right">
               Add course
@@ -133,7 +152,7 @@
         </tr>
       {{/each}}
       <tr>
-        <td colspan="2">
+        <td colspan="3">
           <button class="btn btn-primary pull-right" id="add">Add...</button>
         </td>
       </tr>

@@ -112,9 +112,6 @@ a.logo {
 #person-info {
   width: 61%;
 }
-.instructor-details {
-  
-}
 .instructor-details .field {
   min-height: 18px;
   display: block;
@@ -128,10 +125,12 @@ a.logo {
   margin: -3px 0 0;
   padding: 2px 4px;
   width: 70%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .instructor-details .inline-edit-preview .name {
-  margin: 7px 0px 7px 2px;
+  margin: 7px 0 7px 2px;
   font-size: 20px;
 }
 .instructor-details .select2-container,
@@ -147,14 +146,39 @@ a.logo {
   position: relative;
   top: -3px;  
 }
-.instructor-details .label {
+.instructor-details .label,
+.breakdown .label{
   width: 74px;
   height: auto;
   display: inline-block;
   text-align: right;
   white-space: normal;
-  float: left;
   margin-right: 7px;
+}
+.breakdown {
+  position: relative;
+  display: inline-block;
+  padding-right: 29px;
+  margin-right: 17px;
+  text-align: right;
+}
+.breakdown .inline-edit {
+  margin-top: -1.5em;
+}
+.breakdown-rank,
+.breakdown .field {
+  text-align: left;
+  margin-bottom: 0;
+}
+.breakdown .icon-edit {
+}
+.breakdown .label {
+  width: 42px;
+}
+.breakdown input {
+  width: 42px;
+  padding: 0 4px;
+  margin: 0;
 }
 .instructor-details .inline-edit .rank .label {
   position: relative;
@@ -166,7 +190,7 @@ a.logo {
   display: block;
   margin-left: 90px;
 }
-.instructor-details .inline-edit-preview .label {
+.inline-edit-preview .label {
   background: #eee;
   color: #999;
   text-shadow: none;

@@ -1,0 +1,48 @@
+<template name="funding">
+  <div class="row">
+    <div class="span4">
+      <h1>{{department}}</h1>
+      <h2>{{semester}}</h2>
+    </div>
+    <div class="span8">
+      <div class="inline-edit" id="approved-funding-{{_id}}">
+        Approved funding:
+        <span class="inline-edit-preview">{{data.funding}}</span>
+        <span class="inline-edit-form">
+          <input id="approved-funding-input" type="text" value="{{data.funding}}" placeholder="Approved funding" />
+        </span>
+        <i class="icon-edit"></i>
+      </div>
+      <div id="breakdowns">
+        {{#each data.breakdown}}
+          <div class="breakdown breakdown-{{rank}}">
+            <h3 class="breakdown-rank">{{rank}}</h3>
+            <div class="breakdown-edit inline-edit">
+              <i class="icon-edit"></i>
+              <span class="inline-edit-preview">
+                <div class="breakdown-lines field">
+                  <span class="label">lines</span>
+                  <span class="value">{{lines}}</span>
+                </div>
+                <div class="breakdown-rate field">
+                  <span class="label">rate</span>
+                  <span class="value">{{rate}}</span>
+                </div>
+              </span>
+              <span class="inline-edit-form">
+                <div class="breakdown-lines field">
+                  <label for="lines-input-{{rank}}" class="label">lines</label>
+                  <input id="lines-input-{{rank}}" type="text" value="{{lines}}" />
+                </div>
+                <div class="breakdown-rate field">
+                  <label for="rate-input-{{rank}}" class="label">rate</label>
+                  <input id="rate-input-{{rank}}" type="text" value="{{rate}}" />
+                </div>
+              </span>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>

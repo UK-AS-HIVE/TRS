@@ -93,6 +93,29 @@ ValidRanks =
       type: String
       label: 'Comments pertaining to this department and semester'
       optional: true
+    breakdown:
+      type: [Object]
+      label: 'Funding lines'
+      autoValue: ->
+        if @isSet
+          return @value
+        else
+          return _.map ['GA','TA','RA','PTI','FTI'], (r) ->
+            {rank: r, lines: 0, rate: '0'}
+      optional: true
+    'breakdown.$.lines':
+      type: Number
+      label: 'Number of lines'
+      optional: true
+    'breakdown.$.rank':
+      type: String
+      allowedValues: ['GA','TA','RA','PTI','FTI']
+      label: 'Rank'
+      optional: true
+    'breakdown.$.rate':
+      type: String
+      label: 'Rate per semester for this rank'
+      optional: true
     
   
 @Admins = new Meteor.Collection2 'admins',

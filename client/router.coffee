@@ -43,12 +43,12 @@ Router.map ->
       semester: Session.get 'semester'
     waitOn: ->
       console.log 'Waiting on subscriptions to...'
-      console.log '...'
-      [(Meteor.subscribe 'allocations', @params.department, @params.semester),
+      console.log @
+      [(Meteor.subscribe 'allocations', @params.department, @params.semester)
        (Meteor.subscribe 'semesterDepartmentDetail', @params.department, @params.semester)]
 
-  @route 'detail',
-    path: '/d/:department/s/:semester'
+  @route 'funding',
+    path: '/:department/:semester/funding'
     before: ->
       Session.set 'department', @params.department
       Session.set 'semester', @params.semester

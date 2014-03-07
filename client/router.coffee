@@ -34,7 +34,7 @@ Router.map ->
     path: '/department/:department'
 
   @route 'detail',
-    path: '/s/:semester/d/:department'
+    path: '/:department/:semester'
     before: ->
       Session.set 'department', @params.department
       Session.set 'semester', @params.semester

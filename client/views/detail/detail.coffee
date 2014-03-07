@@ -57,18 +57,23 @@ Template.detail.events
     toggleEdit(e)
   'click .instructor-details .icon-trash': (e,tpl) ->
     console.log 'removing whole instructor'
-    TRS.FacultyAllocations.remove {_id: @_id}
+    instructorId = @_id
+    bootbox.confirm 'Are you sure you wish to delete ' + @name + '?', (confirmed) ->
+      if confirmed then TRS.FacultyAllocations.remove {_id: instructorId}
   'click button#add': (e) ->
     console.log @
-    TRS.FacultyAllocations.insert
-      name: 'Name'
-      semester: @semester
-      department: @department
-      rank: null
-      buyout: ''
-      pay_amount: ''
-      comment: ''
-      courses: []
+    self = @
+    bootbox.prompt 'Name of person to add', (result) ->
+      if result?
+        TRS.FacultyAllocations.insert
+          name: result
+          semester: self.semester
+          department: self.department
+          rank: null
+          buyout: ''
+          pay_amount: ''
+          comment: ''
+          courses: []
   'change .instructor-properties input, change .pay-amount input': (e) ->
     el = $(e.target)
     prop = el.data 'property'
@@ -116,16 +121,6 @@ Template.detail.rendered = ->
   editingDiv.addClass 'editing'
   if $('input:focus').length == 0
     editingDiv.find('input:first').focus()
-
-  $(@findAll '.editable').editable (value, settings) ->
-    console.log 'edited'
-    $el = $(@)
-    id = $el.data 'id'
-    property = $el.data 'property'
-    update = {}
-    update[property] = value
-    TRS.FacultyAllocations.update id, {$set: update }
-    value
 
 Template.detailRankSelect.helpers
   selectedOption: (rank) ->

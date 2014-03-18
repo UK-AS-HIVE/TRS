@@ -121,6 +121,8 @@ Template.detail.events
 Template.detail.rendered = ->
   template = @
 
+  console.log 'detail template rendered'
+
   editingDiv = $('#' + Session.get 'editing_id')
   editingDiv.addClass 'editing'
   if $('input:focus').length == 0

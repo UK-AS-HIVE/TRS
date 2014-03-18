@@ -5,13 +5,14 @@
       "iron-router": {},
       "select2": {},
       "bootboxjs": {},
-      "collection2": {}
+      "collection2": {},
+      "font-awesome": {}
     },
     "packages": {
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.6.2",
-        "commit": "ce56e58b45624dce992490f3a1c10f10d3948bae"
+        "tag": "v0.6.4",
+        "commit": "927bbaed1b87894fb6fb70807f74ff3a5bd89f29"
       },
       "select2": {
         "git": "https://github.com/nate-strauser/meteor-select2.git",
@@ -25,13 +26,18 @@
       },
       "collection2": {
         "git": "https://github.com/aldeed/meteor-collection2.git",
-        "tag": "v0.3.7",
-        "commit": "4c6c2dfd87af8cda321c80e1baea72842ad5c542"
+        "tag": "v0.3.9",
+        "commit": "fdda9b5c87e9dcb5cb67087ecb6c9f21352d0cc2"
+      },
+      "font-awesome": {
+        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
+        "tag": "v4.0.3",
+        "commit": "61e9361384347547ae144f8228faa4deffda23db"
       },
       "simple-schema": {
         "git": "https://github.com/aldeed/meteor-simple-schema.git",
-        "tag": "v0.2.36",
-        "commit": "d01745787de0711ffd095dcd212749d94a3fe0eb"
+        "tag": "v0.2.41",
+        "commit": "c269b4e9ddb642cdc733c1f4190bcb7b28099e01"
       }
     }
   }

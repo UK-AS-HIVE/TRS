@@ -109,8 +109,14 @@ a.logo {
 }
 
 /* Details Page */
-#person-info {
-  width: 61%;
+th#person-info {
+  width: 40%;
+}
+th#pay-amount {
+  width: 30%;
+}
+th#courses {
+  width: 30%;
 }
 .instructor-details {
   

@@ -60,6 +60,10 @@
             <i class="icon-trash pull-right"></i>
             <i class="icon-edit pull-right"></i>
 
+            {{#isolate}}
+            {{inlineEditLock prefix='instructor-details-'}}
+            {{/isolate}}
+
             <span class="inline-edit-preview">  
               <h4 class="name field">{{name}}</h4>
               {{#if rank}}
@@ -123,6 +127,9 @@
 
           <td class="pay-amount deletable inline-edit" id="pay-amount-{{_id}}">
             <i class="icon-edit pull-right"></i>
+            {{#isolate}}
+              {{inlineEditLock prefix='pay-amount-'}}
+            {{/isolate}}
 
             <span class="inline-edit-preview">  
               {{pay_amount}}

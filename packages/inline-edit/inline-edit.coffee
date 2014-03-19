@@ -17,7 +17,7 @@ if Meteor.isServer
 
 (exports ? this).toggleEdit = (e) -> 
   console.log 'toggle edit'
-  parent = $(e.currentTarget).parent '.inline-edit'
+  parent = $(e.target).parents '.inline-edit'
   $('.editing').not(parent).removeClass 'editing'
   parent.toggleClass 'editing'
   console.log 'parent id: ' + (parent.attr 'id')

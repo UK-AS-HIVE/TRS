@@ -56,7 +56,7 @@
     <tbody>
       {{#each persons}}
         <tr>
-          <td class="instructor-details deletable inline-edit" id="instructor-details-{{_id}}">
+          <td class="instructor-details deletable inline-edit" id="instructor-details-{{_id}}" {{{inlineEditBackground prefix='instructor-details-' bgcolor='#dde3ff'}}}>
             <i class="icon-trash pull-right"></i>
             <i class="icon-edit pull-right"></i>
 
@@ -125,7 +125,7 @@
             </span>
           </td>
 
-          <td class="pay-amount deletable inline-edit" id="pay-amount-{{_id}}">
+          <td class="pay-amount deletable inline-edit" id="pay-amount-{{_id}}" {{{inlineEditBackground prefix='pay-amount-' bgcolor='#dde3ff'}}}>
             <i class="icon-edit pull-right"></i>
             {{#isolate}}
               {{inlineEditLock prefix='pay-amount-'}}
@@ -136,6 +136,14 @@
             </span>
 
             <span id="pay-amount-{{_id}}" class="inline-edit-form">
+              {{#if isGradStudent}}
+              {{#each lineTypes}}
+              <div class="field lines">
+                <label for="lines{{this}}" class="label">{{this}} lines</label>
+                <input type="text" name="linesGA" maxlength="4" value="{{lineValue .. this}}" data-property="lines.{{this}}" />
+              </div>
+              {{/each}}
+              {{/if}}
               <div class="field pay-amount">
                 <label for="pay_amount" class="label">Pay Amount</label>
                 <input type="text" name="pay_amount" data-property="pay_amount" value="{{pay_amount}}" />
@@ -144,7 +152,7 @@
           </td>
 
           <td class="instructor-courses">
-            <button name="add-course" class="add-course btn btn-small pull-right">
+            <button name="add-course" class="add-course btn btn-mini pull-right">
               Add course
             </button>
             <ul>

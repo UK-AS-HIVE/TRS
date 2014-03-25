@@ -28,6 +28,12 @@ Template.detail.helpers
       amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department, rank: myRank}, {fields: {pay_amount: 1}}).forEach (doc) ->
         sum += sanitizePayAmount doc.pay_amount
     return (sum).toFixed(2)
+  lineTypes: ['GA', 'TA', 'RA', 'PTI', 'FTI']
+  isGradStudent: ->
+    @rank? and ['GA', 'TA', 'RA', 'PTI', 'FTI'].indexOf(@rank) > -1
+  lineValue: (user, lineType) ->
+    if user? and user.lines? and user.lines.hasOwnProperty lineType then user.lines[lineType] else 0
+  
 
 Template.detail.events
   'change #approved-funding-input': (e) ->

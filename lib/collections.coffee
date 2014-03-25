@@ -75,6 +75,13 @@ ValidRanks =
     'courses.$.credits':
       type: Number
       max: 4
+    lines:
+      type: Object
+      optional: true
+    'lines.$':
+      type: String
+      optional: true
+
 
 
 @SemesterDepartmentDetail = new Meteor.Collection2 'semesterDepartmentDetail',

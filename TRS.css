@@ -127,10 +127,10 @@ th#courses {
   margin-top: 5px;
   clear: left;
 }
-.instructor-details .inline-edit-form .field {
+.inline-edit-form .field {
   margin-top: 5px;
 }
-.instructor-details .inline-edit-form input {
+.inline-edit-form input {
   margin: -3px 0 0;
   padding: 2px 4px;
   width: 70%;
@@ -177,6 +177,10 @@ th#courses {
   color: #999;
   text-shadow: none;
   
+}
+.pay-amount .field input {
+  width: 42px;
+  margin: 0;
 }
 .course .field {
   display: inline-block;

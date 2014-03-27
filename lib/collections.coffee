@@ -52,14 +52,10 @@ ValidRanks =
       type: String
       optional: true
     buyout:
-      type: String
+      type: Boolean
       optional: true
     pay_amount:
       type: String
-      optional: true
-    par:
-      type: Date
-      label: 'Date PAR Submitted'
       optional: true
     notes:
       type: String
@@ -78,7 +74,19 @@ ValidRanks =
     lines:
       type: Object
       optional: true
-    'lines.$':
+    'lines.GA':
+      type: String
+      optional: true
+    'lines.TA':
+      type: String
+      optional: true
+    'lines.RA':
+      type: String
+      optional: true
+    'lines.PTI':
+      type: String
+      optional: true
+    'lines.FTI':
       type: String
       optional: true
 

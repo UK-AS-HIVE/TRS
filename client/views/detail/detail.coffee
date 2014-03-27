@@ -32,7 +32,13 @@ Template.detail.helpers
   isGradStudent: ->
     @rank? and ['GA', 'TA', 'RA', 'PTI', 'FTI'].indexOf(@rank) > -1
   lineValue: (user, lineType) ->
-    if user? and user.lines? and user.lines.hasOwnProperty lineType then user.lines[lineType] else 0
+    if user? and user.lines? and user.lines.hasOwnProperty lineType
+      console.log user.lines[lineType]
+      return user.lines[lineType]
+    else
+      return 0
+  checked: (trueFalse) ->
+    if trueFalse then 'checked' else ''
   
 
 Template.detail.events
@@ -86,9 +92,16 @@ Template.detail.events
     el = $(e.target)
     prop = el.data 'property'
     setter = {}
-    setter[prop] = el.val()
-    console.log {_id: @_id}, {$set: setter}
-    TRS.FacultyAllocations.update {_id: @_id}, {$set: setter}
+    if el.attr('type')=='checkbox'
+      console.log el
+      setter[prop] = !(el[0].hasAttribute('checked'))
+    else
+      setter[prop] = el.val()
+    id = @_id
+    unless id?
+      id = el.data 'id'
+    console.log {_id: id}, {$set: setter}
+    TRS.FacultyAllocations.update {_id: id}, {$set: setter}
   'change .course input': (e,tpl) ->
     edit_form = $(e.target).parents '.inline-edit-form'
     id = edit_form.data 'id'

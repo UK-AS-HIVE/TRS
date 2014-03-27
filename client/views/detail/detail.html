@@ -56,7 +56,7 @@
     <tbody>
       {{#each persons}}
         <tr>
-          <td class="instructor-details deletable inline-edit" id="instructor-details-{{_id}}" {{{inlineEditBackground prefix='instructor-details-' bgcolor='#dde3ff'}}}>
+          <td class="instructor-details deletable inline-edit" id="instructor-details-{{_id}}" {{{inlineEditBackground prefix='instructor-details-' bgcolor='lightgray'}}}>
             <i class="icon-trash pull-right"></i>
             <i class="icon-edit pull-right"></i>
 
@@ -84,18 +84,6 @@
                 <span class="value">{{notes}}</span>
               </div>
               {{/if}}
-              {{#if buyout}}
-              <div class="buyout field">
-                <span class="label">Buyout</span>
-                <span class="value">{{buyout}}</span>
-              </div>
-              {{/if}}
-              {{#if par}}
-              <div class="par field">
-                <span class="label">Date PAR Submitted</span>
-                <span class="value">{{par}}</span>
-              </div>
-              {{/if}}
             </span>
 
             <span id="person-{{ _id }}" class="inline-edit-form">
@@ -113,19 +101,12 @@
                   <label for="notes" class="label">Notes</label>
                   <input type="text" name="notes" data-property="notes" value="{{notes}}" />
                 </div>
-                <div class="field buyout">
-                  <label for="buyout" class="label">Buyout</label>
-                  <input type="text" name="buyout" data-property="buyout" value="{{buyout}}" />
-                </div>
-                <div class="field par">
-                  <label for="par" class="label">Date PAR Submitted</label>
-                  <input type="text" name="par" data-property="par" value="{{par}}" />
-                </div>
+
               </div>
             </span>
           </td>
 
-          <td class="pay-amount deletable inline-edit" id="pay-amount-{{_id}}" {{{inlineEditBackground prefix='pay-amount-' bgcolor='#dde3ff'}}}>
+          <td class="pay-amount deletable inline-edit" id="pay-amount-{{_id}}" {{{inlineEditBackground prefix='pay-amount-' bgcolor='lightgray'}}}>
             <i class="icon-edit pull-right"></i>
             {{#isolate}}
               {{inlineEditLock prefix='pay-amount-'}}
@@ -140,10 +121,19 @@
               {{#each lineTypes}}
               <div class="field lines">
                 <label for="lines{{this}}" class="label">{{this}} lines</label>
-                <input type="text" name="linesGA" maxlength="4" value="{{lineValue .. this}}" data-property="lines.{{this}}" />
+                <input type="text" name="lines{{this}}" maxlength="4" value="{{lineValue .. this}}" data-property="lines.{{this}}" data-id="{{../_id}}" />
               </div>
               {{/each}}
               {{/if}}
+              
+              {{#unless isGradStudent}}
+                <div class="field buyout">
+                  <label for="buyout" class="label">Buyout</label>
+                  <!--<input type="text" name="buyout" data-property="buyout" value="{{buyout}}" />-->
+                  <input type="checkbox" name="buyout" data-property="buyout" {{{checked buyout}}} />
+                </div>
+              {{/unless}}
+
               <div class="field pay-amount">
                 <label for="pay_amount" class="label">Pay Amount</label>
                 <input type="text" name="pay_amount" data-property="pay_amount" value="{{pay_amount}}" />

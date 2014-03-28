@@ -4,6 +4,8 @@ Package.describe({
 
 Package.on_use(function (api) {
   api.use('coffeescript', ['client', 'server']);
-  api.use('fontawesome', 'client');
-  api.add_files(['inline-edit.css','inline-edit.coffee'], 'client');
+  api.use(['font-awesome', 'handlebars'], 'client');
+  api.add_files(['inline-edit.css', 'inline-edit.html'], 'client');
+
+  api.add_files(['inline-edit.coffee'], ['client','server']);
 });

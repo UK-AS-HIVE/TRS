@@ -71,6 +71,10 @@ ValidRanks =
     'courses.$.credits':
       type: Number
       max: 4
+    'courses.$.sections':
+      type: String
+      label: 'Sections'
+      optional: true
     lines:
       type: Object
       optional: true

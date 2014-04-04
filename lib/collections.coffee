@@ -54,6 +54,9 @@ ValidRanks =
     buyout:
       type: Boolean
       optional: true
+    buyoutAmount:
+      type: String
+      optional: true
     pay_amount:
       type: String
       optional: true

@@ -39,6 +39,8 @@ Template.detail.helpers
       return 0
   checked: (trueFalse) ->
     if trueFalse then 'checked' else ''
+  disabled: (trueFalse) ->
+    if trueFalse then '' else 'disabled'
   
 
 Template.detail.events
@@ -84,7 +86,7 @@ Template.detail.events
           semester: self.semester
           department: self.department
           rank: null
-          buyout: ''
+          buyout: null
           pay_amount: ''
           comment: ''
           courses: []

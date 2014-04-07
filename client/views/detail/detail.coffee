@@ -9,7 +9,8 @@ Template.detail.helpers
      {sort: {name: 1} }
   currentlyAllocatedIsExpanded: ->
     Session.get 'isExpanded'
-  currentlyAllocated: (myRank) ->
+  currentlyAllocated: (myRank, context) ->
+    console.log 'Calculating currentlyAllocated for "' + myRank + '"'
     sanitizePayAmount = (payAmountString) ->
       try
         r = parseFloat payAmountString.replace /[^0-9\.-]+/g,""
@@ -20,15 +21,24 @@ Template.detail.helpers
         return 0
     sum = 0.0
     console.log 'Summing allocations...'
+    console.log @
+    console.log arguments
     if (myRank == '')
-      amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department}, {fields: {pay_amount: 1}}).forEach (doc) ->
+      console.log 'rank == blank'
+      amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department}, {fields: {pay_amount: 1}}).forEach (doc) ->
         sum += sanitizePayAmount doc.pay_amount
         console.log sum
     else
-      amounts = TRS.FacultyAllocations.find({semester: @semester, department: @department, rank: myRank}, {fields: {pay_amount: 1}}).forEach (doc) ->
+      amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department, rank: myRank}, {fields: {pay_amount: 1}}).forEach (doc) ->
         sum += sanitizePayAmount doc.pay_amount
+        console.log 'added ' + doc.pay_amount
     return (sum).toFixed(2)
-  lineTypes: ['GA', 'TA', 'RA', 'PTI', 'FTI']
+  lineTypes: (context) ->
+    console.log 'lineTypes'
+    console.log @
+    console.log context
+    depSem = TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}, {fields: {breakdown: 1}}
+    depSem.breakdown
   isGradStudent: ->
     @rank? and ['GA', 'TA', 'RA', 'PTI', 'FTI'].indexOf(@rank) > -1
   lineValue: (user, lineType) ->
@@ -76,6 +86,42 @@ Template.detail.events
     instructorId = @_id
     bootbox.confirm 'Are you sure you wish to delete ' + @name + '?', (confirmed) ->
       if confirmed then TRS.FacultyAllocations.remove {_id: instructorId}
+  'click button#add-rank-type': (e) ->
+    self = @
+    bootbox.prompt 'Name of rank', (result) ->
+      if result?
+        console.log 'Trying to add ' + result + ' rank'
+        data = TRS.SemesterDepartmentDetail.findOne {semester: self.semester, department: self.department}
+        if data?
+          console.log 'found data, updating it'
+          console.log data
+          TRS.SemesterDepartmentDetail.update {_id: data._id}, {$push: {breakdown: {lines: 0, rank: result, rate: '0'}}}
+        else
+          console.log 'didnt find semesterDepartmentDetail record, inserting'
+  'change .breakdown input': (e, tpl) ->
+    console.log 'Changed breakdown data'
+    edit_form = $(e.target).parents '.inline-edit'
+    id = edit_form.data 'id'
+    index = edit_form.data 'index'
+    property = $(e.target).data 'property'
+    val = $(e.target).val()
+    setter = {}
+    setter['breakdown.' + index + '.' + property] = val
+    depSem = TRS.SemesterDepartmentDetail.findOne {semester: tpl.data.semester, department: tpl.data.department}, {fields: {_id: 1}}
+    TRS.SemesterDepartmentDetail.update depSem._id,
+      $set: setter
+  'click .breakdown .icon-trash': (e,tpl) ->
+    row = $(e.currentTarget).parents '.breakdown'
+    index = row.data 'index'
+    #id = $(e.currentTarget).parent('li.course').data 'id'
+    console.log 'removing breakdown #' + index
+    depSem = TRS.SemesterDepartmentDetail.findOne({semester: tpl.data.semester, department: tpl.data.department}, {fields: {_id:1, breakdown: 1}})
+    id = depSem._id
+    breakdown = depSem.breakdown
+    breakdown.splice(index, 1)
+    TRS.SemesterDepartmentDetail.update {_id: id},
+      {$set: {breakdown: breakdown}}
+
   'click button#add': (e) ->
     console.log @
     self = @

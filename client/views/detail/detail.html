@@ -148,11 +148,22 @@
               {{/if}}
               
               {{#unless isGradStudent}}
+                <div class="field courseRelease">
+                  <label for="courseRelease" class="label">Course Release</label>
+                  <input type="checkbox" name="courseRelease" data-property="courseRelease" {{checked courseRelease}} />
+                  <input type="number" min="0" name="courseReleaseAmount" data-property="courseReleaseAmount" value="{{courseReleaseAmount}}" {{{disabled courseRelease}}} />
+                </div>
+
                 <div class="field buyout">
                   <label for="buyout" class="label">Buyout</label>
-                  <!--<input type="text" name="buyout" data-property="buyout" value="{{buyout}}" />-->
                   <input type="checkbox" name="buyout" data-property="buyout" {{{checked buyout}}} />
-                  <input type="text" name="buyoutAmount" data-property="buyoutAmount" {{{disabled buyout}}} />
+                  <input type="number" min="0" max="100" name="buyoutPercent" data-property="buyoutPercent" value="{{buyoutPercent}}" {{{disabled buyout}}} />
+                </div>
+
+                <div class="field overload">
+                  <label for="overload" class="label">Overload</label>
+                  <input type="checkbox" name="overload" data-property="overload" {{checked overload}} />
+                  <input type="text" name="overloadAmount" data-property="overloadAmount" value="{{overloadAmount}}" {{{disabled overload}}} />
                 </div>
               {{/unless}}
 

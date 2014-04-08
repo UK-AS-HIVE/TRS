@@ -54,7 +54,22 @@ ValidRanks =
     buyout:
       type: Boolean
       optional: true
-    buyoutAmount:
+    buyoutPercent:
+      type: Number
+      optional: true
+      min: 0
+      max: 100
+    courseRelease:
+      type: Boolean
+      optional: true
+    courseReleaseAmount:
+      type: Number
+      optional: true
+      min: 0
+    overload:
+      type: Boolean
+      optional: true
+    overloadAmount:
       type: String
       optional: true
     pay_amount:

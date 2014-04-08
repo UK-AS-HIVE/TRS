@@ -97,6 +97,10 @@ Template.detail.events
           console.log data
           TRS.SemesterDepartmentDetail.update {_id: data._id}, {$push: {breakdown: {lines: 0, rank: result, rate: '0'}}}
         else
+          TRS.SemesterDepartmentDetail.insert
+            semester: self.semester
+            department: self.department
+            breakdown: [{lines:0, rank: result, rate: '0'}]
           console.log 'didnt find semesterDepartmentDetail record, inserting'
   'change .breakdown input': (e, tpl) ->
     console.log 'Changed breakdown data'

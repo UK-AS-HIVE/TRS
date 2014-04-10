@@ -1,74 +1,6 @@
 <template name="detail">
-  <div class="row">
-    <div class="span4">
-      <h1>{{department}}</h1>
-      <h2>{{semester}}</h2>
-    </div>
-    <div class="span8">
-      <div class="inline-edit" id="comments-{{_id}}">
-        Comments:
-        <span class="inline-edit-preview">{{{data.comments}}}</span>
-        <span class="inline-edit-form">
-          <br/>
-          <textarea id="comments-textarea" placeholder="Comments">{{{data.comments}}}</textarea>
-        </span>
-        <i class="icon-edit"></i>
-      </div>
-      <div class="inline-edit" id="approved-funding-{{_id}}">
-        Approved funding:
-        <span class="inline-edit-preview">{{data.funding}}</span>
-        <span class="inline-edit-form">
-          <input id="approved-funding-input" type="text" value="{{data.funding}}" placeholder="Approved funding" />
-        </span>
-        <i class="icon-edit"></i>
-      </div>
-      <div id="currently-allocated">
-        {{#isolate}}
-        Currently allocated: {{currentlyAllocated ''}}
-        <i id="currentlyallocatedbtn" class="icon-plus"></i>
-        {{#if currentlyAllocatedIsExpanded}}
-	  <div id="currentlyallocatedexpansion"> 
-            <table class="table table-striped">
-              <thead>
-                <tr><td>Rank</td><td>Allocated/Budgeted</td><td>Filled/Alloted Lines</td><td>Rate<td></tr>
-              </thead>
-              <tbody>
-		{{#each key_value data.breakdown}}
-		  <tr class="inline-edit deletable breakdown" id="breakdown-{{../data._id}}-{{key}}" data-id="{{../data._id}}" data-index="{{key}}" >
-		    <td>
-		      <span class="inline-edit-preview">{{value.rank}}</span>
-		      <span class="inline-edit-form"><input type="text" value="{{value.rank}}" data-property="rank" data-id="{{../data._id}}" data-index="{{key}}" /></span>
-		      <i class="icon-trash pull-right"></i>
-		      <i class="icon-edit pull-right"></i>
-		    </td>
-		    <td>
-		      {{currentlyAllocated value.rank semester=../semester department=../department}}
-		    </td>
-		    <td>
-		      <span class="inline-edit-preview">{{value.lines}}</span>
-		      <span class="inline-edit-form"><input type="text" value="{{value.lines}}" data-property="lines" data-id="{{../data._id}}" data-index="{{key}}" /></span>
-		    </td>
-		    <td>
-		      <span class="inline-edit-preview">{{value.rate}}</span>
-		      <span class="inline-edit-form"><input type="text" value="{{value.rate}}" data-property="rate" data-id="{{../data._id}}" data-index="{{key}}" /></span>
-		    </td>
-		  </tr>
-		{{/each}}
-		<tr>
-		  <td colspan="4">
-		    <button class="btn btn-primary btn-mini" id="add-rank-type">Add...</button>
-		  </td>
-		</tr>
-              </tbody>
-            </table>
-	  </div>      
-        {{/if}}
-        {{/isolate}}
-      </div>
-    </div>
-  </div>
-
-  <table id="people" class="table table-striped table-bordered">
+  {{> detailHeader}}
+  <table id="people" class="table table-bordered table-hover">
     <thead>
       <th id="person-info">Person</th>
       <th id="pay-amount">Pay Amount</th>
@@ -235,10 +167,83 @@
       <option {{selectedOption 'FTI'}}>FTI</option>
       <option {{selectedOption 'PTI'}}>PTI</option>
       <optgroup label="Grad Student">
-	<option {{selectedOption 'GA'}}>GA</option>
-	<option {{selectedOption 'RA'}}>RA</option>
-	<option {{selectedOption 'TA'}}>TA</option>
+        <option {{selectedOption 'GA'}}>GA</option>
+        <option {{selectedOption 'RA'}}>RA</option>
+        <option {{selectedOption 'TA'}}>TA</option>
       </optgroup>
     </select>
   </div>
 </template>
+
+<template name="detailHeader">
+  <div class="row">
+    <div class="span4">
+      <h1>{{department}}</h1>
+      <h2>{{semester}}</h2>
+    </div>
+    <div class="span8">
+      <div class="inline-edit" id="comments-{{_id}}">
+        Comments:
+        <span class="inline-edit-preview">{{{data.comments}}}</span>
+        <span class="inline-edit-form">
+          <br/>
+          <textarea id="comments-textarea" placeholder="Comments">{{{data.comments}}}</textarea>
+        </span>
+        <i class="icon-edit"></i>
+      </div>
+      <div class="inline-edit" id="approved-funding-{{_id}}">
+        Approved funding:
+        <span class="inline-edit-preview">{{data.funding}}</span>
+        <span class="inline-edit-form">
+          <input id="approved-funding-input" type="text" value="{{data.funding}}" placeholder="Approved funding" />
+        </span>
+        <i class="icon-edit"></i>
+      </div>
+      <div id="currently-allocated">
+        {{#isolate}}
+        Currently allocated: {{currentlyAllocated ''}}
+        <i id="currentlyallocatedbtn" class="icon-plus"></i>
+        {{#if currentlyAllocatedIsExpanded}}
+          <div id="currentlyallocatedexpansion"> 
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr><td>Rank</td><td>Allocated/Budgeted Lines</td><td>Rate</td><td>Allocated/Budgeted</td></tr>
+              </thead>
+              <tbody>
+                {{#each key_value data.breakdown}}
+                  <tr class="inline-edit deletable breakdown {{{rowClass semester=../semester department=../department}}}" id="breakdown-{{../data._id}}-{{key}}" data-id="{{../data._id}}" data-index="{{key}}" >
+                    <td>
+                      <span class="inline-edit-preview">{{value.rank}}</span>
+                      <span class="inline-edit-form"><input type="text" value="{{value.rank}}" data-property="rank" data-id="{{../data._id}}" data-index="{{key}}" /></span>
+                      <i class="icon-trash pull-right"></i>
+                      <i class="icon-edit pull-right"></i>
+                    </td>
+                    <td>
+                      <span class="inline-edit-preview">{{linesAllocated semester=../semester department=../department}}/{{value.lines}}</span>
+                      <span class="inline-edit-form"><input type="text" value="{{value.lines}}" data-property="lines" data-id="{{../data._id}}" data-index="{{key}}" /></span>
+                    </td>
+                    <td>
+                      <span class="inline-edit-preview">{{value.rate}}</span>
+                      <span class="inline-edit-form"><input type="text" value="{{value.rate}}" data-property="rate" data-id="{{../data._id}}" data-index="{{key}}" /></span>
+                    </td>
+                    <td>
+                      {{currentlyAllocated value.rank semester=../semester department=../department}}
+                      / {{currentlyBudgeted}}
+                    </td>
+                  </tr>
+                {{/each}}
+                <tr>
+                  <td colspan="4">
+                    <button class="btn btn-primary btn-mini" id="add-rank-type">Add...</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>      
+        {{/if}}
+        {{/isolate}}
+      </div>
+    </div>
+  </div>
+</template>
+

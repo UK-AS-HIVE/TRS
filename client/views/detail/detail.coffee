@@ -1,38 +1,10 @@
 TRS = @
 
 Template.detail.helpers
-  data: ->
-    TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}
   persons: ->
     console.log @
     TRS.FacultyAllocations.find {semester: @semester, department: @department},
      {sort: {name: 1} }
-  currentlyAllocatedIsExpanded: ->
-    Session.get 'isExpanded'
-  currentlyAllocated: (myRank, context) ->
-    console.log 'Calculating currentlyAllocated for "' + myRank + '"'
-    sanitizePayAmount = (payAmountString) ->
-      try
-        r = parseFloat payAmountString.replace /[^0-9\.-]+/g,""
-        if isNaN r
-          return 0
-        return r
-      catch e
-        return 0
-    sum = 0.0
-    console.log 'Summing allocations...'
-    console.log @
-    console.log arguments
-    if (myRank == '')
-      console.log 'rank == blank'
-      amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department}, {fields: {pay_amount: 1}}).forEach (doc) ->
-        sum += sanitizePayAmount doc.pay_amount
-        console.log sum
-    else
-      amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department, rank: myRank}, {fields: {pay_amount: 1}}).forEach (doc) ->
-        sum += sanitizePayAmount doc.pay_amount
-        console.log 'added ' + doc.pay_amount
-    return (sum).toFixed(2)
   lineTypes: (context) ->
     console.log 'lineTypes'
     console.log @

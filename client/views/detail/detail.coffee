@@ -11,7 +11,7 @@ Template.detail.helpers
     console.log context
     depSem = TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}, {fields: {breakdown: 1}}
     depSem.breakdown
-  isGradStudent: ->
+  isFundedByLines: ->
     @rank? and ['GA', 'TA', 'RA', 'PTI', 'FTI'].indexOf(@rank) > -1
   lineValue: (user, lineType) ->
     if user? and user.lines? and user.lines.hasOwnProperty lineType
@@ -19,6 +19,19 @@ Template.detail.helpers
       return user.lines[lineType]
     else
       return 0
+  lineFundedSubtotal: (person) ->
+    console.log 'linesFundedSubtotal'
+    console.log person
+    lineRates = TRS.SemesterDepartmentDetail.findOne {semester: person.semester, department: person.department}, {fields: {breakdown: 1}}
+    console.log lineRates
+    subTotal = 0.0
+    if lineRates? && lineRates.breakdown?
+      _.each lineRates.breakdown, (b) ->
+        try
+          subTotal += fractionToFloat(person.lines[b.rank]) * b.rate
+        catch e
+          console.log 'Error calculating subtotal for person lines'
+    '= ' + subTotal.toFixed(2)
   checked: (trueFalse) ->
     if trueFalse then 'checked' else ''
   disabled: (trueFalse) ->

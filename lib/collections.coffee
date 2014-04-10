@@ -10,7 +10,8 @@ ValidRanks =
    'PTI',
    'GA',
    'TA',
-   'RA']
+   'RA',
+   'Fellow']
 
 @Semesters = new Meteor.Collection2 'semesters',
   schema: new SimpleSchema
@@ -96,6 +97,7 @@ ValidRanks =
     lines:
       type: Object
       optional: true
+      blackbox: true
     'lines.GA':
       type: String
       optional: true
@@ -103,6 +105,9 @@ ValidRanks =
       type: String
       optional: true
     'lines.RA':
+      type: String
+      optional: true
+    'lines.RA1':
       type: String
       optional: true
     'lines.PTI':

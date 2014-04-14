@@ -1,7 +1,7 @@
-.editable+.icon-edit {
+.editable+.glyphicon-edit {
   visibility: hidden;
 }
-.editable:hover+.icon-edit {
+.editable:hover+.glyphicon-edit {
   cursor: pointer;
   visibility: visible;
 }
@@ -20,19 +20,19 @@
 .inline-edit.editing .inline-edit-form {
   display: inline;
 }
-.inline-edit .icon-edit {
+.inline-edit .glyphicon-edit {
   visibility: hidden;
 }
-.inline-edit:hover .icon-edit,
-.editing .icon-edit {
+.inline-edit:hover .glyphicon-edit,
+.editing .glyphicon-edit {
   cursor: pointer;
   visibility: visible;
 }
-.deletable .icon-trash {
+.deletable .glyphicon-trash {
   visibility: hidden;
 }
-.deletable:hover .icon-trash,
-.editing .icon-trash {
+.deletable:hover .glyphicon-trash,
+.editing .glyphicon-trash {
   cursor: pointer;
   visibility: visible;
 }

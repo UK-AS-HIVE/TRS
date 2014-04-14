@@ -33,7 +33,7 @@ Template.detailHeader.events
     depSem = TRS.SemesterDepartmentDetail.findOne {semester: Session.get('semester'), department: Session.get('department')}, {fields: {_id: 1}}
     TRS.SemesterDepartmentDetail.update depSem._id,
       $set: setter
-  'click .breakdown .icon-trash': (e,tpl) ->
+  'click .breakdown .glyphicon-trash': (e,tpl) ->
     row = $(e.currentTarget).parents '.breakdown'
     index = row.data 'index'
     #id = $(e.currentTarget).parent('li.course').data 'id'

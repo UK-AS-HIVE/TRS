@@ -10,7 +10,7 @@ Template.manageDepartments.events
   'click #add-department': (e) ->
     bootbox.prompt 'Name of department to add:', (result) ->
       if result? then TRS.Departments.insert { department: result }
-  'click .icon-trash': (e) ->
+  'click .glyphicon-trash': (e) ->
     self = @
     prompt = 'Delete department <em>' + @department + '</em>?'
     bootbox.confirm prompt, (result) ->
@@ -114,7 +114,7 @@ Template.manageSemesters.events
     semesterName = $('#clone_semester_name').val()
     TRS.Semesters.insert { semester: semesterName }
     $('#clone_semester_dialog').modal('hide')
-  'click .icon-trash': ->
+  'click .glyphicon-trash': ->
     self = @
     prompt = 'Delete semester <em>' + @semester + '</em>?'
     bootbox.confirm prompt, (result) ->

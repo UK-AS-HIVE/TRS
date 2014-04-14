@@ -68,7 +68,7 @@ if Meteor.isClient
     if lock?
       editor = Meteor.users.findOne({_id: lock.user})
       #return new Spacebars.SafeString(Template._inlineEditLock())
-      return new Spacebars.SafeString('<span class="pull-right"><i class="icon-lock"></i>'+editor.username+'</span>')
+      return new Spacebars.SafeString('<span class="pull-right"><i class="glyphicon glyphicon-lock"></i>'+editor.username+'</span>')
     else
       return ''
 

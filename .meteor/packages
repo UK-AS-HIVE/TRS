@@ -7,7 +7,6 @@ blaze-layout
 standard-app-packages
 coffeescript
 iron-router
-bootstrap
 accounts-base
 accounts-linkblue
 select2

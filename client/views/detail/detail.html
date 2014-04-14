@@ -10,8 +10,8 @@
       {{#each persons}}
         <tr>
           <td class="instructor-details deletable inline-edit" id="instructor-details-{{_id}}" style={{inlineEditBackground prefix='instructor-details-' bgcolor='lightgray'}}>
-            <i class="icon-trash pull-right"></i>
-            <i class="icon-edit pull-right"></i>
+            <i class="glyphicon glyphicon-trash pull-right"></i>
+            <i class="glyphicon glyphicon-edit pull-right"></i>
 
             {{inlineEditLock prefix='instructor-details-'}}
 
@@ -58,7 +58,7 @@
           </td>
 
           <td class="pay-amount deletable inline-edit" id="pay-amount-{{_id}}" style={{inlineEditBackground prefix='pay-amount-' bgcolor='lightgray'}}>
-            <i class="icon-edit pull-right"></i>
+            <i class="glyphicon glyphicon-edit pull-right"></i>
               {{inlineEditLock prefix='pay-amount-'}}
 
             <span class="inline-edit-preview">  
@@ -133,8 +133,8 @@
                       <label for="sections">Sections</label>
                     </div>
                   </span>
-                  <i class="icon-edit"></i>
-                  <i class="icon-trash"></i>
+                  <i class="glyphicon glyphicon-edit"></i>
+                  <i class="glyphicon glyphicon-trash"></i>
                 </li>
               {{/each}}
             </ul>

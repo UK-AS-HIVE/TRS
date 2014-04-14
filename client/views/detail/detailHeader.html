@@ -12,7 +12,7 @@
           <br/>
           <textarea id="comments-textarea" placeholder="Comments">{{data.comments}}</textarea>
         </span>
-        <i class="icon-edit"></i>
+        <i class="glyphicon glyphicon-edit"></i>
       </div>
       <div class="inline-edit" id="approved-funding-{{_id}}">
         Approved funding:
@@ -20,11 +20,11 @@
         <span class="inline-edit-form">
           <input id="approved-funding-input" type="text" value="{{data.funding}}" placeholder="Approved funding" />
         </span>
-        <i class="icon-edit"></i>
+        <i class="glyphicon glyphicon-edit"></i>
       </div>
       <div id="currently-allocated">
         Currently allocated: {{currentlyAllocated ''}}
-        <i id="currentlyallocatedbtn" class="icon-plus"></i>
+        <i id="currentlyallocatedbtn" class="glyphicon glyphicon-plus"></i>
         {{#if currentlyAllocatedIsExpanded}}
           <div id="currentlyallocatedexpansion"> 
 
@@ -49,8 +49,8 @@
                     <td>
                       <span class="inline-edit-preview">{{value.rank}}</span>
                       <span class="inline-edit-form"><input type="text" value="{{value.rank}}" data-property="rank" data-id="{{../data._id}}" data-index="{{key}}" /></span>
-                      <i class="icon-trash pull-right"></i>
-                      <i class="icon-edit pull-right"></i>
+                      <i class="glyphicon glyphicon-trash pull-right"></i>
+                      <i class="glyphicon glyphicon-edit pull-right"></i>
                     </td>
                     <td>
                       <span class="inline-edit-preview">{{linesAllocated semester=../semester department=../department}}/{{value.lines}}</span>

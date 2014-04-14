@@ -63,10 +63,10 @@ Template.detail.events
         semester: @semester
         department: @department
         comments: val
-  'click .inline-edit .icon-edit': (e) ->
+  'click .inline-edit .glyphicon-edit': (e) ->
     console.log 'toggle edit'
     toggleEdit(e)
-  'click .instructor-details .icon-trash': (e,tpl) ->
+  'click .instructor-details .glyphicon-trash': (e,tpl) ->
     console.log 'removing whole instructor'
     instructorId = @_id
     bootbox.confirm 'Are you sure you wish to delete ' + @name + '?', (confirmed) ->
@@ -111,7 +111,7 @@ Template.detail.events
     console.log 'set ' + property + ' to ' + val + ' for course #' + index
     TRS.FacultyAllocations.update {_id: id},
       $set: setter
-  'click .course .icon-trash': (e,tpl) ->
+  'click .course .glyphicon-trash': (e,tpl) ->
     course = $(e.currentTarget).parent '.course'
     index = course.data 'index'
     id = $(e.currentTarget).parent('li.course').data 'id'

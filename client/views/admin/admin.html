@@ -2,21 +2,21 @@
   <section id="manage-page">
     <div class="row">
 
-      <div class="span12">
+      <div class="col-md-12">
         <div class="departments manage-block">
           <h4>Departments</h4>
           {{> manageDepartments }}
         </div>
       </div>
        
-      <div class="span12">
+      <div class="col-md-12">
         <div class="semesters manage-block">
           <h4>Semesters</h4>
           {{> manageSemesters }}
         </div>
       </div>
 
-      <div class="span12">
+      <div class="col-md-12">
         <div class="admins manage-block">
           {{> manageAdmins }}
         </div>
@@ -59,7 +59,7 @@
 
 <template name="departmentUsersSelect">
   <div>
-    <input value="{{usernames}}" data-placeholder="Add users..." type="hidden" class="chair-dm-users span3" />
+    <input value="{{usernames}}" data-placeholder="Add users..." type="hidden" class="chair-dm-users col-md-3" />
   </div>
 </template>
 

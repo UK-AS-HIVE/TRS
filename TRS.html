@@ -7,6 +7,10 @@
 </head>
 
 <body>
+  {{renderRouter}}
+</body>
+
+<template name="layoutTemplate">
   <div class="container">
     <div class="navbar navbar-static-top">
       <div class="navbar-inner">
@@ -15,7 +19,7 @@
         
         {{#if currentUser}}
           <div class="pull-right" id="linkblue-logged-in">
-            {{ linkblueLogin }}
+            {{ > linkblueLogin }}
           </div>
 
           {{>mainMenu}}
@@ -24,7 +28,7 @@
       </div>
     </div>
     {{#if currentUser}}
-      {{renderRouter}}
+      {{> yield}}
     {{else}}
       <div id="linkblue-login">
         <div id="please-login">
@@ -32,12 +36,12 @@
           <p>Please login with your <a target="_blank" href="http://www.uky.edu/UKHome/subpages/linkblue.html">LinkBlue</a> credentials to begin.</p>
         </div>
         <div id="login-form">
-          {{ linkblueLogin }}
+          {{ > linkblueLogin }}
         </div>
       </div>
     {{/if}}
   </div>
-</body>
+</template>
 
 <template name="mainMenu">
   <ul id="main-menu">

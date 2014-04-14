@@ -11,8 +11,8 @@
     "packages": {
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.6.4",
-        "commit": "927bbaed1b87894fb6fb70807f74ff3a5bd89f29"
+        "tag": "v0.7.0",
+        "commit": "05f34bc48c4cad9fdaa366c1ddcabe6980232ece"
       },
       "select2": {
         "git": "https://github.com/nate-strauser/meteor-select2.git",
@@ -21,23 +21,33 @@
       },
       "bootboxjs": {
         "git": "https://github.com/TimHeckel/meteor-bootboxjs.git",
-        "tag": "v3.2.2",
-        "commit": "580adfebfa12b4d2186a80cec1109dab74ad6228"
+        "tag": "v4.2.0",
+        "commit": "2b7d18ad028d9e7b37238ecf2a8a7970735cebd1"
       },
       "collection2": {
         "git": "https://github.com/aldeed/meteor-collection2.git",
-        "tag": "v0.3.10",
-        "commit": "d9f6277efef6880f6da178b6e2c3cc74f76c12ba"
+        "tag": "v0.3.11",
+        "commit": "7e970671305657678e8508d8107d5e6c5e158559"
       },
       "font-awesome": {
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
         "tag": "v4.0.3",
         "commit": "61e9361384347547ae144f8228faa4deffda23db"
       },
+      "blaze-layout": {
+        "git": "https://github.com/EventedMind/blaze-layout.git",
+        "tag": "v0.2.2",
+        "commit": "8bc53798fe5965669ae67c72f91829fcfdceabfd"
+      },
+      "bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
+        "tag": "v3.1.1-1",
+        "commit": "63dd38968828bb8963636df93e9a1c45e2dfe67e"
+      },
       "simple-schema": {
         "git": "https://github.com/aldeed/meteor-simple-schema.git",
-        "tag": "v0.2.43",
-        "commit": "12ae1551c3fc6aec242525423db436e319e79bdf"
+        "tag": "v0.2.46",
+        "commit": "30b5d3e08433fbbfe49f09845559bf3ca0ab9101"
       }
     }
   }

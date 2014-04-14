@@ -1,5 +1,5 @@
 <template name="detail">
-  {{> detailHeader}}
+  {{> detailHeader semester=semester department=department}}
   <table id="people" class="table table-bordered table-hover">
     <thead>
       <th id="person-info">Person</th>
@@ -9,13 +9,11 @@
     <tbody>
       {{#each persons}}
         <tr>
-          <td class="instructor-details deletable inline-edit" id="instructor-details-{{_id}}" {{{inlineEditBackground prefix='instructor-details-' bgcolor='lightgray'}}}>
+          <td class="instructor-details deletable inline-edit" id="instructor-details-{{_id}}" style={{inlineEditBackground prefix='instructor-details-' bgcolor='lightgray'}}>
             <i class="icon-trash pull-right"></i>
             <i class="icon-edit pull-right"></i>
 
-            {{#isolate}}
             {{inlineEditLock prefix='instructor-details-'}}
-            {{/isolate}}
 
             <span class="inline-edit-preview">  
               <h4 class="name field">{{name}}</h4>
@@ -59,11 +57,9 @@
             </span>
           </td>
 
-          <td class="pay-amount deletable inline-edit" id="pay-amount-{{_id}}" {{{inlineEditBackground prefix='pay-amount-' bgcolor='lightgray'}}}>
+          <td class="pay-amount deletable inline-edit" id="pay-amount-{{_id}}" style={{inlineEditBackground prefix='pay-amount-' bgcolor='lightgray'}}>
             <i class="icon-edit pull-right"></i>
-            {{#isolate}}
               {{inlineEditLock prefix='pay-amount-'}}
-            {{/isolate}}
 
             <span class="inline-edit-preview">  
               {{pay_amount}}
@@ -77,7 +73,7 @@
                   <input type="text" name="lines{{this.rank}}" maxlength="4" value="{{lineValue .. this.rank}}" data-property="lines.{{this.rank}}" data-id="{{../_id}}" /> * {{this.rate}}
                 </div>
                 {{/each}}
-                {{lineFundedSubtotal ..}}
+                {{lineFundedSubtotal}}
                 <div class="field pay-amount">
                   <label for="pay_amount" class="label">Pay Amount</label>
                   <input type="text" name="pay_amount" data-property="pay_amount" value="{{pay_amount}}" />
@@ -89,19 +85,19 @@
                 <div class="field courseRelease">
                   <label for="courseRelease" class="label">Course Release</label>
                   <input type="checkbox" name="courseRelease" data-property="courseRelease" {{checked courseRelease}} />
-                  <input type="number" min="0" name="courseReleaseAmount" data-property="courseReleaseAmount" value="{{courseReleaseAmount}}" {{{disabled courseRelease}}} />
+                  <input type="number" min="0" name="courseReleaseAmount" data-property="courseReleaseAmount" value="{{courseReleaseAmount}}" {{disabled courseRelease}} />
                 </div>
 
                 <div class="field buyout">
                   <label for="buyout" class="label">Buyout</label>
-                  <input type="checkbox" name="buyout" data-property="buyout" {{{checked buyout}}} />
-                  <input type="number" min="0" max="100" name="buyoutPercent" data-property="buyoutPercent" value="{{buyoutPercent}}" {{{disabled buyout}}} />
+                  <input type="checkbox" name="buyout" data-property="buyout" {{checked buyout}} />
+                  <input type="number" min="0" max="100" name="buyoutPercent" data-property="buyoutPercent" value="{{buyoutPercent}}" {{disabled buyout}} />
                 </div>
 
                 <div class="field overload">
                   <label for="overload" class="label">Overload</label>
                   <input type="checkbox" name="overload" data-property="overload" {{checked overload}} />
-                  <input type="text" name="overloadAmount" data-property="overloadAmount" value="{{overloadAmount}}" {{{disabled overload}}} />
+                  <input type="text" name="overloadAmount" data-property="overloadAmount" value="{{overloadAmount}}" {{disabled overload}} />
                 </div>
               {{/unless}}
 
@@ -159,21 +155,21 @@
     <label for="rank" class="label">Rank</label>
     <select name="rank" class="rank" style="min-width: 35%">
       <optgroup label="Salaried">
-        <option {{selectedOption 'Full'}}>Full Professor</option>
-        <option {{selectedOption 'Professor'}}>Professor</option>
-        <option {{selectedOption 'Assoc'}}>Associate Professor</option>
-        <option {{selectedOption 'Assist'}}>Assistant Professor</option>
-        <option {{selectedOption 'Lecturer'}}>Lecturer</option>
-        <option {{selectedOption 'PostDoc'}}>Post Doc</option>
+        <option value="Full" selected={{selectedOption 'Full'}}>Full Professor</option>
+        <option value="Professor" selected={{selectedOption 'Professor'}}>Professor</option>
+        <option value="Assoc" selected={{selectedOption 'Assoc'}}>Associate Professor</option>
+        <option value="Assist" selected={{selectedOption 'Assist'}}>Assistant Professor</option>
+        <option value="Lecturer" selected={{selectedOption 'Lecturer'}}>Lecturer</option>
+        <option value="PostDoc" selected={{selectedOption 'PostDoc'}}>Post Doc</option>
       </optgroup>
 
       <optgroup label="Funded">
-        <option {{selectedOption 'FTI'}}>FTI</option>
-        <option {{selectedOption 'PTI'}}>PTI</option>
-        <option {{selectedOption 'GA'}}>GA</option>
-        <option {{selectedOption 'RA'}}>RA</option>
-        <option {{selectedOption 'TA'}}>TA</option>
-        <option {{selectedOption 'Fellow'}}>Fellow</option>
+        <option value="FTI" selected={{selectedOption 'FTI'}}>FTI</option>
+        <option value="PTI" selected={{selectedOption 'PTI'}}>PTI</option>
+        <option value="GA" selected={{selectedOption 'GA'}}>GA</option>
+        <option value="RA" selected={{selectedOption 'RA'}}>RA</option>
+        <option value="TA" selected={{selectedOption 'TA'}}>TA</option>
+        <option value="Fellow" selected={{selectedOption 'Fellow'}}>Fellow</option>
       </optgroup>
     </select>
   </div>

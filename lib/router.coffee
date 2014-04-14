@@ -1,11 +1,12 @@
 
 Router.configure
-  autoRender: false
+  layoutTemplate: 'layoutTemplate'
+  #autoRender: false
   waitOn: -> Meteor.subscribe 'admins'
   
 Router.map ->
   @route 'home',
-    path: '/',
+    path: '/'
     waitOn: ->
       [Meteor.subscribe 'departments', Meteor.subscribe 'semesters']
 
@@ -35,10 +36,17 @@ Router.map ->
 
   @route 'detail',
     path: '/:department/:semester'
-    before: ->
-      Session.set 'department', @params.department
-      Session.set 'semester', @params.semester
+    onBeforeAction: ->
+      console.log 'onBeforeAction'
+      console.log @options
+      console.log arguments
+      Session.set 'department', @options.params.department
+      Session.set 'semester', @options.params.semester
     data: ->
+      console.log 'data'
+      console.log @
+      console.log arguments
+      return {department: Session.get('department'), semester: Session.get('semester')}
       department: Session.get 'department'
       semester: Session.get 'semester'
     waitOn: ->
@@ -47,9 +55,10 @@ Router.map ->
       [(Meteor.subscribe 'allocations', @params.department, @params.semester),
        (Meteor.subscribe 'semesterDepartmentDetail', @params.department, @params.semester)]
 
+###
   @route 'detail',
     path: '/d/:department/s/:semester'
-    before: ->
+    onBeforeAction: ->
       Session.set 'department', @params.department
       Session.set 'semester', @params.semester
     data: ->
@@ -60,3 +69,5 @@ Router.map ->
       console.log @
       [(Meteor.subscribe 'allocations', @params.department, @params.semester)
        (Meteor.subscribe 'semesterDepartmentDetail', @params.department, @params.semester)]
+###
+

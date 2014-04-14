@@ -1,16 +1,16 @@
 <template name="detailHeader">
   <div class="row">
     <div class="span4">
-      <h1>{{department}}</h1>
-      <h2>{{semester}}</h2>
+      <h1>{{../department}}</h1>
+      <h2>{{../semester}}</h2>
     </div>
     <div class="span8">
       <div class="inline-edit" id="comments-{{_id}}">
         Comments:
-        <span class="inline-edit-preview">{{{data.comments}}}</span>
+        <span class="inline-edit-preview">{{data.comments}}</span>
         <span class="inline-edit-form">
           <br/>
-          <textarea id="comments-textarea" placeholder="Comments">{{{data.comments}}}</textarea>
+          <textarea id="comments-textarea" placeholder="Comments">{{data.comments}}</textarea>
         </span>
         <i class="icon-edit"></i>
       </div>
@@ -23,7 +23,6 @@
         <i class="icon-edit"></i>
       </div>
       <div id="currently-allocated">
-        {{#isolate}}
         Currently allocated: {{currentlyAllocated ''}}
         <i id="currentlyallocatedbtn" class="icon-plus"></i>
         {{#if currentlyAllocatedIsExpanded}}
@@ -46,7 +45,7 @@
               </thead>
               <tbody>
                 {{#each key_value data.breakdown}}
-                  <tr class="inline-edit deletable breakdown {{{rowClass semester=../semester department=../department}}}" id="breakdown-{{../data._id}}-{{key}}" data-id="{{../data._id}}" data-index="{{key}}" >
+                  <tr class="inline-edit deletable breakdown {{rowClass semester=../semester department=../department}}" id="breakdown-{{../data._id}}-{{key}}" data-id="{{../data._id}}" data-index="{{key}}" >
                     <td>
                       <span class="inline-edit-preview">{{value.rank}}</span>
                       <span class="inline-edit-form"><input type="text" value="{{value.rank}}" data-property="rank" data-id="{{../data._id}}" data-index="{{key}}" /></span>
@@ -76,7 +75,6 @@
             </table>
           </div>      
         {{/if}}
-        {{/isolate}}
       </div>
     </div>
   </div>

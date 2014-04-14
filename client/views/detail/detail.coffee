@@ -3,14 +3,15 @@ TRS = @
 Template.detail.helpers
   persons: ->
     console.log @
-    TRS.FacultyAllocations.find {semester: @semester, department: @department},
+    TRS.FacultyAllocations.find {semester: Session.get('semester'), department: Session.get('department')},
      {sort: {name: 1} }
   lineTypes: (context) ->
     console.log 'lineTypes'
     console.log @
     console.log context
-    depSem = TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}, {fields: {breakdown: 1}}
-    depSem.breakdown
+    depSem = TRS.SemesterDepartmentDetail.findOne {semester: Session.get('semester'), department: Session.get('department')}, {fields: {breakdown: 1}}
+    if depSem?
+      depSem.breakdown
   isFundedByLines: ->
     @rank? and ['GA', 'TA', 'RA', 'PTI', 'FTI'].indexOf(@rank) > -1
   lineValue: (user, lineType) ->
@@ -19,9 +20,8 @@ Template.detail.helpers
       return user.lines[lineType]
     else
       return 0
-  lineFundedSubtotal: (person) ->
-    console.log 'linesFundedSubtotal'
-    console.log person
+  lineFundedSubtotal: () ->
+    person = @
     lineRates = TRS.SemesterDepartmentDetail.findOne {semester: person.semester, department: person.department}, {fields: {breakdown: 1}}
     console.log lineRates
     subTotal = 0.0
@@ -71,46 +71,7 @@ Template.detail.events
     instructorId = @_id
     bootbox.confirm 'Are you sure you wish to delete ' + @name + '?', (confirmed) ->
       if confirmed then TRS.FacultyAllocations.remove {_id: instructorId}
-  'click button#add-rank-type': (e) ->
-    self = @
-    bootbox.prompt 'Name of rank', (result) ->
-      if result?
-        console.log 'Trying to add ' + result + ' rank'
-        data = TRS.SemesterDepartmentDetail.findOne {semester: self.semester, department: self.department}
-        if data?
-          console.log 'found data, updating it'
-          console.log data
-          TRS.SemesterDepartmentDetail.update {_id: data._id}, {$push: {breakdown: {lines: 0, rank: result, rate: '0'}}}
-        else
-          TRS.SemesterDepartmentDetail.insert
-            semester: self.semester
-            department: self.department
-            breakdown: [{lines:0, rank: result, rate: '0'}]
-          console.log 'didnt find semesterDepartmentDetail record, inserting'
-  'change .breakdown input': (e, tpl) ->
-    console.log 'Changed breakdown data'
-    edit_form = $(e.target).parents '.inline-edit'
-    id = edit_form.data 'id'
-    index = edit_form.data 'index'
-    property = $(e.target).data 'property'
-    val = $(e.target).val()
-    setter = {}
-    setter['breakdown.' + index + '.' + property] = val
-    depSem = TRS.SemesterDepartmentDetail.findOne {semester: tpl.data.semester, department: tpl.data.department}, {fields: {_id: 1}}
-    TRS.SemesterDepartmentDetail.update depSem._id,
-      $set: setter
-  'click .breakdown .icon-trash': (e,tpl) ->
-    row = $(e.currentTarget).parents '.breakdown'
-    index = row.data 'index'
-    #id = $(e.currentTarget).parent('li.course').data 'id'
-    console.log 'removing breakdown #' + index
-    depSem = TRS.SemesterDepartmentDetail.findOne({semester: tpl.data.semester, department: tpl.data.department}, {fields: {_id:1, breakdown: 1}})
-    id = depSem._id
-    breakdown = depSem.breakdown
-    breakdown.splice(index, 1)
-    TRS.SemesterDepartmentDetail.update {_id: id},
-      {$set: {breakdown: breakdown}}
-
+  
   'click button#add': (e) ->
     console.log @
     self = @
@@ -186,9 +147,7 @@ Template.detail.rendered = ->
 
 Template.detailRankSelect.helpers
   selectedOption: (rank) ->
-    ret = 'value="' + rank + '"'
-    ret += ' selected' if @rank is rank 
-    new Handlebars.SafeString ret
+    new Spacebars.SafeString ' selected' if @rank is rank
 
 Template.detailRankSelect.rendered = ->
   data = @data

@@ -1,12 +1,12 @@
 
-Handlebars.registerHelper(
+/*UI.registerHelper(
   "linkblueLogin",
   function (option) {
-    return new Handlebars.SafeString(Template._linkblueLogin());
+    return new Spacebars.SafeString(Template.linkblueLogin());
   }
-);
+);*/
 
-Template._linkblueLogin.events({
+Template.linkblueLogin.events({
   'click button[name="login"]': function(e, tpl) {
     var username = $(tpl.find('input[name="linkblue"]')).val();
     var password = $(tpl.find('input[name="password"]')).val();

@@ -1,4 +1,4 @@
-Handlebars.registerHelper 'key_value', (context, options) ->
+UI.registerHelper 'key_value', (context, options) ->
   result = []
   _.each context, (value, key, list) ->
     result.push

@@ -89,7 +89,8 @@ ValidRanks =
       max: 4
     'courses.$.credits':
       type: Number
-      max: 4
+      min: 0
+      max: 5
     'courses.$.sections':
       type: String
       label: 'Sections'

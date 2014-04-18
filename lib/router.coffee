@@ -1,3 +1,4 @@
+TRS = @
 
 Router.configure
   layoutTemplate: 'layoutTemplate'
@@ -46,14 +47,15 @@ Router.map ->
       console.log 'data'
       console.log @
       console.log arguments
-      return {department: Session.get('department'), semester: Session.get('semester')}
+      return TRS.SemesterDepartmentDetail.findOne {department: Session.get('department'), semester: Session.get('semester')}
       department: Session.get 'department'
       semester: Session.get 'semester'
     waitOn: ->
       console.log 'Waiting on subscriptions to...'
+      console.log @params
       console.log '...'
-      [(Meteor.subscribe 'allocations', @params.department, @params.semester),
-       (Meteor.subscribe 'semesterDepartmentDetail', @params.department, @params.semester)]
+      [Meteor.subscribe('allocations', @params.department, @params.semester),
+       Meteor.subscribe('semesterDepartmentDetail', @params.department, @params.semester)]
 
 ###
   @route 'detail',

@@ -1,3 +1,4 @@
+TRS = @
 
 ValidRanks =
   ['Full',
@@ -35,6 +36,19 @@ ValidRanks =
       optional: true
   
 @FacultyAllocations = new Meteor.Collection2 'allocations',
+  transform: (doc) ->
+    doc.payAmount = 0
+    if doc.rank? and ['GA','TA','RA','FTI','PTI'].indexOf(doc.rank) > -1
+      depsem = TRS.SemesterDepartmentDetail.findOne {semester: doc.semester, department: doc.department}, {fields: {breakdown: 1}}
+      if depsem?
+        _.each doc.lines, (v, k) ->
+          standard = _.findWhere depsem.breakdown, {rank: k}
+          doc.payAmount += fractionToFloat(v) * sanitizePayAmount(standard.rate)
+      doc.payAmount += sanitizePayAmount doc.pay_amount
+      doc.payAmount = doc.payAmount.toFixed(2)
+    else
+      doc.payAmount = 'Salaried'
+    return doc
   schema: new SimpleSchema
     name:
       type: String
@@ -99,26 +113,6 @@ ValidRanks =
       type: Object
       optional: true
       blackbox: true
-    'lines.GA':
-      type: String
-      optional: true
-    'lines.TA':
-      type: String
-      optional: true
-    'lines.RA':
-      type: String
-      optional: true
-    'lines.RA1':
-      type: String
-      optional: true
-    'lines.PTI':
-      type: String
-      optional: true
-    'lines.FTI':
-      type: String
-      optional: true
-
-
 
 @SemesterDepartmentDetail = new Meteor.Collection2 'semesterDepartmentDetail',
   schema: new SimpleSchema

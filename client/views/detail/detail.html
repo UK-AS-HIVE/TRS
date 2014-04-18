@@ -62,7 +62,7 @@
               {{inlineEditLock prefix='pay-amount-'}}
 
             <span class="inline-edit-preview">  
-              {{pay_amount}}
+              {{payAmount}}
             </span>
 
             <span id="pay-amount-{{_id}}" class="inline-edit-form">
@@ -73,7 +73,7 @@
                   <input type="text" name="lines{{this.rank}}" maxlength="4" value="{{lineValue .. this.rank}}" data-property="lines.{{this.rank}}" data-id="{{../_id}}" /> * {{this.rate}}
                 </div>
                 {{/each}}
-                {{lineFundedSubtotal}}
+                {{payAmount}}
                 <div class="field pay-amount">
                   <label for="pay_amount" class="label">Pay Amount</label>
                   <input type="text" name="pay_amount" data-property="pay_amount" value="{{pay_amount}}" />

@@ -27,13 +27,16 @@ TRS = @
   console.log arguments
   if (myRank == '')
     console.log 'rank == blank'
-    amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department}, {fields: {pay_amount: 1}}).forEach (doc) ->
-      sum += sanitizePayAmount doc.pay_amount
+    amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department}, {fields: {payAmount: 1}}).forEach (doc) ->
+      sum += sanitizePayAmount doc.payAmount
       console.log sum
   else
-    amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department, rank: myRank}, {fields: {pay_amount: 1}}).forEach (doc) ->
-      sum += sanitizePayAmount doc.pay_amount
-      console.log 'added ' + doc.pay_amount
+    depsem = TRS.SemesterDepartmentDetail.findOne {semester: context.hash.semester || @semester, department: context.hash.department || @department}
+    rate = _.findWhere(depsem.breakdown, {rank: myRank}).rate
+    amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department}, {fields: {payAmount: 1, lines: 1}}).forEach (doc) ->
+      if doc.lines? and doc.lines[myRank]?
+        sum += fractionToFloat(doc.lines[myRank]) * sanitizePayAmount rate
+      #console.log 'added ' + doc.
   return (sum).toFixed(2)
 
 

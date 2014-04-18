@@ -21,9 +21,9 @@ Template.detail.helpers
     else
       return 0
   checked: (trueFalse) ->
-    if trueFalse then 'checked' else ''
+    if trueFalse then 'checked' else null
   disabled: (trueFalse) ->
-    if trueFalse then '' else 'disabled'
+    if trueFalse then null else 'disabled'
   
 
 Template.detail.events
@@ -80,7 +80,7 @@ Template.detail.events
     setter = {}
     if el.attr('type')=='checkbox'
       console.log el
-      setter[prop] = !(el[0].hasAttribute('checked'))
+      setter[prop] = el[0].checked
     else
       setter[prop] = el.val()
     id = @_id

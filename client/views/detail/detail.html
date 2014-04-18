@@ -84,19 +84,19 @@
               {{#unless isFundedByLines}}
                 <div class="field courseRelease">
                   <label for="courseRelease" class="label">Course Release</label>
-                  <input type="checkbox" name="courseRelease" data-property="courseRelease" {{checked courseRelease}} />
-                  <input type="number" min="0" name="courseReleaseAmount" data-property="courseReleaseAmount" value="{{courseReleaseAmount}}" {{disabled courseRelease}} />
+                  <input type="checkbox" name="courseRelease" data-property="courseRelease" checked={{checked courseRelease}} />
+                  <input type="number" min="0" name="courseReleaseAmount" data-property="courseReleaseAmount" value="{{courseReleaseAmount}}" disabled={{disabled courseRelease}} />
                 </div>
 
                 <div class="field buyout">
                   <label for="buyout" class="label">Buyout</label>
-                  <input type="checkbox" name="buyout" data-property="buyout" {{checked buyout}} />
-                  <input type="number" min="0" max="100" name="buyoutPercent" data-property="buyoutPercent" value="{{buyoutPercent}}" {{disabled buyout}} />
+                  <input type="checkbox" name="buyout" data-property="buyout" checked={{checked buyout}} />
+                  <input type="number" min="0" max="100" name="buyoutPercent" data-property="buyoutPercent" value="{{buyoutPercent}}" disabled={{disabled buyout}} />
                 </div>
 
                 <div class="field overload">
                   <label for="overload" class="label">Overload</label>
-                  <input type="checkbox" name="overload" data-property="overload" {{checked overload}} />
+                  <input type="checkbox" name="overload" data-property="overload" checked={{checked overload}} />
                   <input type="text" name="overloadAmount" data-property="overloadAmount" value="{{overloadAmount}}" {{disabled overload}} />
                 </div>
               {{/unless}}

@@ -47,7 +47,7 @@ ValidRanks =
       doc.payAmount += sanitizePayAmount doc.pay_amount
       doc.payAmount = doc.payAmount.toFixed(2)
     else
-      doc.payAmount = 'Salaried'
+      doc.payAmount = 0.00.toFixed(2)
     return doc
   schema: new SimpleSchema
     name:

@@ -27,7 +27,7 @@ TRS = @
   console.log arguments
   if (myRank == '')
     console.log 'rank == blank'
-    amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department}, {fields: {payAmount: 1}}).forEach (doc) ->
+    amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department}, {fields: {payAmount: 1, rank: 1, pay_amount: 1, lines: 1}}).forEach (doc) ->
       sum += sanitizePayAmount doc.payAmount
       console.log sum
   else

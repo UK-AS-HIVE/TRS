@@ -47,16 +47,28 @@ TRS.FacultyAllocations.allow
   update: (userId, doc, fieldNames, modifier) ->
     console.log 'CHANGING RECORD'
     console.log arguments
-    ###TRS.DropDeadChanges.insert
-      semester: doc.semester
+    s = TRS.FacultyAllocations.simpleSchema()._schema
+    #console.log s
+    l =
+      if s[fieldNames[0]]? and s[fieldNames[0]]['label']?
+        s[fieldNames[0]]['label']
+      else
+        fieldNames[0]
+    m =
+      if modifier['$set']?
+        'changed '+l+' of '+doc.name
+      else
+        'added'
+    console.log m
+    TRS.DropDeadChanges.insert
       department: doc.department
-      timestamp: new Date
-      change:
-        if modifier.hasOwnProperty '$set'
-          'changed: ' + JSON.stringify modifier['$set']
-        else if modifier.hasOwnProperty '$push'
-          'added: ' + JSON.stringify modifier['$push']
-    ###
+      semester: doc.semester
+      userId: userId
+      username: Meteor.users.findOne(userId).username
+      docId: doc._id
+      timestamp: new Date()
+      fieldNames: fieldNames
+      message: m
     return true
   remove: (userId, doc) -> true
 
@@ -87,8 +99,13 @@ Meteor.methods
       return TRS.Admins.upsert {}, {$set: {admins: adminsArray} }
   
 Meteor.publish 'dropDeadChanges', (department, semester) ->
+  console.log 'publishing changelog'
   TRS.DropDeadChanges.find
     department: department
     semester: semester
+    timestamp: {$gte: new Date(Date.now() - 1)}
+  ,
+    limit: 1
+    sort: {timestamp: -1}
 
 

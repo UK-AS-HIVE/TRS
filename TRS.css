@@ -245,3 +245,15 @@ th#courses {
   position: relative;
   top: -30px;
 }
+
+#dropDeadChangelog {
+  position: fixed;
+  background: white;
+  bottom: 0;
+  right: 200px;
+  min-height: 0;
+  width: 200px;
+  z-index: 1000;
+  border: 1px solid #ddd;
+}
+

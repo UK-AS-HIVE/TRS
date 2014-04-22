@@ -55,7 +55,8 @@ Router.map ->
       console.log @params
       console.log '...'
       [Meteor.subscribe('allocations', @params.department, @params.semester),
-       Meteor.subscribe('semesterDepartmentDetail', @params.department, @params.semester)]
+       Meteor.subscribe('semesterDepartmentDetail', @params.department, @params.semester),
+       Meteor.subscribe('dropDeadChanges', @params.department, @params.semester)]
 
 ###
   @route 'detail',

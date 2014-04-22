@@ -66,6 +66,7 @@ ValidRanks =
     ukid:
       type: String
       optional: true
+      label: 'UKID'
     buyout:
       type: Boolean
       optional: true
@@ -74,19 +75,23 @@ ValidRanks =
       optional: true
       min: 0
       max: 100
+      label: 'buyout %'
     courseRelease:
       type: Boolean
       optional: true
+      label: 'course release'
     courseReleaseAmount:
       type: Number
       optional: true
       min: 0
+      label: 'amount of course release'
     overload:
       type: Boolean
       optional: true
     overloadAmount:
       type: String
       optional: true
+      label: 'overload amount'
     pay_amount:
       type: String
       optional: true
@@ -155,4 +160,23 @@ ValidRanks =
       type: [String]
       label: 'List of usernames who have admin privileges'
 
-
+@DropDeadChanges = new Meteor.Collection2 'dropDeadChanges',
+  schema: new SimpleSchema
+    department:
+      type: String
+    semester:
+      type: String
+    username:
+      type: String
+    userId:
+      type: String
+    docId:
+      type: String
+    timestamp:
+      type: Date
+    fieldNames:
+      type: [String]
+      optional: true
+    message:
+      type: String
+      optional: true

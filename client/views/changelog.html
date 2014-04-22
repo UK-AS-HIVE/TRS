@@ -1,0 +1,10 @@
+<template name="dropDeadChangelog">
+  <!-- Popup recent changes in bottom of screen -->
+  <div id="dropDeadChangelog">
+    <ul>
+      {{#each changes}}
+        <li>{{username}} {{message}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

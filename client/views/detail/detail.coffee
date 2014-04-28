@@ -3,8 +3,12 @@ TRS = @
 Template.detail.helpers
   persons: ->
     console.log @
-    TRS.FacultyAllocations.find {semester: Session.get('semester'), department: Session.get('department')},
-     {sort: {name: 1} }
+    where = {semester: Session.get('semester'), department: Session.get('department')}
+    Session.setDefault 'currentRankFilter', 'All'
+    rankFilter = Session.get('currentRankFilter')
+    if rankFilter != 'All'
+      where.rank = rankFilter
+    TRS.FacultyAllocations.find where, {sort: {name: 1} }
   lineTypes: (context) ->
     console.log 'lineTypes'
     console.log @
@@ -142,4 +146,12 @@ Template.detailRankSelect.rendered = ->
 
   $(@find 'select.rank').select2().change (e) ->
     TRS.FacultyAllocations.update {_id: data._id}, {$set: { rank: e.val }}
+
+Template.detailFilter.helpers
+  selectedOption: (rank) ->
+    new Spacebars.SafeString ' selected' if Session.get('currentRankFilter') is rank
+
+Template.detailFilter.events
+  'change select': (e,tpl)->
+    Session.set 'currentRankFilter', $(tpl.find('select')).val()
 

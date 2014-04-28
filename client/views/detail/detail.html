@@ -176,4 +176,34 @@
   </div>
 </template>
 
+<template name="detailFilter">
+  <form class="form-horizontal">
+  <div class="form-group">
+    <label for="rank-filter" class="col-sm-4 control-label">Filter by rank</label>
+    <div class="col-sm-8">
+    <select name="rank-filter" class="rank-filter form-control">
+      <option value="All" selected={{selectedOption 'All'}}>All</option>
+
+      <optgroup label="Salaried">
+        <option value="Full" selected={{selectedOption 'Full'}}>Full Professor</option>
+        <option value="Professor" selected={{selectedOption 'Professor'}}>Professor</option>
+        <option value="Assoc" selected={{selectedOption 'Assoc'}}>Associate Professor</option>
+        <option value="Assist" selected={{selectedOption 'Assist'}}>Assistant Professor</option>
+        <option value="Lecturer" selected={{selectedOption 'Lecturer'}}>Lecturer</option>
+        <option value="PostDoc" selected={{selectedOption 'PostDoc'}}>Post Doc</option>
+      </optgroup>
+
+      <optgroup label="Funded">
+        <option value="FTI" selected={{selectedOption 'FTI'}}>FTI</option>
+        <option value="PTI" selected={{selectedOption 'PTI'}}>PTI</option>
+        <option value="GA" selected={{selectedOption 'GA'}}>GA</option>
+        <option value="RA" selected={{selectedOption 'RA'}}>RA</option>
+        <option value="TA" selected={{selectedOption 'TA'}}>TA</option>
+        <option value="Fellow" selected={{selectedOption 'Fellow'}}>Fellow</option>
+      </optgroup>
+    </select>
+    </div>
+  </div>
+  </form>
+</template>
 

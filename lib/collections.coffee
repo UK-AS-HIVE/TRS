@@ -1,8 +1,7 @@
 TRS = @
 
 ValidRanks =
-  ['Full',
-   'Professor',
+  ['Professor',
    'Assoc',
    'Assist',
    'Lecturer',

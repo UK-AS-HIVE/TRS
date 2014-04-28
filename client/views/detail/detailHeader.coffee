@@ -73,7 +73,7 @@ Template.detailHeader.helpers
     ### FIXME: This is hardcoded for a demo.  At least the numbers
     should be configurable by department-semester.
     ###
-    'Full Professor': 4
+    'Professor': 4
     'Associate': 4
     'Assistant': 4
     'Lecturer': 6

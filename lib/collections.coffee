@@ -4,6 +4,7 @@ ValidRanks =
   ['Professor',
    'Assoc',
    'Assist',
+   'Senior Lecturer'
    'Lecturer',
    'PostDoc',
    'FTI',

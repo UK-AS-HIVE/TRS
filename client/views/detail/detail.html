@@ -33,7 +33,7 @@
               {{#if notes}}
               <div class="notes field">
                 <span class="label">Notes</span>
-                <span class="value">{{notes}}</span>
+                <span class="value">{{plain_text notes}}</span>
               </div>
               {{/if}}
             </span>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="field notes">
                   <label for="notes" class="label">Notes</label>
-                  <input type="text" name="notes" data-property="notes" value="{{notes}}" />
+                  <textarea width="100%" name="notes" data-property="notes" value="{{notes}}" >{{notes}}</textarea>
                 </div>
 
               </div>
@@ -63,7 +63,7 @@
               {{inlineEditLock prefix='pay-amount-'}}
 
             <span class="inline-edit-preview">  
-              {{payAmount}}
+              {{formatCurrency payAmount}}
             </span>
 
             <span id="pay-amount-{{_id}}" class="inline-edit-form">
@@ -125,13 +125,13 @@
                       <input type="text" placeholder="Course number" maxlength="4" value="{{value.number}}" name="number" />
                       <label for="number">Number</label>
                     </div>
-                    <div class="credits field">
-                      <input type="number" placeholder="Credit hours" min="0" max="4" maxlength="1" value="{{value.credits}}" name="credits" />
-                      <label for="credits">Hours</label>
-                    </div>
                     <div class="sections field">
                       <input type="text" placeholder="Sections" value="{{value.sections}}" name="sections" />
                       <label for="sections">Sections</label>
+                    </div>
+                    <div class="credits field">
+                      <input type="number" placeholder="Credit hours" min="0" max="4" maxlength="1" value="{{value.credits}}" name="credits" />
+                      <label for="credits">Hours</label>
                     </div>
                   </span>
                   <i class="glyphicon glyphicon-edit"></i>
@@ -159,6 +159,7 @@
         <option value="Professor" selected={{selectedOption 'Professor'}}>Professor</option>
         <option value="Assoc" selected={{selectedOption 'Assoc'}}>Associate Professor</option>
         <option value="Assist" selected={{selectedOption 'Assist'}}>Assistant Professor</option>
+        <option value="Senior Lecturer" selected={{selectedOption 'Senior Lecturer'}}>Senior Lecturer</option>
         <option value="Lecturer" selected={{selectedOption 'Lecturer'}}>Lecturer</option>
         <option value="PostDoc" selected={{selectedOption 'PostDoc'}}>Post Doc</option>
       </optgroup>
@@ -187,6 +188,7 @@
         <option value="Professor" selected={{selectedOption 'Professor'}}>Professor</option>
         <option value="Assoc" selected={{selectedOption 'Assoc'}}>Associate Professor</option>
         <option value="Assist" selected={{selectedOption 'Assist'}}>Assistant Professor</option>
+        <option value="Senior Lecturer" selected={{selectedOption 'Senior Lecturer'}}>Senior Lecturer</option>
         <option value="Lecturer" selected={{selectedOption 'Lecturer'}}>Lecturer</option>
         <option value="PostDoc" selected={{selectedOption 'PostDoc'}}>Post Doc</option>
       </optgroup>

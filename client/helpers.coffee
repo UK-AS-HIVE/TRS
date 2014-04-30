@@ -1,3 +1,5 @@
+TRS = @
+
 UI.registerHelper 'key_value', (context, options) ->
   result = []
   _.each context, (value, key, list) ->
@@ -6,3 +8,5 @@ UI.registerHelper 'key_value', (context, options) ->
       value: value
   return result
 
+UI.registerHelper 'formatCurrency', (s) ->
+  TRS.formatCurrency s

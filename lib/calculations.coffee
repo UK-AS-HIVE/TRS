@@ -12,12 +12,15 @@ TRS = @
 
 (exports ? @).sanitizePayAmount = (payAmountString) ->
     try
-      r = parseFloat payAmountString.replace /[^0-9\.-]+/g,""
+      r = parseFloat (''+payAmountString).replace /[^0-9\.-]+/g,""
       if isNaN r
         return 0
       return r
     catch e
       return 0
+
+(exports ? @).formatCurrency = (s) ->
+  '$' + sanitizePayAmount(s).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
 
 (exports ? @).currentlyAllocated = (myRank, context) ->
   console.log 'Calculating currentlyAllocated for "' + myRank + '"'
@@ -37,6 +40,6 @@ TRS = @
       if doc.lines? and doc.lines[myRank]?
         sum += fractionToFloat(doc.lines[myRank]) * sanitizePayAmount rate
       #console.log 'added ' + doc.
-  return (sum).toFixed(2)
+  return formatCurrency sum
 
 

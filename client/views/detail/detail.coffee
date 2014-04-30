@@ -28,7 +28,7 @@ Template.detail.helpers
     if trueFalse then 'checked' else null
   disabled: (trueFalse) ->
     if trueFalse then null else 'disabled'
-  
+  plain_text: (s) -> new Spacebars.SafeString (s.replace /\n/g, '<br/>')
 
 Template.detail.events
   'change #approved-funding-input': (e) ->
@@ -78,7 +78,7 @@ Template.detail.events
           pay_amount: ''
           comment: ''
           courses: []
-  'change .instructor-properties input, change .pay-amount input': (e) ->
+  'change .instructor-properties input, change .instructor-properties textarea, change .pay-amount input': (e) ->
     el = $(e.target)
     prop = el.data 'property'
     setter = {}

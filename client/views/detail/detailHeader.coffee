@@ -55,7 +55,7 @@ Template.detailHeader.helpers
     Session.get 'isExpanded'
   currentlyAllocated: (r,c) -> currentlyAllocated r,c
   currentlyBudgeted: ->
-    return @value.lines * parseInt(@value.rate)
+    return formatCurrency( @value.lines * sanitizePayAmount(@value.rate) )
   linesAllocated: (context) ->
     sum = 0
     rank = @value.rank
@@ -76,5 +76,6 @@ Template.detailHeader.helpers
     'Professor': 4
     'Associate': 4
     'Assistant': 4
+    'Senior Lecturer': 6
     'Lecturer': 6
 

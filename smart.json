@@ -4,6 +4,7 @@
     "select2": {},
     "bootboxjs": {},
     "collection2": {},
-    "font-awesome": {}
+    "font-awesome": {},
+    "collection-helpers": {}
   }
 }

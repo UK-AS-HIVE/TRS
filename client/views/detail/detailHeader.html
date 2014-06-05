@@ -48,7 +48,7 @@
                 {{#each key_value data.breakdown}}
                   <tr class="inline-edit deletable breakdown {{rowClass semester=../semester department=../department}}" id="breakdown-{{../data._id}}-{{key}}" data-id="{{../data._id}}" data-index="{{key}}" >
                     <td>
-                      <span class="inline-edit-preview">{{formatCurrency value.rank}}</span>
+                      <span class="inline-edit-preview">{{value.rank}}</span>
                       <span class="inline-edit-form"><input type="text" value="{{value.rank}}" data-property="rank" data-id="{{../data._id}}" data-index="{{key}}" /></span>
                       <i class="glyphicon glyphicon-trash pull-right"></i>
                       <i class="glyphicon glyphicon-edit pull-right"></i>

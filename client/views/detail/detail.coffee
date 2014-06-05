@@ -4,10 +4,10 @@ Template.detail.helpers
   persons: ->
     console.log @
     where = {semester: Session.get('semester'), department: Session.get('department')}
-    Session.setDefault 'currentRankFilter', 'All'
+    Session.setDefault 'currentRankFilter', ['All']
     rankFilter = Session.get('currentRankFilter')
-    if rankFilter != 'All'
-      where.rank = rankFilter
+    if rankFilter.length > 0 and rankFilter[0] != 'All'
+      where.rank = {$in: rankFilter}
     TRS.FacultyAllocations.find where, {sort: {name: 1} }
   lineTypes: (context) ->
     console.log 'lineTypes'
@@ -149,9 +149,11 @@ Template.detailRankSelect.rendered = ->
 
 Template.detailFilter.helpers
   selectedOption: (rank) ->
-    new Spacebars.SafeString ' selected' if Session.get('currentRankFilter') is rank
+    currentRankFilter = Session.get 'currentRankFilter'
+    if currentRankFilter? and currentRankFilter.indexOf(rank) > -1
+      return new Spacebars.SafeString ' selected'
 
 Template.detailFilter.events
-  'change select': (e,tpl)->
+  'change select': (e,tpl) ->
     Session.set 'currentRankFilter', $(tpl.find('select')).val()
 

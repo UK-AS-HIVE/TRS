@@ -113,8 +113,8 @@
               {{#each key_value courses}}
                 <li id="course-{{../_id}}-{{key}}" data-index="{{key}}" data-id="{{../_id}}" class="course deletable inline-edit">
                   <span class="inline-edit-preview">
-                    {{value.prefix}}-{{value.number}}
-                    ({{value.credits}} credits{{#if value.sections}}, sections {{value.sections}}{{/if}})
+                    {{value.prefix}}-{{value.number}}{{#if value.sections}}-{{value.sections}}{{/if}}
+                    ({{value.credits}} credits)
                   </span>
                   <span class="inline-edit-form" data-index="{{key}}" data-id="{{../_id}}">
                     <div class="prefix field">

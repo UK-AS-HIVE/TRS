@@ -33,7 +33,9 @@ Template.detail.helpers
 Template.detail.events
   'change #approved-funding-input': (e) ->
     val = $(e.target).val()
-    data = TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}
+    sem = Session.get 'semester'
+    dep = Session.get 'department'
+    data = TRS.SemesterDepartmentDetail.findOne {semester: sem, department: dep}
     console.log data
     console.log 'updating to: ' + val
     if data
@@ -47,13 +49,15 @@ Template.detail.events
     val = $(e.target).val()
     console.log 'logging comments textarea'
     console.log val
-    data = TRS.SemesterDepartmentDetail.findOne {semester: @semester, department: @department}
+    sem = Session.get 'semester'
+    dep = Session.get 'department'
+    data = TRS.SemesterDepartmentDetail.findOne {semester: sem, department: dep}
     if data
       TRS.SemesterDepartmentDetail.update {_id: data._id}, {$set: { comments: val } }
     else
       TRS.SemesterDepartmentDetail.insert
-        semester: @semester
-        department: @department
+        semester: sem
+        department: dep
         comments: val
   'click .inline-edit .glyphicon-edit': (e) ->
     console.log 'toggle edit'
@@ -99,7 +103,7 @@ Template.detail.events
     property = $(e.target).attr 'name'
     val = $(e.target).val()
     setter = {}
-    setter['courses.' + index + '.' + property] = val 
+    setter['courses.' + index + '.' + property] = val
     console.log 'set ' + property + ' to ' + val + ' for course #' + index
     TRS.FacultyAllocations.update {_id: id},
       $set: setter

@@ -45,6 +45,11 @@ Template.detailHeader.events
     TRS.SemesterDepartmentDetail.update {_id: id},
       {$set: {breakdown: breakdown}}
 
+  'change .salaryLoad input': (e, tpl) ->
+    setter = {}
+    setter['courseLoads.' + @key] = $(e.target).val()
+    TRS.SemesterDepartmentDetail.update tpl.data._id,
+      $set: setter
 
 Template.detailHeader.helpers
   semester: -> Session.get 'semester'
@@ -70,12 +75,8 @@ Template.detailHeader.helpers
     else
       return ''
   salaryLoad: ->
-    ### FIXME: This is hardcoded for a demo.  At least the numbers
-    should be configurable by department-semester.
-    ###
-    'Professor': 4
-    'Associate': 4
-    'Assistant': 4
-    'Senior Lecturer': 6
-    'Lecturer': 6
-
+    depsem = TRS.SemesterDepartmentDetail.findOne
+      semester: Session.get 'semester'
+      department: Session.get 'department'
+    if depsem? and depsem.courseLoads?
+      return depsem.courseLoads

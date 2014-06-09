@@ -27,7 +27,7 @@
         Currently allocated: {{currentlyAllocated '' semester=../semester department=../department}}
         <i id="currentlyallocatedbtn" class="glyphicon glyphicon-plus"></i>
         {{#if currentlyAllocatedIsExpanded}}
-          <div id="currentlyallocatedexpansion"> 
+          <div id="currentlyallocatedexpansion">
 
             <table class="table table-condensed table-striped table-hover">
               <thead>
@@ -35,7 +35,16 @@
               </thead>
               <tbody>
                 {{#each key_value salaryLoad}}
-                  <tr><td>{{key}}</td><td>{{value}}</td></tr>
+                  <tr class="inline-edit salaryLoad">
+                    <td>{{key}}</td>
+                    <td>
+                      <span class="inline-edit-preview">{{value}}</span>
+                      <span class="inline-edit-form">
+                        <input type="text" value="{{value}}" data-property={{key}} data-id={{../data._id}} />
+                      </span>
+                      <i class="glyphicon glyphicon-edit"></i>
+                    </td>
+                  </tr>
                 {{/each}}
               </tbody>
             </table>
@@ -74,7 +83,7 @@
                 </tr>
               </tbody>
             </table>
-          </div>      
+          </div>
         {{/if}}
       </div>
     </div>

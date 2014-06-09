@@ -101,6 +101,10 @@ ValidRanks =
     type: String
     label: 'Sections'
     optional: true
+  'courses.$.crosslisting':
+    type: String
+    label: 'Crosslisted as'
+    optional: true
   lines:
     type: Object
     optional: true
@@ -137,10 +141,57 @@ ValidRanks =
     type: String
     label: 'Comments pertaining to this department and semester'
     optional: true
+  courseLoads:
+    defaultValue:
+      Professor: 4
+      Associate: 4
+      Assistant: 4
+      'Senior Lecturer': 6
+      Lecturer: 6
+    type: new SimpleSchema
+      Professor:
+        type: Number
+        min: 0
+        max: 12
+        defaultValue: 4
+      Associate:
+        type: Number
+        min: 0
+        max: 12
+        defaultValue: 4
+      Assistant:
+        type: Number
+        min: 0
+        max: 12
+        defaultValue: 4
+      'Senior Lecturer':
+        type: Number
+        min: 0
+        max: 12
+        defaultValue: 6
+      Lecturer:
+        type: Number
+        min: 0
+        max: 12
+        defaultValue: 0
   breakdown:
     type: [Object]
     label: 'Funding lines'
     optional: true
+    defaultValue: [
+        lines: 0
+        rank: 'GA'
+        rate: '0'
+      ,
+        lines: 0
+        rank: 'TA'
+        rate: '0'
+      ,
+        
+        lines: 0
+        rank: 'RA'
+        rate: '0'
+    ]
   'breakdown.$.lines':
     type: Number
     label: 'Number of lines'

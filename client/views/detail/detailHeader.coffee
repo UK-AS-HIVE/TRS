@@ -70,10 +70,11 @@ Template.detailHeader.helpers
     return sum
   rowClass: (context) ->
     ca = currentlyAllocated(@value.rank, context)
-    if (@value.lines * parseInt(@value.rate)) < ca
-      return 'error'
+    if (@value.lines * parseInt(@value.rate)) < sanitizePayAmount(ca)
+      console.log 'Overspent on ' + @value.rank + ' lines!'
+      return 'inline-edit deletable breakdown danger'
     else
-      return ''
+      return 'inline-edit deletable breakdown '
   salaryLoad: ->
     depsem = TRS.SemesterDepartmentDetail.findOne
       semester: Session.get 'semester'

@@ -23,13 +23,8 @@ TRS = @
   '$' + sanitizePayAmount(s).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
 
 (exports ? @).currentlyAllocated = (myRank, context) ->
-  console.log 'Calculating currentlyAllocated for "' + myRank + '"'
   sum = 0.0
-  console.log 'Summing allocations...'
-  console.log @
-  console.log arguments
   if (myRank == '')
-    console.log 'rank == blank'
     amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department}, {fields: {payAmount: 1, rank: 1, pay_amount: 1, lines: 1, name: 1, department: 1, semester: 1, overload: 1, overloadAmount: 1}}).forEach (doc) ->
       sum += sanitizePayAmount doc.payAmount()
       console.log sum
@@ -39,7 +34,6 @@ TRS = @
     amounts = TRS.FacultyAllocations.find({semester: context.hash.semester || @semester, department: context.hash.department || @department}, {fields: {payAmount: 1, lines: 1}}).forEach (doc) ->
       if doc.lines? and doc.lines[myRank]?
         sum += fractionToFloat(doc.lines[myRank]) * sanitizePayAmount rate
-      #console.log 'added ' + doc.
   return formatCurrency sum
 
 

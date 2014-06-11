@@ -151,12 +151,12 @@ th#courses {
   height: 20px;
   position: relative;
   top: -1px;
-} 
+}
 .instructor-details .select2-arrow b {
   position: relative;
-  top: -3px;  
+  top: -3px;
 }
-.instructor-details .label {
+.instructor-details .label, .pay-amount .label {
   width: 74px;
   height: auto;
   display: inline-block;
@@ -175,7 +175,7 @@ th#courses {
   display: block;
   margin-left: 90px;
 }
-.instructor-details .inline-edit-preview .label {
+.instructor-details .inline-edit-preview .label, .pay-amount .inline-edit-preview .label {
   background: #eee;
   color: #999;
   text-shadow: none;

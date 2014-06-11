@@ -16,7 +16,7 @@
 
             {{inlineEditLock prefix='instructor-details-'}}
 
-            <span class="inline-edit-preview">  
+            <span class="inline-edit-preview">
               <h4 class="name field">{{name}}</h4>
               {{#if rank}}
               <div class="rank field">
@@ -62,8 +62,15 @@
             <i class="glyphicon glyphicon-edit pull-right"></i>
               {{inlineEditLock prefix='pay-amount-'}}
 
-            <span class="inline-edit-preview">  
+            <span class="inline-edit-preview">
               {{formatCurrency payAmount}}
+              
+              {{#if paymentNotes}}
+                <div class="paymentNotes field">
+                  <span class="label">Notes</span>
+                  <span class="value">{{plain_text paymentNotes}}</span>
+                </div>
+              {{/if}}
             </span>
 
             <span id="pay-amount-{{_id}}" class="inline-edit-form">
@@ -102,6 +109,10 @@
                 </div>
               {{/unless}}
 
+              <div class="field paymentNotes">
+                <label for="paymentNotes" class="label">Notes</label>
+                <textarea width="100%" name="paymentNotes" data-property="paymentNotes" value="{{paymentNotes}}" >{{paymentNotes}}</textarea>
+              </div>
             </span>
           </td>
 
@@ -139,7 +150,7 @@
                 </li>
               {{/each}}
             </ul>
-          </td>          
+          </td>
         </tr>
       {{/each}}
       <tr>

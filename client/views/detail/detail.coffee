@@ -82,7 +82,7 @@ Template.detail.events
           pay_amount: ''
           comment: ''
           courses: []
-  'change .instructor-properties input, change .instructor-properties textarea, change .pay-amount input': (e) ->
+  'change .instructor-properties input, change .instructor-properties textarea, change .pay-amount input, change .pay-amount textarea': (e) ->
     el = $(e.target)
     prop = el.data 'property'
     setter = {}

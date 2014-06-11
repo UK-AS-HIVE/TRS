@@ -85,6 +85,9 @@ ValidRanks =
   notes:
     type: String
     optional: true
+  paymentNotes:
+    type: String
+    optional: true
   'courses.$.prefix':
     type: String
     label: 'Course Prefix'

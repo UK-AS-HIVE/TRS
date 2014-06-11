@@ -74,6 +74,16 @@ TRS.FacultyAllocations.allow
 
 Meteor.publish 'semesterDepartmentDetail', (department, semester) ->
   if UserCanAccessDepartment @userId, department
+    depsem = TRS.SemesterDepartmentDetail.find
+      department: department
+      semester: semester
+
+    if depsem.count() > 0
+      return depsem
+      
+    TRS.SemesterDepartmentDetail.insert
+      department: department
+      semester: semester
     return TRS.SemesterDepartmentDetail.find
       department: department
       semester: semester

@@ -115,7 +115,7 @@ Meteor.publish 'dropDeadChanges', (department, semester) ->
     semester: semester
     timestamp: {$gte: new Date(Date.now() - 1)}
   ,
-    limit: 1
+    limit: 3
     sort: {timestamp: -1}
 
 

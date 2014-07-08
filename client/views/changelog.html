@@ -3,8 +3,12 @@
   <div id="dropDeadChangelog">
     <ul>
       {{#each changes}}
-        <li><strong>{{formatTime timestamp}}: </strong>{{username}} {{message}} <br></li>
+        {{> dropDeadChange}}
       {{/each}}
     </ul>
   </div>
+</template>
+
+<template name="dropDeadChange">
+  <li><strong>{{formatTime timestamp}}: </strong>{{username}} {{message}} <br></li>
 </template>

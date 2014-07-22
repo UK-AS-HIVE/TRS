@@ -57,8 +57,8 @@ TRS.FacultyAllocations.allow
     m =
       if modifier['$set']?
         'changed '+l+' of '+doc.name
-      else
-        'added'
+      else if modifier['$push']?
+        'added to '+l+' of '+doc.name
     console.log m
     TRS.DropDeadChanges.insert
       department: doc.department

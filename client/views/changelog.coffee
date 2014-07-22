@@ -8,11 +8,9 @@ Template.dropDeadChange.rendered = ->
   console.log 'dropDeadChange', @, arguments
   Meteor.setTimeout =>
     $(@.firstNode).fadeOut 600
-  , 5000
+  , 2500
 
 Template.dropDeadChange.helpers
   formatTime: (timestamp) ->
     console.log timestamp
-    return timestamp.getHours() + ':' + timestamp.getMinutes() if timestamp
-
-
+    moment(timestamp).format 'h:mm'

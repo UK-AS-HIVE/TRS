@@ -31,20 +31,6 @@ Template.detail.helpers
   plain_text: (s) -> new Spacebars.SafeString (s.replace /\n/g, '<br/>')
 
 Template.detail.events
-  'change #approved-funding-input': (e) ->
-    val = $(e.target).val()
-    sem = Session.get 'semester'
-    dep = Session.get 'department'
-    data = TRS.SemesterDepartmentDetail.findOne {semester: sem, department: dep}
-    console.log data
-    console.log 'updating to: ' + val
-    if data
-      TRS.SemesterDepartmentDetail.update {_id: data._id}, {$set: { funding: val } }
-    else
-      TRS.SemesterDepartmentDetail.insert
-        semester: @semester
-        department: @department
-        funding: val
   'change #comments-textarea': (e) ->
     val = $(e.target).val()
     console.log 'logging comments textarea'

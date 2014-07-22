@@ -1,6 +1,20 @@
 TRS = @
 
 Template.detailHeader.events
+  'change #approved-funding-input': (e) ->
+    val = $(e.target).val()
+    sem = Session.get 'semester'
+    dep = Session.get 'department'
+    data = TRS.SemesterDepartmentDetail.findOne {semester: sem, department: dep}
+    console.log data
+    console.log 'updating to: ' + val
+    if data
+      TRS.SemesterDepartmentDetail.update {_id: data._id}, {$set: { funding: val } }
+    else
+      TRS.SemesterDepartmentDetail.insert
+        semester: @semester
+        department: @department
+        funding: val
   'click button#add-rank-type': (e,tpl) ->
     console.log 'add-rank-type'
     console.log @

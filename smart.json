@@ -5,6 +5,7 @@
     "bootboxjs": {},
     "collection2": {},
     "font-awesome": {},
-    "collection-helpers": {}
+    "collection-helpers": {},
+    "moment": {}
   }
 }

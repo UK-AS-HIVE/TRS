@@ -137,7 +137,7 @@ ValidRanks =
     type: String
     label: 'Department of allocation'
   funding:
-    type: Number
+    type: String
     label: 'Approved funding'
     optional: true
   comments:

@@ -58,9 +58,7 @@
 </template>
 
 <template name="departmentUsersSelect">
-  <div>
-    <input value="{{usernames}}" data-placeholder="Add users..." type="hidden" class="chair-dm-users col-md-3" />
-  </div>
+    <input value="{{usernames}}" data-placeholder="Add users..." type="hidden" class="chair-dm-users" />
 </template>
 
 <template name="manageDepartmentDialog">
@@ -135,15 +133,17 @@
         <th>Semester</th>
         <th>Drop-dead date</th>
       </thead>
-      {{#each semesters}}
-        <tr>
-          <td class="deletable">
-            <i class="pull-right glyphicon glyphicon-trash"></i>
-            {{semester}}
-          </td>
-          <td><input type="text" data-placeholder="No due date" data-id="{{_id}}" value="{{dropdead}}" class="dropdead" /></td>
-        </tr>
-      {{/each}}
+      <tbody>
+        {{#each semesters}}
+          <tr>
+            <td class="deletable">
+              <i class="pull-right glyphicon glyphicon-trash"></i>
+              {{semester}}
+            </td>
+            <td><input type="text" data-placeholder="No due date" data-id="{{_id}}" value="{{dropdead}}" class="form-control dropdead" /></td>
+          </tr>
+        {{/each}}
+      </tbody>
     </table>
 
 </template>

@@ -26,9 +26,10 @@ Template.departmentUsersSelect.rendered = ->
   data = @data
   department_id = @data._id
   $(@.find '.chair-dm-users').select2
-    tags: [],
-    tokenSeparators: [',', ' ', '\n'],
-    multiple: true,
+    tags: []
+    tokenSeparators: [',', ' ', '\n']
+    multiple: true
+    width: '100%'
     initSelection: (e, cb) ->
       console.log data
       cb $(data.chairDMusers).map (e,o) ->

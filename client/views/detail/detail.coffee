@@ -57,7 +57,7 @@ Template.detail.events
   'click button#add': (e) ->
     console.log @
     self = @
-    bootbox.prompt 'Name of person to add', (result) ->
+    bootbox.prompt 'Name of person to add (last, first)', (result) ->
       if result?
         TRS.FacultyAllocations.insert
           name: result

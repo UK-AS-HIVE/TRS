@@ -13,7 +13,6 @@
       "font-awesome": {},
       "collection-helpers": {},
       "moment": {},
-      "mocha-web-velocity": {},
       "velocity-html-reporter": {},
       "selenium-nightwatch": {},
       "jasmine-unit": {}
@@ -59,11 +58,6 @@
         "tag": "v2.6.0",
         "commit": "26156df681750fd6e6ed77043eef32b6653ebbdf"
       },
-      "mocha-web-velocity": {
-        "git": "https://github.com/mad-eye/meteor-mocha-web.git",
-        "tag": "v0.3.4",
-        "commit": "5b68e18104c00687748b190b04a7752478472d17"
-      },
       "velocity-html-reporter": {
         "git": "https://github.com/rdickert/velocity-html-reporter.git",
         "tag": "v0.1.4",
@@ -88,11 +82,6 @@
         "git": "https://github.com/aldeed/meteor-simple-schema.git",
         "tag": "v0.6.0",
         "commit": "418ec496612fb2afc853e342f0d2269b6674a2fe"
-      },
-      "mirror": {
-        "git": "https://github.com/xdissent/meteor-mirror.git",
-        "tag": "v0.0.2",
-        "commit": "03d965dcab2f976a1fdc6ce513edcd4c17b75746"
       },
       "velocity": {
         "git": "https://github.com/xolvio/velocity.git",

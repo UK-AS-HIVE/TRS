@@ -16,7 +16,6 @@ inline-edit
 collection-helpers
 bootstrap-3
 moment
-mocha-web-velocity
 velocity-html-reporter
 selenium-nightwatch
 jasmine-unit

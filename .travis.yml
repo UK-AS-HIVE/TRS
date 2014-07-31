@@ -2,8 +2,8 @@ language: node_js
 
 install:
   - npm install -g meteorite velocity-ci
-  - mrt remove accounts-linkblue
   - curl https://install.meteor.com | /bin/sh
+  - mrt remove accounts-linkblue
 
 script:
   velocity

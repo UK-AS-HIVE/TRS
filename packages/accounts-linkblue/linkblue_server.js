@@ -3,7 +3,7 @@ Meteor.methods({
     console.log ('LinkBlue authentication for ' + request.username);
 
     // Authenticate against LDAP
-    var ldap = Npm.require('ldapjs');
+    /*var ldap = Npm.require('ldapjs');
     var Future = Npm.require('fibers/future');
 
     var client = ldap.createClient({
@@ -34,7 +34,7 @@ Meteor.methods({
     if (!success || request.password == '') {
       throw new Meteor.Error(403, "Invalid credentials");
       return;
-    }
+    }*/
 
     // If the user name is not found, create a new user
     var userId;

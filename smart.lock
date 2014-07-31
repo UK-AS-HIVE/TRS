@@ -8,7 +8,11 @@
       "collection2": {},
       "font-awesome": {},
       "collection-helpers": {},
-      "moment": {}
+      "moment": {},
+      "mocha-web-velocity": {},
+      "velocity-html-reporter": {},
+      "selenium-nightwatch": {},
+      "jasmine-unit": {}
     },
     "packages": {
       "iron-router": {
@@ -28,8 +32,8 @@
       },
       "collection2": {
         "git": "https://github.com/aldeed/meteor-collection2.git",
-        "tag": "v0.4.2",
-        "commit": "4ff4b707bec8be434919730bf101325adb215444"
+        "tag": "v0.4.3",
+        "commit": "cb470de2cfeebeccbf76d4cc0a39ad4afc76d553"
       },
       "font-awesome": {
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
@@ -46,6 +50,26 @@
         "tag": "v2.6.0",
         "commit": "26156df681750fd6e6ed77043eef32b6653ebbdf"
       },
+      "mocha-web-velocity": {
+        "git": "https://github.com/mad-eye/meteor-mocha-web.git",
+        "tag": "v0.3.4",
+        "commit": "5b68e18104c00687748b190b04a7752478472d17"
+      },
+      "velocity-html-reporter": {
+        "git": "https://github.com/rdickert/velocity-html-reporter.git",
+        "tag": "v0.1.4",
+        "commit": "55f973519fb6db831678219057854b94a4cec846"
+      },
+      "selenium-nightwatch": {
+        "git": "https://github.com/awatson1978/selenium-nightwatch.git",
+        "tag": "v0.3.3",
+        "commit": "026bb6ec3b3c99efcaf5e9262c904dcb04b6bdf8"
+      },
+      "jasmine-unit": {
+        "git": "https://github.com/xolvio/jasmine-unit.git",
+        "tag": "v0.1.24",
+        "commit": "885dde77a96390d0fd31b03756f837f482db2ef1"
+      },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
         "tag": "v0.2.4",
@@ -55,6 +79,21 @@
         "git": "https://github.com/aldeed/meteor-simple-schema.git",
         "tag": "v0.6.0",
         "commit": "418ec496612fb2afc853e342f0d2269b6674a2fe"
+      },
+      "mirror": {
+        "git": "https://github.com/xdissent/meteor-mirror.git",
+        "tag": "v0.0.2",
+        "commit": "03d965dcab2f976a1fdc6ce513edcd4c17b75746"
+      },
+      "velocity": {
+        "git": "https://github.com/xolvio/velocity.git",
+        "tag": "v0.1.17",
+        "commit": "19c51cf2f9efb2c4db42b5e700bb9ea6fe32e921"
+      },
+      "package-stubber": {
+        "git": "https://github.com/alanning/meteor-package-stubber.git",
+        "tag": "v0.0.15",
+        "commit": "62ad08f8486aacbbc5ec22ea6e2a31573748b7d7"
       }
     }
   }

@@ -6,6 +6,10 @@
     "collection2": {},
     "font-awesome": {},
     "collection-helpers": {},
-    "moment": {}
+    "moment": {},
+    "mocha-web-velocity": {},
+    "velocity-html-reporter": {},
+    "selenium-nightwatch": {},
+    "jasmine-unit": {}
   }
 }

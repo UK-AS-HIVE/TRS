@@ -13,4 +13,4 @@ services:
   - mongodb
 
 script:
-  laika -c 'coffee:coffee-script/register' -u bdd -t 10000
+  laika -c coffee:coffee-script/register -u bdd -t 20000

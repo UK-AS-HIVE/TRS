@@ -4,7 +4,7 @@ node_js:
   - "0.10"
 
 install:
-  - npm install -g meteorite laika
+  - npm install -g meteorite laika coffeescript
   - curl https://install.meteor.com | /bin/sh
   - mrt remove accounts-linkblue
   - mrt add accounts-password

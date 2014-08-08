@@ -17,3 +17,6 @@ bootstrap-3
 simple-schema
 /collection-helpers
 /moment
+/iron-layout
+/iron-core
+/iron-dynamic-template

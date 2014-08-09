@@ -8,6 +8,7 @@
     "bootstrap-3": {},
     "blaze-layout": {},
     "iron-router": {},
-    "moment": {}
+    "moment": {},
+    "jasmine-unit": {}
   }
 }

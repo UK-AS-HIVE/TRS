@@ -20,3 +20,6 @@ simple-schema
 /iron-layout
 /iron-core
 /iron-dynamic-template
+/jasmine-unit
+/velocity
+/package-stubber

@@ -16,3 +16,4 @@ bootstrap-3
 iron-router
 moment
 accounts-password
+jasmine-unit

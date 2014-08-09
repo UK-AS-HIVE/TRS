@@ -4,7 +4,7 @@ node_js:
   - "0.10"
 
 install:
-  - npm install -g meteorite laika coffee-script
+  - npm install -g meteorite laika coffee-script velocity-ci
   - curl https://install.meteor.com | /bin/sh
   - mrt remove accounts-linkblue
   - mrt add accounts-password
@@ -13,4 +13,5 @@ services:
   - mongodb
 
 script:
-  laika -c coffee:coffee-script/register -u bdd -t 50000
+  - laika -c coffee:coffee-script/register -u bdd -t 50000
+  - velocity

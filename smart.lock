@@ -2,59 +2,16 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "iron-router": {},
-      "select2": {},
-      "bootboxjs": {},
-      "collection2": {},
-      "font-awesome": {},
-      "collection-helpers": {},
-      "moment": {}
+      "hive:accounts-linkblue": {
+        "git": "https://github.com/UK-AS-HIVE/meteor-accounts-linkblue",
+        "branch": "0.9.0"
+      }
     },
     "packages": {
-      "iron-router": {
-        "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.7.1",
-        "commit": "d1ffb3f06ea4c112132b030f2eb1a70b81675ecb"
-      },
-      "select2": {
-        "git": "https://github.com/nate-strauser/meteor-select2.git",
-        "tag": "v3.4.5",
-        "commit": "4a8d05582b949a14f0ee217c185166abbf112822"
-      },
-      "bootboxjs": {
-        "git": "https://github.com/TimHeckel/meteor-bootboxjs.git",
-        "tag": "v4.2.1-master.1",
-        "commit": "c125969c1f3aef30e2a2ff20252bd3b2e4014b2f"
-      },
-      "collection2": {
-        "git": "https://github.com/aldeed/meteor-collection2.git",
-        "tag": "v0.4.2",
-        "commit": "4ff4b707bec8be434919730bf101325adb215444"
-      },
-      "font-awesome": {
-        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
-        "tag": "v4.1.0",
-        "commit": "ce6b1e92715d1938babc5d69c655c17e387f5926"
-      },
-      "collection-helpers": {
-        "git": "https://github.com/dburles/meteor-collection-helpers.git",
-        "tag": "v0.3.0",
-        "commit": "842bd9343b19c0e45ae20ac9c63c8c356889959a"
-      },
-      "moment": {
-        "git": "https://github.com/acreeger/meteor-moment.git",
-        "tag": "v2.6.0",
-        "commit": "26156df681750fd6e6ed77043eef32b6653ebbdf"
-      },
-      "blaze-layout": {
-        "git": "https://github.com/EventedMind/blaze-layout.git",
-        "tag": "v0.2.4",
-        "commit": "b40e9b0612329288d75cf52ad14a7da64bb8618f"
-      },
-      "simple-schema": {
-        "git": "https://github.com/aldeed/meteor-simple-schema.git",
-        "tag": "v0.6.0",
-        "commit": "418ec496612fb2afc853e342f0d2269b6674a2fe"
+      "hive:accounts-linkblue": {
+        "git": "https://github.com/UK-AS-HIVE/meteor-accounts-linkblue",
+        "branch": "0.9.0",
+        "commit": "7a0a623eaf6366847203b9bcda8c75b851800704"
       }
     }
   }

@@ -3,15 +3,16 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-blaze-layout
 standard-app-packages
 coffeescript
-iron-router
+iron:router
 accounts-base
-accounts-linkblue
-select2
-bootboxjs
-collection2
-collection-helpers
-bootstrap-3
-moment
+natestrauser:select2@3.4.5
+mizzao:bootboxjs@4.2.1-master.1
+aldeed:collection2
+aldeed:simple-schema
+dburles:collection-helpers@0.3.0
+mizzao:bootstrap-3
+mrt:moment@2.6.0
+hive:accounts-linkblue
+

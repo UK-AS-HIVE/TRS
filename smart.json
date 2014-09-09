@@ -1,11 +1,8 @@
 {
   "packages": {
-    "iron-router": {},
-    "select2": {},
-    "bootboxjs": {},
-    "collection2": {},
-    "font-awesome": {},
-    "collection-helpers": {},
-    "moment": {}
+    "hive:accounts-linkblue": {
+      "git": "https://github.com/UK-AS-HIVE/meteor-accounts-linkblue",
+      "branch": "0.9.0"
+    }
   }
 }

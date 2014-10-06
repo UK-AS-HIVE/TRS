@@ -58,6 +58,33 @@ Router.map ->
        Meteor.subscribe('semesterDepartmentDetail', @params.department, @params.semester),
        Meteor.subscribe('dropDeadChanges', @params.department, @params.semester)]
 
+
+  @route 'exportCSV',
+    path: '/:department/:semester/csv'
+    where: 'server'
+    action: (department, semester) ->
+      # TODO: server-side permissions check
+      # currently may not be easily possible, see https://github.com/EventedMind/iron-router/issues/649
+      # therefore, return access denied for now
+      #@response.statusCode = 403
+      #@response.end 'Export disabled because permissions not yet implemented.'
+
+      console.log 'someone exporting csv', @params
+      res = @response
+      filename = [
+        'TRS',
+        @params.department,
+        @params.semester,
+        moment().format('YY-MM-DD')
+      ].join('-').replace(' ','_') + '.csv'
+      res.setHeader 'Content-Type', 'text/csv'
+      res.setHeader 'Content-Disposition', 'attachment; filename="' + filename + '"'
+
+      TRS.FacultyAllocations.find({department: @params.department, semester: @params.semester}).forEach (d) ->
+        courseList = _.map(d.courses, (c) -> [c.prefix, c.number, c.sections].join('-')).join('; ')
+        res.write(_.map([d.name, d.rank, d.ukid, d.notes, courseList, d.payAmount(), d.paymentNotes, d.department, d.semester], (s) -> if s? then '"' + s.replace('"','""') + '"').join(',') + "\n")
+      res.end()
+
 ###
   @route 'detail',
     path: '/d/:department/s/:semester'

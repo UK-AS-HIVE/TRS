@@ -190,33 +190,35 @@
 </template>
 
 <template name="detailFilter">
-  <form class="form-horizontal">
-  <div class="form-group">
-    <label for="rank-filter" class="col-sm-4 control-label">Filter by rank</label>
-    <div class="col-sm-8">
-    <select name="rank-filter" class="rank-filter form-control" multiple>
-      <option value="All" selected={{selectedOption 'All'}}>All</option>
-
-      <optgroup label="Salaried">
-        <option value="Professor" selected={{selectedOption 'Professor'}}>Professor</option>
-        <option value="Assoc" selected={{selectedOption 'Assoc'}}>Associate Professor</option>
-        <option value="Assist" selected={{selectedOption 'Assist'}}>Assistant Professor</option>
-        <option value="Senior Lecturer" selected={{selectedOption 'Senior Lecturer'}}>Senior Lecturer</option>
-        <option value="Lecturer" selected={{selectedOption 'Lecturer'}}>Lecturer</option>
-        <option value="PostDoc" selected={{selectedOption 'PostDoc'}}>Post Doc</option>
-      </optgroup>
-
-      <optgroup label="Funded">
-        <option value="FTI" selected={{selectedOption 'FTI'}}>FTI</option>
-        <option value="PTI" selected={{selectedOption 'PTI'}}>PTI</option>
-        <option value="GA" selected={{selectedOption 'GA'}}>GA</option>
-        <option value="RA" selected={{selectedOption 'RA'}}>RA</option>
-        <option value="TA" selected={{selectedOption 'TA'}}>TA</option>
-        <option value="Fellow" selected={{selectedOption 'Fellow'}}>Fellow</option>
-      </optgroup>
-    </select>
-    </div>
+  <div class="dropdown">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      Filter by rank <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-form" role="menu">
+      <li>
+        <div class="row">
+          <ul class="list-unstyled col-md-4">
+            <li><input type="checkbox" value="All" checked={{checkedOption 'All'}} />All</li>
+          </ul>
+          <ul class="list-unstyled col-md-4">
+            <li><input type="checkbox" value="Professor" checked={{checkedOption 'Professor'}} />Professor</li>
+            <li><input type="checkbox" value="Assoc" checked={{checkedOption 'Assoc'}} />Associate Professor</li>
+            <li><input type="checkbox" value="Assist" checked={{checkedOption 'Assist'}} />Assistant Professor</li>
+            <li><input type="checkbox" value="Senior Lecturer" checked={{checkedOption 'Senior Lecturer'}} />Senior Lecturer</li>
+            <li><input type="checkbox" value="Lecturer" checked={{checkedOption 'Lecturer'}} />Lecturer</li>
+            <li><input type="checkbox" value="PostDoc" checked={{checkedOption 'PostDoc'}} />Post Doc</li>
+          </ul>
+          <ul class="list-unstyled col-md-4">
+            <li><input type="checkbox" value="FTI" checked={{checkedOption 'FTI'}} />FTI</li>
+            <li><input type="checkbox" value="PTI" checked={{checkedOption 'PTI'}} />PTI</li>
+            <li><input type="checkbox" value="GA" checked={{checkedOption 'GA'}} />GA</li>
+            <li><input type="checkbox" value="RA" checked={{checkedOption 'RA'}} />RA</li>
+            <li><input type="checkbox" value="TA" checked={{checkedOption 'TA'}} />TA</li>
+            <li><input type="checkbox" value="Fellow" checked={{checkedOption 'Fellow'}} />Fellow</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
   </div>
-  </form>
 </template>
 

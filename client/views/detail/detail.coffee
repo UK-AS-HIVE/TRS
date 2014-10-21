@@ -138,12 +138,28 @@ Template.detailRankSelect.rendered = ->
     TRS.FacultyAllocations.update {_id: data._id}, {$set: { rank: e.val }}
 
 Template.detailFilter.helpers
-  selectedOption: (rank) ->
+  checkedOption: (rank) ->
     currentRankFilter = Session.get 'currentRankFilter'
     if currentRankFilter? and currentRankFilter.indexOf(rank) > -1
-      return new Spacebars.SafeString ' selected'
+      return new Spacebars.SafeString ' checked'
 
 Template.detailFilter.events
-  'change select': (e,tpl) ->
-    Session.set 'currentRankFilter', $(tpl.find('select')).val()
+  'click input[type="checkbox"]': (e) ->
+    f = $(e.target).val()
+    if f is 'All'
+      if $(e.target).prop 'checked'
+        Session.set 'currentRankFilter', ['All'].concat(ValidRanks)
+      else
+        Session.set 'currentRankFilter', []
+      return
+    crf = Session.get 'currentRankFilter'
+    crf = _.without crf, 'All'
+    if $(e.target).prop('checked')
+      crf = _.union(crf, [f])
+    else
+      crf =_.without(crf, f)
+    console.log crf
+    Session.set 'currentRankFilter', crf
+  'click .dropdown-menu-form': (e) ->
+    e.stopPropagation()
 

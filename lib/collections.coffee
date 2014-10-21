@@ -1,6 +1,6 @@
 TRS = @
 
-ValidRanks =
+@ValidRanks =
   ['Professor',
    'Assoc',
    'Assist',

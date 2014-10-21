@@ -260,3 +260,16 @@ th#courses {
   border: 1px solid #ddd;
 }
 
+.dropdown-menu-form {
+  padding: 1em;
+  min-width: 500px;
+}
+
+.dropdown-menu-form .col-md-4 {
+  border-left: 1px solid #ddd;
+}
+
+.dropdown-menu-form .col-md-4:first-of-type {
+  border-left: none;
+}
+

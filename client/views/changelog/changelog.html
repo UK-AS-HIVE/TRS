@@ -1,0 +1,28 @@
+<template name="changeLog">
+	<strong>
+		Change log for {{department}}, {{semester}}
+	</strong>
+	<table class="able table-bordered table-hover">
+		<tbody>
+			{{#each changes}}
+				<tr>
+					<td>	
+						<p>
+							{{username}}
+						</p>
+					</td>
+					<td>	
+						<p>
+							{{timestamp}}
+						</p>
+					</td>
+					<td>	
+						<p>
+							{{message}}
+						</p>
+					</td>
+				</tr>	
+			{{/each}}
+		</tbody>
+	</table>
+</template>

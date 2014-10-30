@@ -58,6 +58,14 @@ Router.map ->
        Meteor.subscribe('semesterDepartmentDetail', @params.department, @params.semester),
        Meteor.subscribe('dropDeadChanges', @params.department, @params.semester)]
 
+  @route 'changeLog',
+    path: '/:department/:semester/changelog'
+    onBeforeAction: ->
+      Session.set 'department', @params.department
+      Session.set 'semester', @params.semester
+    waitOn: ->
+      Meteor.subscribe 'changelog', @params.department, @params.semester
+
 
   @route 'exportCSV',
     path: '/:department/:semester/csv'

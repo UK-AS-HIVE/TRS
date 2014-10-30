@@ -118,4 +118,9 @@ Meteor.publish 'dropDeadChanges', (department, semester) ->
     limit: 3
     sort: {timestamp: -1}
 
+Meteor.publish 'changelog', (department, semester) ->
+  TRS.DropDeadChanges.find
+    department: department
+    semester: semester
+
 

@@ -2,7 +2,15 @@
 	<strong>
 		Change log for {{department}}, {{semester}}
 	</strong>
-	<table class="able table-bordered table-hover">
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>User</th>
+				<th>Field</th>
+				<th>Message</th>
+				<th>Timestamp</th>
+			</tr>
+		</thead>
 		<tbody>
 			{{#each changes}}
 				<tr>
@@ -13,7 +21,7 @@
 					</td>
 					<td>	
 						<p>
-							{{timestamp}}
+							{{fieldNames}}
 						</p>
 					</td>
 					<td>	
@@ -21,8 +29,19 @@
 							{{message}}
 						</p>
 					</td>
+					<td>	
+						<p>
+							{{timestamp}}
+						</p>
+					</td>
 				</tr>	
 			{{/each}}
 		</tbody>
 	</table>
+	<button type="button" class="btn btn-default btn-lrg" id="previousChangesPage">
+		<span class="glyphicon glyphicon-chevron-left">Previous</span>
+	</button>
+	<button type="button" class="btn btn-default btn-lrg" id="nextChangesPage">
+		<span class="glyphicon glyphicon-chevron-right">Next</span>
+	</button>
 </template>

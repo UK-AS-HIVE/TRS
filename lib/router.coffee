@@ -63,6 +63,8 @@ Router.map ->
     onBeforeAction: ->
       Session.set 'department', @params.department
       Session.set 'semester', @params.semester
+      Session.set 'pageLimit', 25
+      Session.set 'lastRecord', 0
     waitOn: ->
       Meteor.subscribe 'changelog', @params.department, @params.semester
 

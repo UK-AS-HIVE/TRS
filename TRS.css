@@ -273,3 +273,8 @@ th#courses {
   border-left: none;
 }
 
+/* Change Log */
+#changeLogData{
+  padding: 5px;
+}
+

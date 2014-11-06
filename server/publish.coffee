@@ -118,13 +118,14 @@ Meteor.publish 'dropDeadChanges', (department, semester) ->
     limit: 3
     sort: {timestamp: -1}
 
-Meteor.publish 'changelog', (department, semester, skip, limit) ->
+Meteor.publish 'changelog', (department, semester, skip, limit, sortDir) ->
   TRS.DropDeadChanges.find
     department: department
     semester: semester
   ,
     skip: skip
     limit: limit
+    sort: {timestamp: sortDir}
 
 Meteor.publish 'changeCounts', (department, semester) ->
   count = 0

@@ -65,8 +65,10 @@ Router.map ->
       Session.set 'semester', @params.semester
       Session.set 'pageLimit', 25
       Session.set 'lastRecord', 0
+      Session.set 'sortDir', -1
     waitOn: ->
-      [Meteor.subscribe('changelog', @params.department, @params.semester, Session.get('lastRecord'), Session.get('pageLimit')), Meteor.subscribe('changeCounts', @params.department, @params.semester)]
+      [Meteor.subscribe('changelog', @params.department, @params.semester, Session.get('lastRecord'), Session.get('pageLimit'), Session.get('sortDir')), 
+       Meteor.subscribe('changeCounts', @params.department, @params.semester)]
 
 
   @route 'exportCSV',

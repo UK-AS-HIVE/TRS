@@ -11,9 +11,7 @@ Template.changeLog.helpers
 		Session.get 'semester'
 
 	changes: ->
-		console.log Session.get 'lastRecord'
 		TRS.DropDeadChanges.find({})
-
 
 Template.changeLog.events
 	'click .next': ->

@@ -118,9 +118,28 @@ Meteor.publish 'dropDeadChanges', (department, semester) ->
     limit: 3
     sort: {timestamp: -1}
 
-Meteor.publish 'changelog', (department, semester) ->
+Meteor.publish 'changelog', (department, semester, skip, limit) ->
   TRS.DropDeadChanges.find
     department: department
     semester: semester
+  ,
+    skip: skip
+    limit: limit
+
+Meteor.publish 'changeCounts', (department, semester) ->
+  count = 0
+  initializing = true
+  handle = TRS.DropDeadChanges.find({department: department, semester: semester}).observeChanges
+    added: (id) =>
+      count++
+      @changed 'change-count', '1', {count} unless initializing
+    removed: (id) =>
+      count--
+      @changed 'change-count', '1', {count}
+  initializing = false
+  @added 'change-count', '1', {count}
+  @ready
+  @onStop ->
+    handle.stop()
 
 

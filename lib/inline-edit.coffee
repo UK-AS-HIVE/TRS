@@ -2,9 +2,9 @@ EditingLocks = new Meteor.Collection 'editingLocks'
 
 if Meteor.isServer
   Meteor.onConnection (connection) ->
-    console.log 'new connection: '
-    console.log connection
+    console.log ['new connection'].concat(_.values connection.httpHeaders).join ' - '
     connection.onClose = ->
+      #TODO: this never gets called.  consider using mizzao:user-status
       console.log 'Connection closed:'
       console.log @
       EditingLocks.remove {connection: @id}
@@ -13,15 +13,12 @@ if Meteor.isServer
     EditingLocks.remove {}
 
   Meteor.publish 'editingLocks', ->
-    console.log 'User subscribing to editingLocks:'
-    console.log @connection
+    console.log ['subscribing to editingLocks', @userId].concat(_.values @connection.httpHeaders).join ' - '
     EditingLocks.find()
 
   Meteor.methods
     startEditing: (id) ->
-      console.log 'somebody ' + @userId + ' started editing ' + id
-      console.log 'from connection:'
-      console.log @connection
+      console.log ['locked ' + id, @userId].concat(_.values @connection.httpHeaders).join ' - '
       EditingLocks.remove {connection: @connection.id}
       EditingLocks.insert
         user: @userId
@@ -29,6 +26,7 @@ if Meteor.isServer
         editing_id: id
       
     stopEditing: (id) ->
+      console.log ['unlocked ' + id, @userId].concat(_.values @connection.httpHeaders).join ' - '
       EditingLocks.remove {connection: @connection.id, user: @userId, 'editing_id': id}
 
 (exports ? this).toggleEdit = (e) -> 

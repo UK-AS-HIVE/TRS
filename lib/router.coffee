@@ -75,13 +75,21 @@ Router.map ->
     path: '/:department/:semester/csv'
     where: 'server'
     action: (department, semester) ->
-      # TODO: server-side permissions check
-      # currently may not be easily possible, see https://github.com/EventedMind/iron-router/issues/649
-      # therefore, return access denied for now
-      #@response.statusCode = 403
-      #@response.end 'Export disabled because permissions not yet implemented.'
+      # server-side permissions check
+      # see https://github.com/EventedMind/iron-router/issues/649
+      if not @request.cookies.meteor_login_token?
+        @response.statusCode = 403
+        @response.end 'Access denied.'
+        return
 
-      console.log 'someone exporting csv', @params
+      u = Meteor.users.findOne
+        "services.resume.loginTokens.hashedToken": Accounts._hashLoginToken(@request.cookies.meteor_login_token)
+      console.log 'User ' + u.username + ' exporting CSV'
+      if not u? or not TRS.UserCanAccessDepartment(u._id, @params.department)
+        @response.statusCode = 403
+        @response.end 'Access denied.'
+        return
+
       res = @response
       filename = [
         'TRS',

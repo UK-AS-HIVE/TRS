@@ -5,7 +5,7 @@ UserIsAdmin = (userId) ->
   user = Meteor.users.findOne {_id: userId}
   user? and TRS.Admins.findOne { admins: user.username }
 
-UserCanAccessDepartment = (userId, department) ->
+TRS.UserCanAccessDepartment = (userId, department) ->
   user = Meteor.users.findOne {_id: userId}
   if user?
     if TRS.Departments.findOne { chairDMusers: user.username, department: department }

@@ -10,6 +10,7 @@ blaze@2.0.2
 boilerplate-generator@1.0.1
 callback-hook@1.0.1
 check@1.0.2
+chuangbo:cookie@1.1.0
 coffeescript@1.0.4
 ctl-helper@1.0.4
 ctl@1.0.2
@@ -36,6 +37,7 @@ localstorage@1.0.1
 logging@1.0.4
 meteor-platform@1.1.2
 meteor@1.1.2
+meteorhacks:fast-render@2.0.2
 minifiers@1.1.1
 minimongo@1.0.4
 mizzao:bootboxjs@4.3.0

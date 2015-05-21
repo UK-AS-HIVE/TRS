@@ -11,13 +11,13 @@ TRS = @
     return 0
 
 (exports ? @).sanitizePayAmount = (payAmountString) ->
-    try
-      r = parseFloat (''+payAmountString).replace /[^0-9\.-]+/g,""
-      if isNaN r
-        return 0
-      return r
-    catch e
+  try
+    r = parseFloat (''+payAmountString).replace /[^0-9\.-]+/g,""
+    if isNaN r
       return 0
+    return r
+  catch e
+    return 0
 
 (exports ? @).formatCurrency = (s) ->
   '$' + sanitizePayAmount(s).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')

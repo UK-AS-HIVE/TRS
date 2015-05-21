@@ -16,4 +16,5 @@ Template.home.events
       department: $(template.find '#department-select').val()
 
 Template.home.rendered = ->
-  $('#semester-select').css('width', $('#department-select').css('width') + 'px');
+  $('#semester-select').css('width', $('#department-select').css('width') + 'px')
+

@@ -29,7 +29,7 @@ if Meteor.isServer
       console.log ['unlocked ' + id, @userId].concat(_.values @connection.httpHeaders).join ' - '
       EditingLocks.remove {connection: @connection.id, user: @userId, 'editing_id': id}
 
-(exports ? this).toggleEdit = (e) -> 
+(exports ? this).toggleEdit = (e) ->
   #console.log 'toggle edit'
   parent = $(e.target).parents '.inline-edit'
   $('.editing').not(parent).removeClass 'editing'
@@ -41,7 +41,7 @@ if Meteor.isServer
     Session.set 'editing_id', parent.attr 'id'
   else
     Meteor.call 'stopEditing', parent.attr 'id'
-    Session.set 'editing_id', '' 
+    Session.set 'editing_id', ''
 
 if Meteor.isClient
   Meteor.startup ->

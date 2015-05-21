@@ -12,7 +12,7 @@ mizzao:bootboxjs@4.2.1-master.1
 aldeed:collection2
 aldeed:simple-schema
 dburles:collection-helpers@0.3.0
-mizzao:bootstrap-3
 mrt:moment@2.6.0
 hive:accounts-linkblue
 meteorhacks:fast-render
+twbs:bootstrap
